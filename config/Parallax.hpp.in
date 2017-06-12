@@ -1,5 +1,5 @@
-#ifndef __PARALLAX_HPP__
-#define __PARALLAX_HPP__
+#ifndef PARALLAX_HPP
+#define PARALLAX_HPP
 
 /**
  * Version of the project

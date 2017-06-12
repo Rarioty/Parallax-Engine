@@ -3,9 +3,9 @@
 
 #include <string>
 
-void start_test(std::string name);
+void start_test(std::string& name);
 
-void register_test(int valid, std::string test);
+void register_test(int valid, std::string& test);
 
 int end_test();
 

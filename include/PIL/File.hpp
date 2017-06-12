@@ -1,5 +1,5 @@
-#ifndef __FILE_HPP__
-#define __FILE_HPP__
+#ifndef FILE_HPP
+#define FILE_HPP
 
 #include <PIL/Types.hpp>
 
