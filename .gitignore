@@ -35,6 +35,9 @@
 build
 doc/*
 
+# Ignore generated files !
+include/Parallax.hpp
+
 # Keep doxyfile
 !doc/doxyfile.in
 

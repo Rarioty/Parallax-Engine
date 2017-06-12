@@ -9,3 +9,6 @@ include (cmake/configure.cmake)
 include (cmake/configure_cmake.cmake)
 
 add_subdirectory(src)
+if (BUILD_TESTS)
+    add_subdirectory(tests)
+endif (BUILD_TESTS)
