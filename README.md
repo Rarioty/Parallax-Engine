@@ -2,6 +2,7 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f7eb23158d634b19a76f1bf63e7af5f8)](https://www.codacy.com/app/Rarioty/Parallax-Engine?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Rarioty/Parallax-Engine&amp;utm_campaign=Badge_Grade)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/409d3e45-9291-417a-b3fb-527938c4a21b.svg)](https://insight.sensiolabs.com/projects/409d3e45-9291-417a-b3fb-527938c4a21b)
+[![codecov](https://codecov.io/gh/Rarioty/Parallax-Engine/branch/master/graph/badge.svg)](https://codecov.io/gh/Rarioty/Parallax-Engine)
 [![GitHub Issues](https://img.shields.io/github/issues/Rarioty/FlowS.svg)](https://github.com/Rarioty/FlowS/issues)
 [![License](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)](https://opensource.org/licenses/MIT)
 

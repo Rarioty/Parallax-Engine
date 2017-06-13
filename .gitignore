@@ -28,9 +28,14 @@
 *.out
 *.app
 
+# Coverages files
+*.gcno
+*.gcda
+
 # Ignore directories
 build
 doc/*
+lcov
 
 # Ignore generated files !
 include/Parallax.hpp

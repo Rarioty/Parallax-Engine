@@ -11,3 +11,10 @@ if (BUILD_DOCUMENTATION)
 
     add_custom_target(doc ${DOXYGEN_EXECUTABLE} ${ParallaxEngine_DOC_DIR}/Doxyfile WORKING_DIRECTORY ${ParallaxEngine_ROOT_DIR} COMMENT "Generating API documentation with Doxygen" VERBATIM)
 endif (BUILD_DOCUMENTATION)
+
+if (CMAKE_COMPILER_IS_GNUCXX)
+    if (ENABLE_COVERAGE)
+        enable_testing()
+        coverage_evaluate()
+    endif (ENABLE_COVERAGE)
+endif (CMAKE_COMPILER_IS_GNUCXX)

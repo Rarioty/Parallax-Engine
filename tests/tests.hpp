@@ -1,11 +1,11 @@
-#ifndef __TESTS_HPP__
-#define __TESTS_HPP__
+#ifndef TESTS_HPP
+#define TESTS_HPP
 
 #include <string>
 
-void start_test(std::string& name);
+void start_test(const char* name);
 
-void register_test(int valid, std::string& test);
+void register_test(int valid, const char* test);
 
 int end_test();
 

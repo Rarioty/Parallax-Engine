@@ -1,7 +1,8 @@
 # PIL project
 
 set (PIL_SRCS
-        File.cpp
+        FileSystem/File.cpp
 )
 
-add_library(PIL SHARED ${PIL_SRCS})
+add_library (PIL SHARED ${PIL_SRCS})
+add_coverage (PIL)
