@@ -1,7 +1,10 @@
 # PIL project
 
 set (PIL_SRCS
-        FileSystem/File.cpp
+    Threads/Task.cpp
+    Threads/Worker.cpp
+    Threads/ThreadManager.cpp
+    Threads/ThreadPool.cpp
 )
 
 add_library (PIL SHARED ${PIL_SRCS})

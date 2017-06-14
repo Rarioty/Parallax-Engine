@@ -18,3 +18,10 @@ if (CMAKE_COMPILER_IS_GNUCXX)
         coverage_evaluate()
     endif (ENABLE_COVERAGE)
 endif (CMAKE_COMPILER_IS_GNUCXX)
+
+add_custom_target(distclean
+    COMMAND "find" "." "-name" "\"*.gcov\"" "-type" "f" "-delete"
+    COMMAND "find" "." "-name" "\"*.gcda\"" "-type" "f" "-delete"
+    COMMAND "rm" "-rf" "lcov"
+    COMMAND "rm" "-rf" "CMakeFiles"
+)
