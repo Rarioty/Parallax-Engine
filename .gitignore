@@ -29,6 +29,7 @@
 *.app
 
 # Coverages files
+*.gcov
 *.gcno
 *.gcda
 

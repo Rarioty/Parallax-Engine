@@ -61,20 +61,22 @@ namespace Parallax::Threads
     {
         while (this->m_running.load())
         {
-            std::unique_lock<std::mutex> lock(condvarMutex);
+            {
+                std::unique_lock<std::mutex> lock(condvarMutex);
 
-            cv.wait(lock,
-                [this] {
-                    std::lock_guard<std::mutex> guard(this->m_taskMutex);
-                    return (not this->m_running.load() || this->m_task != nullptr);
-                });
+                cv.wait(lock,
+                    [this] {
+                        std::lock_guard<std::mutex> guard(this->m_taskMutex);
+                        return (not this->m_running.load() || this->m_task != nullptr);
+                    });
 
-            if (not this->m_running.load()) return;
+                if (not this->m_running.load()) return;
+            }
+
+            this->m_task();
+            this->setReserved(false);
+            this->setTask(Task(nullptr));
         }
-
-        this->m_task();
-        this->setReserved(false);
-        this->setTask(Task(nullptr));
     }
 
     void Worker::setTask(const std::function<void()>& task)

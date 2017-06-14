@@ -2,6 +2,12 @@
 
 set (cpptests
     sized_types
+    thread_manager_default
+    thread_manager_pause
+    thread_manager_stop
+    thread_manager_callback
+    thread_manager_errors
+    thread_manager_worker
 )
 
 # add_executable(PIL_sized_types test_types_sizes.cpp)

@@ -1,18 +1,20 @@
 #ifndef PARALLAX_HPP
 #define PARALLAX_HPP
 
+#include <string>
+
 /**
  * Version of the project
  */
-#define PARALLAX_VERSION_MAJOR		@ParallaxEngine_VERSION_MAJOR@
-#define PARALLAX_VERSION_MINOR		@ParallaxEngine_VERSION_MINOR@
-#define PARALLAX_MAKE_DATE          @ParallaxEngine_MAKE_DATE@
-#define PARALLAX_MAKE_HOUR          @ParallaxEngine_MAKE_HOUR@
+#define PARALLAX_VERSION_MAJOR		"@ParallaxEngine_VERSION_MAJOR@"
+#define PARALLAX_VERSION_MINOR		"@ParallaxEngine_VERSION_MINOR@"
+#define PARALLAX_MAKE_DATE          "@ParallaxEngine_MAKE_DATE@"
+#define PARALLAX_MAKE_HOUR          "@ParallaxEngine_MAKE_HOUR@"
 
 /**
  * Build type
  */
-#define PARALLAX_BUILD_TYPE         @CMAKE_BUILD_TYPE@
+#define PARALLAX_BUILD_TYPE         "@CMAKE_BUILD_TYPE@"
 
 /**
  * Build system infomations
@@ -24,6 +26,11 @@
 /**
  * Build compiler informations
  */
-#define PARALLAX_COMPILER_ID        @CMAKE_CXX_COMPILER_ID@
+#define PARALLAX_COMPILER_ID        "@CMAKE_CXX_COMPILER_ID@"
+
+/**
+ * Function to identify version
+ */
+std::string getParallaxVersion();
 
 #endif
