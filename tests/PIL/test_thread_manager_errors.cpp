@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
     }
 
     pool->start();
-    Threads::Task t([](){
+    pool->addTask([](){
         sleep(2);
     });
     pool->addTask([](){

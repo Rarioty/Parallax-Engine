@@ -35,6 +35,7 @@
 
 # Ignore directories
 build
+scripts
 doc/*
 lcov
 
