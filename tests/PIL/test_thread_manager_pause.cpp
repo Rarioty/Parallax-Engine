@@ -8,52 +8,45 @@
 
 using namespace Parallax;
 
-std::atomic_bool    paused(false);
-
 int main(int argc, char* argv[])
 {
-    int ret = 0;
-
     Threads::ThreadManager manager(1);
     Threads::ThreadPool pool(2, manager);
 
     pool.start();
 
     Threads::Task t;
+    Threads::Task t2;
 
     t.assign([]() {
-        int i = 0;
-        std::cout << "Starting task" << std::endl;
-        while (i <= 5)
-        {
-            std::cout << "Current: " << i << std::endl;
-            sleep(1);
-
-            if (not paused.load())
-                i++;
-        }
+        sleep(3);
     });
+
+    t2.assign([]() {
+        sleep(2);
+    });
+
+    pool.addTask(t2);
+
+    pool.pause();
+    pool.unpause();
 
     t.setPauseFunction([]() {
-        std::cout << "Pause" << std::endl;
-        paused.store(true);
+        register_test(true, "Task successfully pause when we pause the pool");
     });
     t.setUnPauseFunction([]() {
-        std::cout << "Unpause" << std::endl;
-        paused.store(false);
+        register_test(true, "Task successfully unpause when we pause the pool");
     });
 
     pool.addTask(t);
 
-    sleep(2);
-
     pool.pause();
 
-    sleep(2);
+    sleep(1);
 
     pool.unpause();
 
     pool.stop();
 
-    return ret;
+    return end_test();
 }

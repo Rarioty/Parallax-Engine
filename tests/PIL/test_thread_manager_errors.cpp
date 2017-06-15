@@ -1,25 +1,59 @@
 #include <PIL/Threads/ThreadManager.hpp>
 #include <PIL/Threads/ThreadPool.hpp>
 
+#include <tests.hpp>
 #include <unistd.h>
 
 using namespace Parallax;
 
 int main(int argc, char* argv[])
 {
-    int ret = 1;
-
+    // Initializing variables
+    std::pair<bool, std::string> result;
     Threads::ThreadManager manager(1);
     Threads::ThreadPool* pool;
-    std::pair<bool, std::string> result;
+    int ret;
 
+    // First test: try to initialize with 0 threads
+    ret = 0;
     try {
         pool = new Threads::ThreadPool(0, manager);
     } catch(std::invalid_argument ex) {
-        ret = 0;
+        ret = 1;
     }
+    register_test(ret == 1, "Creation of ThreadPool with zero threads returned an exception");
 
     pool = new Threads::ThreadPool(2, manager);
+    Threads::Task t;
+
+    t = ([](){
+        sleep(1);
+    });
+
+    // Second test: Try to add a task when the pool is stopped
+    pool->stop();
+    ret = 0;
+    try {
+        pool->addTask(t);
+    } catch (std::runtime_error e) {
+        ret = 1;
+    }
+    register_test(ret == 1, "Adding a task with the pool stopped returned an exception");
+
+    pool->start();
+    pool->addTask(Threads::Task([](){
+        sleep(2);
+    }));
+    pool->addTask(Threads::Task([](){
+        sleep(2);
+    }));
+    pool->addTask(Threads::Task([](){
+        sleep(2);
+    }));
+    pool->addTask(Threads::Task([](){
+        sleep(2);
+    }));
+    pool->stop();
     pool->start();
 
     delete pool;
@@ -28,31 +62,24 @@ int main(int argc, char* argv[])
     pool->stop();
     result = pool->start();
 
-    ret |= not result.first;
+    register_test(result.first, "Pool successfully started");
 
     pool->stop();
     result = pool->pause();
 
-    ret |= result.first;
+    register_test(!result.first, "Pool successfully can't paused when stopped");
 
     pool->start();
     result = pool->unpause();
 
-    ret |= result.first;
+    register_test(!result.first, "Pool successfully can't unpause when started");
 
     pool->stop();
     result = pool->stop();
 
-    ret |= result.first;
+    register_test(!result.first, "Pool successfully can't stop when already stopped");
 
     pool->resize(4);
-
-    pool->stop();
-    try {
-        pool->addTask(Threads::Task());
-    } catch (std::runtime_error e) {
-        ret |= 0;
-    }
 
     pool->start();
     pool->addTask([](){
@@ -67,7 +94,9 @@ int main(int argc, char* argv[])
     manager.stop();
     manager.getWorker();
 
-    manager.stop();
+    result = manager.stop();
 
-    return ret;
+    register_test(!result.first, "Manager successfully can't stop when already stopped");
+
+    return end_test();
 }

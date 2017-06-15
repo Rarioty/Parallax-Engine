@@ -7,10 +7,11 @@
 
 using namespace Parallax;
 
+int result = 0;
+int callback = 0;
+
 int main(int argc, char* argv[])
 {
-    int ret = 0;
-
     Threads::ThreadManager manager(1);
     Threads::ThreadPool pool(2, manager);
 
@@ -19,16 +20,20 @@ int main(int argc, char* argv[])
     Threads::Task t;
 
     t = ([](){
-        sleep(2);
+        sleep(1);
+        result = 1;
     });
 
     t.addCallback([](){
         std::cout << "Callback called :D" << std::endl;
+        callback = 1;
     });
 
     pool.addTask(t);
 
     pool.stop();
 
-    return ret;
+    register_test(result == 1 && callback == 1, "Function ended and callback called !");
+
+    return end_test();
 }

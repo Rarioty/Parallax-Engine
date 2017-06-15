@@ -7,13 +7,12 @@
 #include <atomic>
 
 std::atomic_bool    run(true);
+int asked_to_stop = 0;
 
 using namespace Parallax;
 
 int main(int argc, char* argv[])
 {
-    int ret = 0;
-
     Threads::ThreadManager manager(1);
     Threads::ThreadPool pool(2, manager);
 
@@ -22,24 +21,31 @@ int main(int argc, char* argv[])
     Threads::Task t;
 
     t = ([]() {
+        int i = 1;
         while (run.load())
         {
-            std::cout << "Running" << std::endl;
+            std::cerr << i++ << ".";
             sleep(1);
         }
     });
 
     t.setStopFunction([](){
         run.store(false);
+        std::cerr << std::endl;
+        register_test(true, "Task successfully stop when we ask it to stop");
+        asked_to_stop++;
     });
     t.getStopFunction();        // For coverage test
 
     pool.addTask(t);
 
-    sleep(4);
+    std::cerr << "In 3 seconds the task will stop...";
+    sleep(2);
     t.stop();
 
     pool.stop();
 
-    return ret;
+    register_test(asked_to_stop == 2, "The pool stop so we called two times the task to stop");
+
+    return end_test();
 }
