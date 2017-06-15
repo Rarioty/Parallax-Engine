@@ -12,6 +12,7 @@ set (ParallaxEngine_CONFIG_DIR		${ParallaxEngine_ROOT_DIR}/config)
 set (ParallaxEngine_SRC_DIR			${ParallaxEngine_ROOT_DIR}/src)
 set (ParallaxEngine_DOC_DIR			${ParallaxEngine_ROOT_DIR}/doc)
 set (ParallaxEngine_LIB_DIR			${ParallaxEngine_ROOT_DIR}/lib)
+set (ParallaxEngine_EXT_DIR			${ParallaxEngine_ROOT_DIR}/externals)
 
 # Set build variables
 if (UNIX)

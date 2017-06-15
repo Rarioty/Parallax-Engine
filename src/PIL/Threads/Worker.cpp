@@ -17,6 +17,14 @@ namespace Parallax::Threads
         this->waitStopped();
     }
 
+    void Worker::start(const Task& task)
+    {
+        if (this->m_running.load() == true)
+            throw std::runtime_error("Can't start an already running worker");
+        this->m_running.store(true);
+        this->m_thread = std::thread(task);
+    }
+
     void Worker::start(std::condition_variable& cv, std::mutex& condvarMutex)
     {
         if (this->m_running.load() == true)

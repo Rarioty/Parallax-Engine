@@ -44,6 +44,7 @@ include/Parallax.hpp
 
 # Keep doxyfile
 !doc/doxyfile.in
+!doc/doxyfile_pretty.in
 
 # Cmake files
 CMakeCache.txt

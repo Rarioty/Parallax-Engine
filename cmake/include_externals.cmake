@@ -4,8 +4,14 @@ if (BUILD_DOCUMENTATION)
         message (FATAL_ERROR "Doxygen is needed to build the documentation.")
     endif (NOT DOXYGEN_FOUND)
 
+    if (DOXYGEN_VERSION EQUAL "1.8.9")
+        set (doxyfile_in ${ParallaxEngine_DOC_DIR}/doxyfile_pretty.in)
+    else (DOXYGEN_VERSION EQUAL "1.8.9")
+        set (doxyfile_in ${ParallaxEngine_DOC_DIR}/doxyfile.in)
+    endif (DOXYGEN_VERSION EQUAL "1.8.9")
+
     configure_file(
-        ${ParallaxEngine_DOC_DIR}/doxyfile.in
+        ${doxyfile_in}
         ${ParallaxEngine_DOC_DIR}/Doxyfile @ONLY
     )
 

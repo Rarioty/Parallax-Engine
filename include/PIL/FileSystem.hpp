@@ -15,6 +15,10 @@ namespace Parallax
     /*
      * For now on, use Boost for FileSystem until we have to optimize the code or the compilation don't work
      */
+    /**
+     * \namespace   Parallax::FileSystem
+     * \ingroup     PIL
+     */
     namespace FileSystem = boost::filesystem;
 }
 
