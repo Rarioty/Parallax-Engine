@@ -40,6 +40,16 @@ int main(int argc, char* argv[])
     }
     register_test(ret == 1, "Adding a task with the pool stopped returned an exception");
 
+    ret = 0;
+    try {
+        pool->addTask([](){
+            1+1;
+        });
+    } catch (std::runtime_error e) {
+        ret = 1;
+    }
+    register_test(ret == 1, "Adding a function task with the pool stopped returned an exception");
+
     pool->start();
     pool->addTask(Threads::Task([](){
         sleep(2);

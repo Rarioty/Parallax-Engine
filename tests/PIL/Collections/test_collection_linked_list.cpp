@@ -64,12 +64,13 @@ int main(int argc, char* argv[])
 
     ret = 0;
     try {
-    list.remove(0);
+        list.remove(0);
     } catch (std::runtime_error e) {
         ret = 1;
     }
     register_test(ret == 1, "Error successfully raised when removing element in an empty list");
 
+    list.push_front(0);
     ret = 0;
     try {
         list.remove(5);
@@ -79,7 +80,6 @@ int main(int argc, char* argv[])
     register_test(ret == 1, "Error successfully raised when removing element too far");
 
     //Testing get
-    list.push_front(0);
     list.push_front(1);
     list.get(0);
     list.get(1);
@@ -158,6 +158,7 @@ int main(int argc, char* argv[])
 
     list.find_back(0);
     list.find_back(1);
+    list.find_back(2);
     list.find_back(5);
 
     std::pair<bool, U32*> result;

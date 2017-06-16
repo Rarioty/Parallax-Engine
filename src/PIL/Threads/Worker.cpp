@@ -65,11 +65,8 @@ namespace Parallax::Threads
     {
         if (this->m_thread.joinable())
         {
-            try {
-                this->m_thread.join();
-            } catch (std::bad_function_call err) {
-                // Weird error, look at this...
-            }
+            // Carefull here, join weirdly raise a bad_function_call exception...
+            this->m_thread.join();
         }
     }
 
