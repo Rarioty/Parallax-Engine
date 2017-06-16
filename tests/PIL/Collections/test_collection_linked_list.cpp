@@ -56,7 +56,30 @@ int main(int argc, char* argv[])
     });
     register_test(list.size() == 1, "Element successfully removed");
 
+    list.push_front(0);
+    list.push_front(0);
+    list.remove(1);
+    list.remove(1);
+    list.remove(0);
+
+    ret = 0;
+    try {
+    list.remove(0);
+    } catch (std::runtime_error e) {
+        ret = 1;
+    }
+    register_test(ret == 1, "Error successfully raised when removing element in an empty list");
+
+    ret = 0;
+    try {
+        list.remove(5);
+    } catch (std::runtime_error e) {
+        ret = 1;
+    }
+    register_test(ret == 1, "Error successfully raised when removing element too far");
+
     //Testing get
+    list.push_front(0);
     list.push_front(1);
     list.get(0);
     list.get(1);
@@ -130,7 +153,12 @@ int main(int argc, char* argv[])
     std::cout << "Random number get is " << random << std::endl;
 
     list.find(2);
+    list.find(1);
+    list.find(5);
+
     list.find_back(0);
+    list.find_back(1);
+    list.find_back(5);
 
     std::pair<bool, U32*> result;
 
@@ -148,6 +176,10 @@ int main(int argc, char* argv[])
 
     result = list.find_all([](U32 pos, int* element){
         return false;
+    });
+
+    list.sort([](int* first, int* second){
+        return *first < *second;
     });
 
     return end_test();

@@ -125,7 +125,10 @@ void LinkedList<T>::remove(U32 position)
     struct node* tmp = m_front;
     U32 i;
 
-    if (size() <= position)
+    if (size() == 0)
+        throw std::runtime_error("The list is empty");
+
+    if (position >= size())
         throw std::runtime_error("The position asked is bigger than the size of the linked-list");
 
     for (i = 0; i < position; ++i)
