@@ -2,6 +2,7 @@
 #define LINKED_LIST_HPP
 
 #include <PIL/Collections/Collections.hpp>
+#include <cstdlib>
 
 namespace Parallax
 {
@@ -46,17 +47,34 @@ namespace Parallax
             ~LinkedList();
 
         public:
-            Iterator    begin();
-            Iterator    end();
+            Iterator                begin();
+            Iterator                end();
 
-            U32         size();
+            void                    push_front(T element);
+            void                    push_back(T element);
+            void                    insert(T element, U32 position);
 
-            void        push(T element);
+            U32                     size();
 
-            void        remove(U32 position);
-            void        remove(Iterator it);
+            void                    remove(U32 position);
+            void                    remove(const std::function<bool(U32, T)>& func);
+            void                    remove(Iterator it);
 
-            T           get(U32 position);
+            T                       get(U32 position);
+            T                       front();
+            T                       back();
+
+            void                    execute(const std::function<void(U32, T*)>& func);
+            void                    execute(const std::function<bool(U32, T*)>& func);
+
+            T                       random();
+
+            std::pair<bool, U32>    find(T needle);
+            std::pair<bool, U32>    find_back(T needle);
+            std::pair<bool, U32*>   find_all(T needle);
+            std::pair<bool, U32*>   find_all(const std::function<bool(U32, T*)>& func);
+
+            void                    sort(const std::function<bool(T*, T*)>& comparator);
 
         private:
             struct node* m_front;

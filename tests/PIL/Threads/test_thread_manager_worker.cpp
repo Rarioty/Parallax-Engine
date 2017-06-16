@@ -60,8 +60,7 @@ int main(int argc, char* argv[])
     std::mutex m;
     try {
         w->start(cv, m);
-    } catch (std::runtime_error e)
-    {
+    } catch (std::runtime_error e) {
         register_test(true, "Successfully raised an error when we started two times the same worker");
     }
 

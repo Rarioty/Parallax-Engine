@@ -1,5 +1,7 @@
 #include <PIL/Threads/Worker.hpp>
 
+#include <iostream>
+
 namespace Parallax::Threads
 {
     Worker::Worker()
@@ -62,7 +64,13 @@ namespace Parallax::Threads
     void Worker::waitStopped()
     {
         if (this->m_thread.joinable())
-            this->m_thread.join();
+        {
+            try {
+                this->m_thread.join();
+            } catch (std::bad_function_call err) {
+                // Weird error, look at this...
+            }
+        }
     }
 
     void Worker::threadMain(std::condition_variable& cv, std::mutex& condvarMutex)
