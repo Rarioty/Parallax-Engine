@@ -68,8 +68,10 @@ namespace Parallax
             void                    sort(const std::function<bool(T*, T*)>& comparator);
 
         private:
-            struct node* m_front;
-            struct node* m_back;
+            struct node*    m_front;
+            struct node*    m_back;
+
+            U32             m_current_size;
         };
 
         template <typename T>

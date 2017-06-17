@@ -52,6 +52,7 @@ template <typename T>
 LinkedList<T>::LinkedList()
 {
     m_front = m_back = nullptr;
+    m_current_size = 0;
 }
 
 template <typename T>
@@ -88,6 +89,8 @@ void LinkedList<T>::push_front(T element)
         m_back = new_node;
 
     m_front = new_node;
+
+    m_current_size++;
 }
 
 template <typename T>
@@ -103,6 +106,8 @@ void LinkedList<T>::push_back(T element)
     {
         m_back = m_back->m_next = new_node;
     }
+
+    m_current_size++;
 }
 
 template <typename T>
@@ -131,21 +136,14 @@ void LinkedList<T>::insert(T element, U32 position)
 
     new_node = new struct node(element, tmp);
     before->m_next = new_node;
+
+    m_current_size++;
 }
 
 template <typename T>
 U32 LinkedList<T>::size()
 {
-    struct node* tmp = m_front;
-    U32 current = 0;
-
-    while (tmp != nullptr)
-    {
-        tmp = tmp->m_next;
-        current++;
-    }
-
-    return current;
+    return m_current_size;
 }
 
 template <typename T>
@@ -181,6 +179,7 @@ void LinkedList<T>::remove(U32 position)
     }
 
     delete tmp;
+    m_current_size--;
 }
 
 template <typename T>
