@@ -157,5 +157,64 @@ int main(int argc, char *argv[])
     delete list;
     delete stdlist;
 
+    /*********************************************************************************************
+     * Sort
+     ********************************************************************************************/
+    list = new Collections::LinkedList<int>();
+    stdlist = new std::list<int>();
+
+    for (i = 0; i < 1000; ++i)
+    {
+        stdlist->push_back(-i);
+    }
+    start = std::chrono::high_resolution_clock::now();
+    stdlist->sort();
+    finish = std::chrono::high_resolution_clock::now();
+    elapsedStd = finish - start;
+
+    std::cout << "| sort        | 1 000       | "
+        << std::setw(11) << std::setfill(' ') << elapsedStd.count() << " s | ";
+
+    for (i = 0; i < 1000; ++i)
+    {
+        list->push_back(-i);
+    }
+    start = std::chrono::high_resolution_clock::now();
+    list->sort([](int first, int second){
+        return first < second;
+    });
+    finish = std::chrono::high_resolution_clock::now();
+    elapsedParallax = finish - start;
+
+    // Printing values
+    std::cout << std::setw(11) << std::setfill(' ') << elapsedParallax.count() << " s |" << std::endl;
+
+    delete list;
+    delete stdlist;
+
+    // Memory footprint
+    // -> for std::list: http://info.prelert.com/blog/stl-container-memory-usage
+    list = new Collections::LinkedList<int>();
+    stdlist = new std::list<int>();
+
+    for (i = 0; i < 1000000; ++i)
+    {
+        stdlist->push_back(i);
+    }
+
+    std::cout << "| sizeof      | 1 000 000   | "
+        << std::setw(11) << std::setfill(' ') << sizeof(*stdlist) + 1000000 * (sizeof(int) + 16) << " o | ";
+
+    for (i = 0; i < 1000000; ++i)
+    {
+        list->push_back(i);
+    }
+
+    // Printing values
+    std::cout << std::setw(11) << std::setfill(' ') << sizeof(*list) + 1000000 * sizeof(struct Collections::LinkedList<int>::node) << " o |" << std::endl;
+
+    delete list;
+    delete stdlist;
+
     return 0;
 }

@@ -3,6 +3,7 @@
 
 #include <PIL/Types.hpp>
 #include <functional>
+#include <iostream>
 #include <cstdlib>
 
 namespace Parallax
@@ -163,6 +164,15 @@ namespace Parallax
 
             /**
              * \brief
+             *  Swap two elemens in the container
+             *
+             * \param[in]   first   First element to swap
+             * \param[in]   second  Second element to swap
+             */
+            void                    swap(U32 first, U32 second);
+
+            /**
+             * \brief
              *  Execute a function on each element of this container.
              *  The arguments of the function are the position of the node and a pointer to the element
              *
@@ -231,7 +241,7 @@ namespace Parallax
              *
              * \param[in]   comparator  Function to compare two elements
              */
-            void                    sort(const std::function<bool(T*, T*)>& comparator);
+            void                    sort(const std::function<bool(T, T)>& comparator);
 
         private:
             struct node*    m_front;            /*!<    Front node of the container     */
