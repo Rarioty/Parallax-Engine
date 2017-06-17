@@ -27,10 +27,12 @@ namespace Parallax
          * \code
          *  | Test name   | Nb elements |    Std time   | Parallax time |
          *  |-------------+-------------+---------------+---------------|
-         *  | push_front  | 1 000 000   |     0.19898 s |   0.0463889 s |
+         *  | push_front  | 1 000 000   |    0.162967 s |    0.043531 s |
          *  | push_back   | 1 000 000   |   0.0963715 s |   0.0271976 s |
          *  | remove half | 10 000      |    0.647498 s |   0.0859716 s |
          *  | iterate     | 1 000 000   |  0.00253338 s |  0.00266081 s |
+         *  | sort        | 1 000       | 0.000629121 s |    0.015256 s |
+         *  | sizeof      | 1 000 000   |    20000024 o |    16000024 o |
          * \endcode
          */
         template <typename T>
@@ -288,7 +290,7 @@ namespace Parallax
              *
              * \return  The value pointed by this iterator
              */
-            T   operator*();
+            T       operator*();
 
             /**
              * \brief
