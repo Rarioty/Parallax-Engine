@@ -1,13 +1,11 @@
 template <typename T>
 LinkedListIterator<T>::LinkedListIterator()
-    : m_current(0)
-    , m_list(nullptr)
+    : m_current_node(nullptr)
 {}
 
 template <typename T>
-LinkedListIterator<T>::LinkedListIterator(U32 pos, LinkedList<T>* list)
-    : m_current(pos)
-    , m_list(list)
+LinkedListIterator<T>::LinkedListIterator(struct LinkedList<T>::node* node)
+    : m_current_node(node)
 {}
 
 template <typename T>
@@ -17,35 +15,31 @@ LinkedListIterator<T>::~LinkedListIterator()
 template <typename T>
 T LinkedListIterator<T>::operator*()
 {
-    return m_list->get(m_current);
+    return m_current_node->m_data;
 }
 
 template <typename T>
-LinkedListIterator<T> LinkedListIterator<T>::next()
+void LinkedListIterator<T>::next()
 {
-    m_current++;
-
-    return LinkedListIterator<T>(m_current, m_list);
+    m_current_node = m_current_node->m_next;
 }
 
 template <typename T>
-LinkedListIterator<T> LinkedListIterator<T>::operator++()
+void LinkedListIterator<T>::operator++()
 {
-    m_current++;
-
-    return LinkedListIterator<T>(m_current, m_list);
+    return this->next();
 }
 
 template <typename T>
 bool LinkedListIterator<T>::operator!=(LinkedListIterator<T> it)
 {
-    return it.m_current != this->m_current || it.m_list != this->m_list;
+    return this->m_current_node != it.m_current_node;
 }
 
 template <typename T>
 bool LinkedListIterator<T>::operator==(LinkedListIterator<T> it)
 {
-    return it.m_current == this->m_current && it.m_list == this->m_list;
+    return this->m_current_node == it.m_current_node;
 }
 
 template <typename T>
@@ -71,13 +65,13 @@ LinkedList<T>::~LinkedList()
 template <typename T>
 LinkedListIterator<T> LinkedList<T>::begin()
 {
-    return LinkedListIterator<T>(0, this);
+    return LinkedListIterator<T>(m_front);
 }
 
 template <typename T>
 LinkedListIterator<T> LinkedList<T>::end()
 {
-    return LinkedListIterator<T>(size(), this);
+    return LinkedListIterator<T>(nullptr);
 }
 
 template <typename T>
@@ -191,14 +185,15 @@ void LinkedList<T>::remove(const std::function<bool(U32, T)>& func)
 
     for (current = 0; current < size; ++current)
     {
-        if (func(current, tmp->m_data))
+        bool result = func(current, tmp->m_data);
+        tmp = tmp->m_next;
+
+        if (result)
         {
             remove(current);
             current--;
             size--;
         }
-
-        tmp = tmp->m_next;
     }
 }
 
