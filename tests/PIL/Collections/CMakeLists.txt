@@ -2,6 +2,7 @@
 
 set (cpptests
     collection_linked_list
+    collection_linked_list_iterator
 )
 
 foreach (cpptest ${cpptests})

@@ -13,23 +13,14 @@ namespace Parallax
     namespace Collections
     {
         template <typename T>
-        class LinkedListIterator
-        {
-        public:
-            LinkedListIterator();
-            ~LinkedListIterator();
-
-        public:
-            T                       operator*();
-
-            LinkedListIterator<T>&  next();
-        };
+        class LinkedListIterator;
 
         template <typename T>
         class LinkedList : public Container<T>
         {
         public:
             using Iterator = LinkedListIterator<T>;
+            friend class LinkedListIterator<T>;
 
             struct node
             {
@@ -79,6 +70,33 @@ namespace Parallax
         private:
             struct node* m_front;
             struct node* m_back;
+        };
+
+        template <typename T>
+        class LinkedListIterator
+        {
+        public:
+            friend class LinkedList<T>;
+
+        public:
+            LinkedListIterator(U32 pos, LinkedList<T>* list);
+            LinkedListIterator();
+            ~LinkedListIterator();
+
+        public:
+            T                       operator*();
+
+            LinkedListIterator<T>   next();
+
+            // Operators
+            LinkedListIterator<T>   operator++();
+
+            bool                    operator!=(LinkedListIterator<T> it);
+            bool                    operator==(LinkedListIterator<T> it);
+
+        private:
+            LinkedList<T>*  m_list;
+            U32             m_current;
         };
 
         #include "LinkedList.inc"

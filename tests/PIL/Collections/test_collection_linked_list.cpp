@@ -149,6 +149,10 @@ int main(int argc, char* argv[])
     list.push_front(1);
     list.push_front(2);
     int random = list.random();
+    list.random();
+    list.random();
+    list.random();
+    list.random();
 
     std::cout << "Random number get is " << random << std::endl;
 

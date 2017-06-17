@@ -1,21 +1,51 @@
 template <typename T>
 LinkedListIterator<T>::LinkedListIterator()
-{
-}
+    : m_current(0)
+    , m_list(nullptr)
+{}
+
+template <typename T>
+LinkedListIterator<T>::LinkedListIterator(U32 pos, LinkedList<T>* list)
+    : m_current(pos)
+    , m_list(list)
+{}
 
 template <typename T>
 LinkedListIterator<T>::~LinkedListIterator()
-{
-}
+{}
 
 template <typename T>
 T LinkedListIterator<T>::operator*()
 {
+    return m_list->get(m_current);
 }
 
 template <typename T>
-LinkedListIterator<T>& LinkedListIterator<T>::next()
+LinkedListIterator<T> LinkedListIterator<T>::next()
 {
+    m_current++;
+
+    return LinkedListIterator<T>(m_current, m_list);
+}
+
+template <typename T>
+LinkedListIterator<T> LinkedListIterator<T>::operator++()
+{
+    m_current++;
+
+    return LinkedListIterator<T>(m_current, m_list);
+}
+
+template <typename T>
+bool LinkedListIterator<T>::operator!=(LinkedListIterator<T> it)
+{
+    return it.m_current != this->m_current || it.m_list != this->m_list;
+}
+
+template <typename T>
+bool LinkedListIterator<T>::operator==(LinkedListIterator<T> it)
+{
+    return it.m_current == this->m_current && it.m_list == this->m_list;
 }
 
 template <typename T>
@@ -40,13 +70,13 @@ LinkedList<T>::~LinkedList()
 template <typename T>
 LinkedListIterator<T> LinkedList<T>::begin()
 {
-
+    return LinkedListIterator<T>(0, this);
 }
 
 template <typename T>
 LinkedListIterator<T> LinkedList<T>::end()
 {
-
+    return LinkedListIterator<T>(size(), this);
 }
 
 template <typename T>
@@ -176,6 +206,9 @@ void LinkedList<T>::remove(const std::function<bool(U32, T)>& func)
 template <typename T>
 void LinkedList<T>::remove(LinkedList<T>::Iterator it)
 {
+    U32 pos = it.m_current;
+
+    remove(pos);
 }
 
 template <typename T>

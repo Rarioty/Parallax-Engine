@@ -18,8 +18,8 @@ namespace Parallax
         class Container
         {
         protected:
-            Container();
-            ~Container();
+            Container(){}
+            ~Container(){}
 
         protected:
             virtual void                    push_front(T element) = 0;
@@ -47,8 +47,6 @@ namespace Parallax
 
             virtual void                    sort(const std::function<bool(T*, T*)>& comparator) = 0;
         };
-
-        #include "Collections.inc"
     }
 }
 
