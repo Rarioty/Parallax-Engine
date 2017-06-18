@@ -77,12 +77,12 @@ int main(int argc, char* argv[])
     pool->stop();
     result = pool->pause();
 
-    register_test(!result.first, "Pool successfully can't paused when stopped");
+    register_test(not result.first, "Pool successfully can't paused when stopped");
 
     pool->start();
     result = pool->unpause();
 
-    register_test(!result.first, "Pool successfully can't unpause when started");
+    register_test(not result.first, "Pool successfully can't unpause when started");
 
     pool->stop();
     result = pool->stop();
