@@ -1,14 +1,46 @@
 #ifndef MODULE_HPP
 #define MODULE_HPP
 
-class Module
+namespace Parallax
 {
-public:
-    Module(){}
-    ~Module(){}
+    /**
+     * \namespace   Parallax::Core
+     * \ingroup     Core
+     */
+    namespace Core
+    {
+        /**
+         * \class   Module
+         * \brief   Module class for subsystem start and stop
+         *
+         * \ingroup Core
+         */
+        class Module
+        {
+        public:
+            /**
+             * \brief
+             *  Constructor
+             */
+            Module(){}
+            /**
+             * \brief
+             *  Destructor
+             */
+            ~Module(){}
 
-    virtual void Init() = 0;
-    virtual void Shutdown() = 0;
-};
+            /**
+             * \brief
+             *  Initialize the subsystem
+             */
+            virtual void Init() = 0;
+            /**
+             * \brief
+             *  Stop the subsystem
+             */
+            virtual void Shutdown() = 0;
+        };
+    }
+}
 
 #endif
