@@ -5,11 +5,13 @@ set (cpptests
     collection_linked_list_iterator
     collection_vector
     collection_vector_iterator
+    collection_stack
 )
 
 set (cppperfs
     collection_linked_list
     collection_vector
+    collection_stack
 )
 
 foreach (cpptest ${cpptests})
