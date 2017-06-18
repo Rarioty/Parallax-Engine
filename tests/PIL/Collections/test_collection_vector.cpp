@@ -124,11 +124,31 @@ int main(int argc, char* argv[])
     }
     register_test(ret == 1, "Successfully raised an error when asking back on a zero element vector");
 
+    ret = 0;
+    try {
+        vector->at(10);
+    } catch (std::runtime_error e) {
+        ret = 1;
+    }
+    register_test(ret == 1, "Successfully raised an error when asking reference on a zero element vector");
+
     vector->push_back(0);
     vector->push_back(1);
 
     register_test(vector->front() == 0, "Front returned the correct value");
     register_test(vector->back() == 1, "Back returned the correct value");
+    register_test(vector->at(0) == 0, "At returned the correct value");
+
+    vector->pop_back();
+    vector->pop_back();
+
+    ret = 0;
+    try {
+        vector->pop_back();
+    } catch (std::runtime_error e) {
+        ret = 1;
+    }
+    register_test(ret == 1, "Successfully raised an error when popping back a zero element container");
 
     delete vector;
 

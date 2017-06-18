@@ -114,6 +114,15 @@ void Vector<T>::insert(T element, U32 position)
 }
 
 template <typename T>
+void Vector<T>::pop_back()
+{
+    if (m_current == 0)
+        throw std::runtime_error("Can't pop an element on a zero size container");
+
+    m_current--;
+}
+
+template <typename T>
 U32 Vector<T>::size()
 {
     return m_current;
@@ -198,6 +207,15 @@ T Vector<T>::back()
         throw std::runtime_error("Can't access a zero element vector");
 
     return m_array[m_current-1];
+}
+
+template <typename T>
+T& Vector<T>::at(U32 position)
+{
+    if (position >= m_current)
+        throw std::runtime_error("Can't access values after max size !");
+
+    return m_array[position];
 }
 
 template <typename T>

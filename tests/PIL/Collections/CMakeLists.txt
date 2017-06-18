@@ -8,6 +8,7 @@ set (cpptests
 
 set (cppperfs
     collection_linked_list
+    collection_vector
 )
 
 foreach (cpptest ${cpptests})

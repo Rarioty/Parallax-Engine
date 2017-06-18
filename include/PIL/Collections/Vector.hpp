@@ -42,6 +42,8 @@ namespace Parallax
             void                    push_back(T element);
             void                    insert(T element, U32 position);
 
+            void                    pop_back();
+
             U32                     size();
             void                    resize(U32 new_size);
 
@@ -52,6 +54,8 @@ namespace Parallax
             T                       get(U32 position);
             T                       front();
             T                       back();
+
+            T&                      at(U32 position);
 
             void                    execute(const std::function<void(U32, T*)>& func);
             void                    execute(const std::function<bool(U32, T*)>& func);
