@@ -4,6 +4,7 @@ set (cpptests
     collection_linked_list
     collection_linked_list_iterator
     collection_vector
+    collection_vector_iterator
 )
 
 set (cppperfs

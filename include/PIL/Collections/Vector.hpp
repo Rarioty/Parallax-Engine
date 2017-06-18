@@ -98,6 +98,11 @@ namespace Parallax
             VectorIterator(Vector<T>* vector, U32 starting_position);
             /**
              * \brief
+             *  Constructor
+             */
+            VectorIterator();
+            /**
+             * \brief
              *  Destructor
              */
             ~VectorIterator();
@@ -109,7 +114,7 @@ namespace Parallax
              *
              * \return  Value pointed by this iterator
              */
-            T       operator*();
+            T&      operator*();
 
             /**
              * \brief

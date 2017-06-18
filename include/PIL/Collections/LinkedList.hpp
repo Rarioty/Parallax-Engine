@@ -278,7 +278,7 @@ namespace Parallax
              *
              * \return  The value pointed by this iterator
              */
-            T       operator*();
+            T&      operator*();
 
             /**
              * \brief

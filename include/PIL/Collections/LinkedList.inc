@@ -13,7 +13,7 @@ LinkedListIterator<T>::~LinkedListIterator()
 {}
 
 template <typename T>
-T LinkedListIterator<T>::operator*()
+T& LinkedListIterator<T>::operator*()
 {
     return m_current_node->m_data;
 }

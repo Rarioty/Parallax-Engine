@@ -5,11 +5,17 @@ VectorIterator<T>::VectorIterator(Vector<T>* vector, U32 starting_position)
 {}
 
 template <typename T>
+VectorIterator<T>::VectorIterator()
+    : m_vector(nullptr)
+    , m_current(0)
+{}
+
+template <typename T>
 VectorIterator<T>::~VectorIterator()
 {}
 
 template <typename T>
-T VectorIterator<T>::operator*()
+T& VectorIterator<T>::operator*()
 {
     if (m_current >= m_vector->size())
         throw std::runtime_error("Accessing iterator value but the target is incorrect");
