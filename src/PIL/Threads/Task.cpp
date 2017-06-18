@@ -55,18 +55,24 @@ namespace Parallax::Threads
     void Task::stop() const
     {
         if (m_stopFunction)
+        {
             m_stopFunction();
+        }
     }
 
     void Task::pause()
     {
         if (m_pauseFunction)
+        {
             m_pauseFunction();
+        }
     }
 
     void Task::unpause()
     {
         if (m_unpauseFunction)
+        {
             m_unpauseFunction();
+        }
     }
 }

@@ -70,6 +70,42 @@ int main(int argc, char* argv[])
     }
     register_test(ret == 1, "Error successfully raised when removing element in an empty list");
 
+    // Testing swap
+    list.push_back(0);
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+
+    ret = 0;
+    try {
+        list.swap(10, 10);
+    } catch (std::runtime_error e) {
+        ret = 1;
+    }
+    register_test(ret == 1, "Error successfully raised when swapping element too far");
+
+    ret = 0;
+    try {
+        list.swap(2, 10);
+    } catch (std::runtime_error e) {
+        ret = 1;
+    }
+    register_test(ret == 1, "Error successfully raised when swapping element too far *2");
+
+    list.swap(0, 0);
+    list.swap(1, 0);
+    list.swap(2, 3);
+
+    register_test(list.get(0) == 1 && list.get(1) == 0 && list.get(2) == 3 && list.get(3) == 2, "Elements are well swapped");
+
+    list.swap(0, 3);
+    list.swap(0, 2);
+
+    list.remove(0);
+    list.remove(0);
+    list.remove(0);
+    list.remove(0);
+
     list.push_front(0);
     ret = 0;
     try {
@@ -146,7 +182,7 @@ int main(int argc, char* argv[])
 
     list.push_front(0);
     list.random();
-    list.push_front(1);
+    list.push_front(3);
     list.push_front(2);
     int random = list.random();
     list.random();
@@ -183,9 +219,31 @@ int main(int argc, char* argv[])
         return false;
     });
 
-    list.sort([](int* first, int* second){
-        return *first < *second;
+    list.remove(0);
+    list.remove(0);
+    list.remove(0);
+
+    list.push_back(5);
+    list.push_back(-2);
+    list.push_back(7);
+    list.push_back(-3);
+    list.push_back(12);
+
+    list.sort([](int first, int second){
+        return first < second;
     });
+
+    int before = list.get(0);
+    ret = 1;
+    for (int i = 1; i < 5; ++i)
+    {
+        if (list.get(i) < before)
+            ret = 0;
+
+        before = list.get(i);
+    }
+
+    register_test(ret == 1, "Successfully sorted");
 
     return end_test();
 }

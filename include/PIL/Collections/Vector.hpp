@@ -1,10 +1,9 @@
-#ifndef LINKED_LIST_HPP
-#define LINKED_LIST_HPP
+#ifndef VECTOR_HPP
+#define VECTOR_HPP
 
 #include <PIL/Types.hpp>
 #include <functional>
-#include <iostream>
-#include <cstdlib>
+#include <cstring>
 
 namespace Parallax
 {
@@ -15,47 +14,34 @@ namespace Parallax
     namespace Collections
     {
         template <typename T>
-        class LinkedListIterator;
+        class VectorIterator;
 
         /**
-         * \class   LinkedList
-         * \brief   Single linked-list container, you can see performance below.
+         * \class   Vector
+         * \brief   Dynamic array container
          *
          * \tparam  T   Type of the elements in the container.
          */
         template <typename T>
-        class LinkedList
+        class Vector
         {
         public:
-            using Iterator = LinkedListIterator<T>;     /*!<    Iterator class for this container   */
-            friend class LinkedListIterator<T>;
-
-            /**
-             * \struct  node
-             * \brief   Node in the linked-list
-             */
-            struct node
-            {
-                node*   m_next;         /*!<    Next node           */
-                T       m_data;         /*!<    Data in this node   */
-
-                node(T data, node* next)
-                    : m_next(next)
-                    , m_data(data)
-                {}
-            };
+            using Iterator = VectorIterator<T>;
+            friend class VectorIterator<T>;
 
         public:
             /**
              * \brief
              *  Constructor
+             *
+             * \param[in]   start_size  Default starting size to the container
              */
-            LinkedList();
+            Vector(U32 start_size = 32);
             /**
              * \brief
              *  Destructor
              */
-            ~LinkedList();
+            ~Vector();
 
         public:
             /**
@@ -98,11 +84,24 @@ namespace Parallax
 
             /**
              * \brief
+             *  Pop an element from the back of the vector
+             */
+            void                    pop_back();
+
+            /**
+             * \brief
              *  Return size of this container
              *
              * \return  Current size of this container
              */
             U32                     size();
+            /**
+             * \brief
+             *  Resize this vector with a specified size
+             *
+             * \param[in]   new_size    New size for the container
+             */
+            void                    resize(U32 new_size);
 
             /**
              * \brief
@@ -154,12 +153,13 @@ namespace Parallax
 
             /**
              * \brief
-             *  Swap two elemens in the container
+             *  Get a reference to the value in a specified position
              *
-             * \param[in]   first   First element to swap
-             * \param[in]   second  Second element to swap
+             * \param[in]   position    Position of the wanted value
+             *
+             * \return  Reference to the value
              */
-            void                    swap(U32 first, U32 second);
+            T&                      at(U32 position);
 
             /**
              * \brief
@@ -234,88 +234,88 @@ namespace Parallax
             void                    sort(const std::function<bool(T, T)>& comparator);
 
         private:
-            struct node*    m_front;            /*!<    Front node of the container     */
-            struct node*    m_back;             /*!<    Back node of the container      */
-
-            U32             m_current_size;     /*!<    Current size of the container   */
+            U32     m_max_size;     /*!<    Size of the allocated array     */
+            U32     m_current;      /*!<    Current size used by the vector */
+            T*      m_array;        /*!<    Array of elements               */
         };
 
         /**
-         * \class   LinkedListIterator
-         * \brief   Iterator for the LinkedList class
+         * \class   VectorIterator
+         * \brief   Iterator for the vector container
          *
-         * \tparam  T   Type of the elements in the corresponding LinkedList
+         * \tparam  T   Type of value inside the vector container
          */
         template <typename T>
-        class LinkedListIterator
+        class VectorIterator
         {
         public:
-            friend class LinkedList<T>;
+            friend class Vector<T>;
 
         public:
             /**
              * \brief
              *  Constructor
              *
-             * \param[in]   node    Starting node for this iterator
+             * \param[in]   vector              The target vector to iterate
+             * \param[in]   starting_position   Starting position in the vector
              */
-            LinkedListIterator(struct LinkedList<T>::node* node);
+            VectorIterator(Vector<T>* vector, U32 starting_position);
             /**
              * \brief
              *  Constructor
              */
-            LinkedListIterator();
+            VectorIterator();
             /**
              * \brief
              *  Destructor
              */
-            ~LinkedListIterator();
+            ~VectorIterator();
 
         public:
             /**
              * \brief
-             *  Access operator of this iterator
+             *  Access operator
              *
-             * \return  The value pointed by this iterator
+             * \return  Value pointed by this iterator
              */
             T&      operator*();
 
             /**
              * \brief
-             *  Make a step with this iterator
+             *  Make the iterator to do a step forward
              */
             void    next();
-
             /**
              * \brief
-             *  Make a step with this iterator. see next()
+             *  Make the iterator to do a step forward
              */
             void    operator++();
 
             /**
              * \brief
-             *  Comparator operator
+             *  Comparison operator
              *
-             * \param[in]   it  Other iterator to compare with
+             * \param[in]   it  Iterator to compare to
              *
              * \return  Whether or not the iterators are different
              */
-            bool    operator!=(LinkedListIterator<T> it);
+            bool    operator!=(VectorIterator<T> it);
             /**
              * \brief
-             *  Comparator operator
+             *  Comparison operator
              *
-             * \param[in]   it  Other iterator to compare with
+             * \param[in]   it  Iterator to compare to
              *
              * \return  Whether or not the iterators are equals
              */
-            bool    operator==(LinkedListIterator<T> it);
+            bool    operator==(VectorIterator<T> it);
 
         private:
-            struct LinkedList<T>::node* m_current_node;     /*!<    Node pointed by this iterator   */
+            Vector<T>*  m_vector;   /*!<    Target container                    */
+            U32         m_current;  /*!<    Current position in the container   */
         };
 
-        #include "LinkedList.inc"
+        #include "Vector.inc"
     }
 }
 
