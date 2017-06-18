@@ -225,7 +225,7 @@ namespace Parallax
              *
              * \return     A pair composed of a boolean that indicates wether or not the value is found and the position of all the values
              */
-            std::pair<bool, U32*>   find_all(T needle);
+            std::pair<U32, U32*>     find_all(T needle);
             /**
              * \brief
              *  Return the position of values accepted by a specified function.
@@ -235,7 +235,7 @@ namespace Parallax
              *
              * \return     A pair composed of a boolean that indicates wether or not the value is found and the position of the value
              */
-            std::pair<bool, U32*>   find_all(const std::function<bool(U32, T*)>& func);
+            std::pair<U32, U32*>     find_all(const std::function<bool(U32, T*)>& func);
 
             /**
              * \brief

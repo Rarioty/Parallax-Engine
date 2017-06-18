@@ -381,7 +381,7 @@ std::pair<bool, U32> LinkedList<T>::find_back(T needle)
 }
 
 template <typename T>
-std::pair<bool, U32*> LinkedList<T>::find_all(T needle)
+std::pair<U32, U32*> LinkedList<T>::find_all(T needle)
 {
     return find_all([needle](U32 current, T* data){
         return *data == needle;
@@ -389,7 +389,7 @@ std::pair<bool, U32*> LinkedList<T>::find_all(T needle)
 }
 
 template <typename T>
-std::pair<bool, U32*> LinkedList<T>::find_all(const std::function<bool(U32, T*)>& func)
+std::pair<U32, U32*> LinkedList<T>::find_all(const std::function<bool(U32, T*)>& func)
 {
     struct node* tmp = m_front;
     U32 size = this->size();
@@ -408,7 +408,7 @@ std::pair<bool, U32*> LinkedList<T>::find_all(const std::function<bool(U32, T*)>
     }
 
     if (count == 0)
-        return std::make_pair(false, nullptr);
+        return std::make_pair(0, nullptr);
 
     result = new U32[count];
 
@@ -424,7 +424,7 @@ std::pair<bool, U32*> LinkedList<T>::find_all(const std::function<bool(U32, T*)>
         tmp = tmp->m_next;
     }
 
-    return std::make_pair(false, result);
+    return std::make_pair(count, result);
 }
 
 template <typename T>

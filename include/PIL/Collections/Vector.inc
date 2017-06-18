@@ -122,6 +122,12 @@ U32 Vector<T>::size()
 template <typename T>
 void Vector<T>::resize(U32 new_size)
 {
+    if (new_size < m_max_size)
+        throw std::runtime_error("Resize to a smaller size than before");
+
+    if (new_size == m_max_size)
+        return;
+
     T* new_array = new T[new_size];
 
     std::memcpy(new_array, m_array, m_current);
@@ -249,45 +255,28 @@ std::pair<bool, U32> Vector<T>::find_back(T needle)
 {
     U32 i;
 
-    for (i = m_current-1; i >= 0; --i)
+    for (i = m_current-1; i > 0; --i)
     {
         if (m_array[i] == needle)
             return std::make_pair(true, i);
     }
 
+    if (m_current != 0 && m_array[0] == needle)
+        return std::make_pair(true, 0);
+
     return std::make_pair(false, 0);
 }
 
 template <typename T>
-std::pair<bool, U32*> Vector<T>::find_all(T needle)
+std::pair<U32, U32*> Vector<T>::find_all(T needle)
 {
-    U32* results;
-    U32 count;
-    U32 i;
-
-    for (i = 0; i < m_current; ++i)
-    {
-        if (m_array[i] == needle)
-            count++;
-    }
-
-    if (count == 0)
-        return std::make_pair(false, 0);
-
-    results = new U32[count];
-
-    count = 0;
-    for (i = 0; i < m_current; ++i)
-    {
-        if (m_array[i] == needle)
-            results[count++] = i;
-    }
-
-    return std::make_pair(true, results);
+    return find_all([needle](U32 position, T* element){
+        return *element == needle;
+    });
 }
 
 template <typename T>
-std::pair<bool, U32*> Vector<T>::find_all(const std::function<bool(U32, T*)>& func)
+std::pair<U32, U32*> Vector<T>::find_all(const std::function<bool(U32, T*)>& func)
 {
     U32* results;
     U32 count;
@@ -300,7 +289,7 @@ std::pair<bool, U32*> Vector<T>::find_all(const std::function<bool(U32, T*)>& fu
     }
 
     if (count == 0)
-        return std::make_pair(false, 0);
+        return std::make_pair(0, nullptr);
 
     results = new U32[count];
 
@@ -311,52 +300,36 @@ std::pair<bool, U32*> Vector<T>::find_all(const std::function<bool(U32, T*)>& fu
             results[count++] = i;
     }
 
-    return std::make_pair(true, results);
+    return std::make_pair(count, results);
 }
 
 template <typename T>
-U32 partition(T* array, U32 start, U32 end)
+void quicksort(T* array, U32 len, const std::function<bool(T, T)>& comparator)
 {
-    T x = array[start];
-    T tmp;
-    U32 i = start - 1;
-    U32 j = end + 1;
+    if (len < 2)
+        return;
 
-    do {
-        do {
-            j--;
-        } while (x > array[j]);
+    T pivot = array[len / 2];
 
-        do {
-            i++;
-        } while (x < array[i]);
-
-        if (i < j)
-        {
-            tmp = array[i];
-            array[i] = array[j];
-            array[j] = tmp;
-        }
-    } while(i < j);
-
-    return j;
-}
-
-template <typename T>
-void quicksort(T* array, U32 start, U32 end)
-{
-    U32 middle;
-
-    if (start < end)
+    U32 i, j;
+    for (i = 0, j = len-1; ; i++, j--)
     {
-        middle = partition(array, start, end);
-        quicksort(array, start, middle);
-        quicksort(array, middle+1, end);
+        while (comparator(array[i], pivot) && array[i] != pivot)  i++;
+        while (!comparator(array[j], pivot) && array[j] != pivot) j--;
+
+        if (i >= j) break;
+
+        T tmp = array[i];
+        array[i] = array[j];
+        array[j] = tmp;
     }
+
+    quicksort(array, i, comparator);
+    quicksort(array + i, len - i, comparator);
 }
 
 template <typename T>
 void Vector<T>::sort(const std::function<bool(T, T)>& comparator)
 {
-    quicksort(m_array, 0, m_current);
+    quicksort(m_array, m_current, comparator);
 }

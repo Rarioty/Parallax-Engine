@@ -2,8 +2,9 @@
 #define VECTOR_HPP
 
 #include <PIL/Types.hpp>
-#include <cstring>
 #include <functional>
+#include <cstring>
+#include <iostream>
 
 namespace Parallax
 {
@@ -59,8 +60,8 @@ namespace Parallax
 
             std::pair<bool, U32>    find(T needle);
             std::pair<bool, U32>    find_back(T needle);
-            std::pair<bool, U32*>   find_all(T needle);
-            std::pair<bool, U32*>   find_all(const std::function<bool(U32, T*)>& func);
+            std::pair<U32, U32*>    find_all(T needle);
+            std::pair<U32, U32*>    find_all(const std::function<bool(U32, T*)>& func);
 
             void                    sort(const std::function<bool(T, T)>& comparator);
 
