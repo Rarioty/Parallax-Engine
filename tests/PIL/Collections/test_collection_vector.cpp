@@ -223,13 +223,15 @@ int main(int argc, char* argv[])
 
     register_test(!result.first, "Successfully returned false when asking to find a non existing value from the back");
 
-    result = vector->find(4);
+    result = vector->find_back(4);
 
     register_test(result.first && result.second == 5, "Successfully find the value from the back");
 
-    result = vector->find(1);
+    result = vector->find_back(3);
 
-    register_test(result.first && result.second == 1, "Successfully find the value from the back *2");
+    result = vector->find_back(0);
+
+    register_test(result.first && result.second == 0, "Successfully find the value from the back *2");
 
     std::pair<U32, U32*> multiple_results;
 
@@ -248,6 +250,10 @@ int main(int argc, char* argv[])
     });
 
     register_test(multiple_results.first == 2, "Successfully found all values with function");
+
+    vector->find_all([](U32 position, int* value){
+        return *value == 10;
+    });
 
     delete multiple_results.second;
 

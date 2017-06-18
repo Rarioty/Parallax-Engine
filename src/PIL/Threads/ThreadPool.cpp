@@ -11,7 +11,9 @@ namespace Parallax::Threads
         , m_maxParallelism(nbThreads)
     {
         if (nbThreads == 0)
+        {
             throw std::invalid_argument("The ThreadPool must have at least a thread");
+        }
     }
 
     ThreadPool::~ThreadPool()
@@ -26,7 +28,9 @@ namespace Parallax::Threads
     ThreadPool::start()
     {
         if (this->m_status.load(std::memory_order_seq_cst) != state::STOP)
+        {
             return std::make_pair(false, "ThreadPool has already been started");
+        }
 
         m_status.store(state::START, std::memory_order_seq_cst);
 
@@ -37,7 +41,9 @@ namespace Parallax::Threads
     ThreadPool::pause()
     {
         if (this->m_status.load(std::memory_order_seq_cst) != state::START)
+        {
             return std::make_pair(false, "ThreadPool is not started");
+        }
 
         m_status.store(state::PAUSE, std::memory_order_seq_cst);
 
@@ -73,7 +79,9 @@ namespace Parallax::Threads
     {
         bool waitCondition;
         if (this->m_status.load(std::memory_order_seq_cst) == state::STOP)
+        {
             return std::make_pair(false, "ThreadPool is already stopped");
+        }
 
         m_status.store(state::STOP, std::memory_order_seq_cst);
 
@@ -133,7 +141,9 @@ namespace Parallax::Threads
 
         if (this->m_taskContainer.empty() || this->m_threadRefCount >= this->m_maxParallelism ||
             this->m_status.load(std::memory_order_release) == state::PAUSE)
+        {
             return;
+        }
 
         ++ this->m_threadRefCount;
 
@@ -150,7 +160,9 @@ namespace Parallax::Threads
 
         m_manager.startTask(worker, task);
         if (this->m_status.load(std::memory_order_release) == state::STOP)
+        {
             task.stop();
+        }
     }
 
     void ThreadPool::removeWorkerRef(std::shared_ptr<Worker> worker)

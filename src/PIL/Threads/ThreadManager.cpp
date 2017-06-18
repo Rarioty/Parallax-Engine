@@ -14,7 +14,9 @@ namespace Parallax::Threads
     ThreadManager::~ThreadManager()
     {
         if (this->m_running.load())
+        {
             this->stop();
+        }
 
         {
             std::lock_guard<std::mutex> guard(this->m_workersMutex);
@@ -91,11 +93,15 @@ namespace Parallax::Threads
         std::lock_guard<std::mutex> guard(this->m_workersMutex);
 
         if (this->m_running.load() == false)
+        {
             return std::make_pair(false, "ThreadManager is already stopped");
+        }
 
         this->m_running.store(false);
         for (auto& worker : this->m_workers)
+        {
             worker->stop();
+        }
         this->m_cv.notify_all();
         return std::make_pair(true, "");
     }

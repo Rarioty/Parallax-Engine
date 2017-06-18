@@ -14,7 +14,9 @@ namespace Parallax::Threads
     Worker::~Worker()
     {
         if (this->m_running.load())
+        {
             this->stop();
+        }
 
         this->waitStopped();
     }
@@ -22,7 +24,9 @@ namespace Parallax::Threads
     void Worker::start(const Task& task)
     {
         if (this->m_running.load() == true)
+        {
             throw std::runtime_error("Can't start an already running worker");
+        }
         this->m_running.store(true);
         this->m_thread = std::thread(task);
     }
@@ -44,21 +48,27 @@ namespace Parallax::Threads
     {
         std::lock_guard<std::mutex> guard(this->m_taskMutex);
         if (this->m_task != nullptr)
+        {
             this->m_task.stop();
+        }
     }
 
     void Worker::pauseTask()
     {
         std::lock_guard<std::mutex> guard(this->m_taskMutex);
         if (this->m_task != nullptr)
+        {
             this->m_task.pause();
+        }
     }
 
     void Worker::unpauseTask()
     {
         std::lock_guard<std::mutex> guard(this->m_taskMutex);
         if (this->m_task != nullptr)
+        {
             this->m_task.unpause();
+        }
     }
 
     void Worker::waitStopped()
@@ -83,7 +93,10 @@ namespace Parallax::Threads
                         return (not this->m_running.load() || this->m_task != nullptr);
                     });
 
-                if (not this->m_running.load()) return;
+                if (not this->m_running.load())
+                {
+                    return;
+                }
             }
 
             this->m_task();
