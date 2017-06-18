@@ -91,6 +91,7 @@ void Vector<T>::push_front(T element)
     }
 
     m_array[0] = element;
+    m_current++;
 }
 
 template <typename T>
