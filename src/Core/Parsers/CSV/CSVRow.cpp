@@ -1,4 +1,6 @@
 #include <Core/Parsers/CSV/CSVRow.hpp>
+#include <fstream>
+#include <iomanip>
 
 namespace Parallax::Core::Parser
 {
@@ -16,7 +18,7 @@ namespace Parallax::Core::Parser
         return m_values.size();
     }
 
-    void CSVRow::push(std::string& value)
+    void CSVRow::push(const std::string& value)
     {
         m_values.push_back(value);
     }
@@ -30,7 +32,7 @@ namespace Parallax::Core::Parser
         {
             if (key == *it)
             {
-                m_values[pos] = value;
+                m_values.at(pos) = value;
                 return true;
             }
             pos++;
@@ -39,15 +41,15 @@ namespace Parallax::Core::Parser
         return false;
     }
 
-    const std::string CSVRow::operator[](U32 position) const
+    const std::string CSVRow::operator[](U32 position)
     {
         if (position < m_values.size())
-            return m_values[position];
+            return m_values.at(position);
 
         throw std::runtime_error("Value asked is too far");
     }
 
-    const std::string CSVRow::operator[](const std::string& key) const
+    const std::string CSVRow::operator[](std::string& key)
     {
         Collections::Vector<std::string>::Iterator it;
         int pos = 0;
@@ -55,7 +57,7 @@ namespace Parallax::Core::Parser
         for (it = m_headers.begin(); it != m_headers.end(); ++it)
         {
             if (key == *it)
-                return m_values[pos];
+                return m_values.at(pos);
 
             pos++;
         }
@@ -63,19 +65,19 @@ namespace Parallax::Core::Parser
         throw std::runtime_error("Value asked is too far");
     }
 
-    std::ostream& operator<<(std::ostream& os, const CSVRow& row)
+    std::ostream& operator<<(std::ostream& os, CSVRow& row)
     {
         for (U32 i = 0; i != row.m_values.size(); ++i)
-            os << row.m_values[i] << " | ";
+            os << row.m_values.at(i) << " | ";
 
         return os;
     }
 
-    std::ofstream& operator<<(std::ofstream& os, const CSVRow& row)
+    std::ofstream& operator<<(std::ofstream& os, CSVRow& row)
     {
         for (U32 i = 0; i != row.m_values.size(); ++i)
         {
-            os << row.m_values[i];
+            os << row.m_values.at(i);
             if (i < row.m_values.size() - 1)
                 os << ",";
         }
