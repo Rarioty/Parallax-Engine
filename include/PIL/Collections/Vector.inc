@@ -1,53 +1,4 @@
 template <typename T>
-VectorIterator<T>::VectorIterator(Vector<T>* vector, U32 starting_position)
-    : m_vector(vector)
-    , m_current(starting_position)
-{}
-
-template <typename T>
-VectorIterator<T>::VectorIterator()
-    : m_vector(nullptr)
-    , m_current(0)
-{}
-
-template <typename T>
-VectorIterator<T>::~VectorIterator()
-{}
-
-template <typename T>
-T& VectorIterator<T>::operator*()
-{
-    if (m_current >= m_vector->size())
-        throw std::runtime_error("Accessing iterator value but the target is incorrect");
-
-    return m_vector->m_array[m_current];
-}
-
-template <typename T>
-void VectorIterator<T>::next()
-{
-    m_current++;
-}
-
-template <typename T>
-void VectorIterator<T>::operator++()
-{
-    return next();
-}
-
-template <typename T>
-bool VectorIterator<T>::operator!=(VectorIterator<T> other)
-{
-    return m_current != other.m_current || m_vector != other.m_vector;
-}
-
-template <typename T>
-bool VectorIterator<T>::operator==(VectorIterator<T> other)
-{
-    return m_current == other.m_current && m_vector == other.m_vector;
-}
-
-template <typename T>
 Vector<T>::Vector(U32 start_size)
     : m_current(0)
     , m_max_size(start_size)
@@ -66,15 +17,15 @@ Vector<T>::~Vector()
 }
 
 template <typename T>
-VectorIterator<T> Vector<T>::begin()
+T* Vector<T>::begin()
 {
-    return VectorIterator<T>(this, 0);
+    return m_array;
 }
 
 template <typename T>
-VectorIterator<T> Vector<T>::end()
+T* Vector<T>::end()
 {
-    return VectorIterator<T>(this, size());
+    return m_array+m_current;
 }
 
 template <typename T>
@@ -154,7 +105,7 @@ void Vector<T>::resize(U32 new_size)
 }
 
 template <typename T>
-void Vector<T>::remove (U32 position)
+void Vector<T>::remove(U32 position)
 {
     U32 i;
 
@@ -180,13 +131,6 @@ void Vector<T>::remove(const std::function<bool(U32, T)>& func)
             remove(i--);
         }
     }
-}
-
-template <typename T>
-void Vector<T>::remove(VectorIterator<T> it)
-{
-    remove (it.m_current);
-    it.m_current--;
 }
 
 template <typename T>

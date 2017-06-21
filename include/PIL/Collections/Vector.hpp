@@ -13,9 +13,6 @@ namespace Parallax
      */
     namespace Collections
     {
-        template <typename T>
-        class VectorIterator;
-
         /**
          * \class   Vector
          * \brief   Dynamic array container
@@ -26,8 +23,7 @@ namespace Parallax
         class Vector
         {
         public:
-            using Iterator = VectorIterator<T>;
-            friend class VectorIterator<T>;
+            typedef T* Iterator;
 
         public:
             /**
@@ -119,13 +115,6 @@ namespace Parallax
              * \param   func    Test function
              */
             void                    remove(const std::function<bool(U32, T)>& func);
-            /**
-             * \brief
-             *  Remove the node described by an iterator
-             *
-             * \param[in]   it  Position of the node to remove
-             */
-            void                    remove(Iterator it);
 
             /**
              * \brief
@@ -237,82 +226,6 @@ namespace Parallax
             U32     m_max_size;     /*!<    Size of the allocated array     */
             U32     m_current;      /*!<    Current size used by the vector */
             T*      m_array;        /*!<    Array of elements               */
-        };
-
-        /**
-         * \class   VectorIterator
-         * \brief   Iterator for the vector container
-         *
-         * \tparam  T   Type of value inside the vector container
-         */
-        template <typename T>
-        class VectorIterator
-        {
-        public:
-            friend class Vector<T>;
-
-        public:
-            /**
-             * \brief
-             *  Constructor
-             *
-             * \param[in]   vector              The target vector to iterate
-             * \param[in]   starting_position   Starting position in the vector
-             */
-            VectorIterator(Vector<T>* vector, U32 starting_position);
-            /**
-             * \brief
-             *  Constructor
-             */
-            VectorIterator();
-            /**
-             * \brief
-             *  Destructor
-             */
-            ~VectorIterator();
-
-        public:
-            /**
-             * \brief
-             *  Access operator
-             *
-             * \return  Value pointed by this iterator
-             */
-            T&      operator*();
-
-            /**
-             * \brief
-             *  Make the iterator to do a step forward
-             */
-            void    next();
-            /**
-             * \brief
-             *  Make the iterator to do a step forward
-             */
-            void    operator++();
-
-            /**
-             * \brief
-             *  Comparison operator
-             *
-             * \param[in]   it  Iterator to compare to
-             *
-             * \return  Whether or not the iterators are different
-             */
-            bool    operator!=(VectorIterator<T> it);
-            /**
-             * \brief
-             *  Comparison operator
-             *
-             * \param[in]   it  Iterator to compare to
-             *
-             * \return  Whether or not the iterators are equals
-             */
-            bool    operator==(VectorIterator<T> it);
-
-        private:
-            Vector<T>*  m_vector;   /*!<    Target container                    */
-            U32         m_current;  /*!<    Current position in the container   */
         };
 
         #include "Vector.inc"
