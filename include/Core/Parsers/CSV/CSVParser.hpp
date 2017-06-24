@@ -1,7 +1,6 @@
 #ifndef CSVPARSER_HPP
 #define CSVPARSER_HPP
 
-#include <Core/Parsers/Parser.hpp>
 #include <Core/Parsers/CSV/CSVRow.hpp>
 #include <PIL/Collections/Vector.hpp>
 
@@ -25,7 +24,7 @@ namespace Parallax
              *
              * \ingroup Core
              */
-            class CSVParser : public Parser
+            class CSVParser
             {
             public:
                 CSVParser(const std::string& filename, char sep = ',');
