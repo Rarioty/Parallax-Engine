@@ -34,7 +34,8 @@
 std::string getParallaxVersion();
 
 /**
- * \defgroup    PIL Platform Independance Layer
+ * \defgroup    PIL     Platform Independance Layer
+ * \defgroup    Core    Core systems of the engine
  */
 
 #endif
