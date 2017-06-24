@@ -24,25 +24,7 @@ int main(int argc, char* argv[])
         std::cout << *it << ", ";
     }
 
-    std::cout << std::endl << "Again..." << std::endl;
-    for (it = vector.begin(); it != vector.end(); it.next())
-    {
-        std::cout << *it << ", ";
-    }
-    std::cout << std::endl;
-
     register_test(it == vector.end(), "Successfully ended loop");
-
-    ret = 0;
-    try {
-        it.next();
-        it.next();
-        *it;
-    } catch (std::runtime_error e) {
-        ret = 1;
-    }
-    register_test(ret == 1, "Successfully raised an error when accessing iterator too far");
-
 
     return end_test();
 }
