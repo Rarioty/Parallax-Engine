@@ -223,8 +223,8 @@ namespace Parallax
             void                    sort(const std::function<bool(T, T)>& comparator);
 
         private:
-            U32     m_max_size;     /*!<    Size of the allocated array     */
             U32     m_current;      /*!<    Current size used by the vector */
+            U32     m_max_size;     /*!<    Size of the allocated array     */
             T*      m_array;        /*!<    Array of elements               */
         };
 
