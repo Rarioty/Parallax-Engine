@@ -54,6 +54,12 @@ namespace Parallax::fs
         return m_handler ? m_handler->path() : "";
     }
 
+    void File::updateFileInfo()
+    {
+        if (m_handler)
+            m_handler->updateFileInfo();
+    }
+
     bool File::exists() const
     {
         return m_handler ? m_handler->exists() : false;

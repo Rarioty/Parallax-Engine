@@ -1,5 +1,7 @@
 #include <PIL/fs/URL.hpp>
 
+#include <iostream>
+
 namespace Parallax::fs
 {
     Url::Url()
@@ -164,7 +166,6 @@ namespace Parallax::fs
         if (m_analyzed)
             return;
 
-        m_url       = "";
         m_scheme    = "";
         m_location  = "";
         m_address   = "";

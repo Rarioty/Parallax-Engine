@@ -16,6 +16,7 @@ namespace Parallax
             virtual std::unique_ptr<FileHandler>        clone() const = 0;
 
             virtual AbstractFileSystem*                 fs() const = 0;
+            virtual void                                updateFileInfo() = 0;
 
             virtual std::string                         path() const = 0;
 

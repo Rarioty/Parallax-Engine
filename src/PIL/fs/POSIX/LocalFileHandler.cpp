@@ -39,6 +39,21 @@ namespace Parallax::fs
         return static_cast<AbstractFileSystem*>(m_fs.get());
     }
 
+    void LocalFileHandler::updateFileInfo()
+    {
+        if (m_fileInfo)
+        {
+            delete (struct stat*)m_fileInfo;
+            m_fileInfo = nullptr;
+        }
+
+        if (m_linkInfo)
+        {
+            delete (struct stat*)m_linkInfo;
+            m_linkInfo = nullptr;
+        }
+    }
+
     std::string LocalFileHandler::path() const
     {
         return m_path;
@@ -164,6 +179,7 @@ namespace Parallax::fs
             return false;
         }
 
+        updateFileInfo();
         return true;
     }
 
@@ -177,6 +193,7 @@ namespace Parallax::fs
             return false;
         }
 
+        updateFileInfo();
         return true;
     }
 
@@ -226,6 +243,7 @@ namespace Parallax::fs
         }
 
         m_path = dst;
+        updateFileInfo();
 
         return true;
     }
@@ -287,6 +305,7 @@ namespace Parallax::fs
         }
 
         m_path = path;
+        updateFileInfo();
 
         return true;
     }
@@ -301,6 +320,7 @@ namespace Parallax::fs
             return false;
         }
 
+        updateFileInfo();
         return true;
     }
 
@@ -318,5 +338,27 @@ namespace Parallax::fs
     {
         if (m_fileInfo)
             return;
+
+        m_fileInfo = (void*)new struct stat;
+
+        if (stat(m_path.c_str(), (struct stat*)m_fileInfo) != 0)
+        {
+            delete (struct stat*)m_fileInfo;
+            m_fileInfo = nullptr;
+        }
+    }
+
+    void LocalFileHandler::readLinkInfo()
+    {
+        if (m_linkInfo)
+            return;
+
+        m_linkInfo = (void*)new struct stat;
+
+        if (lstat(m_path.c_str(), (struct stat*)m_linkInfo) != 0)
+        {
+            delete (struct stat*)m_linkInfo;
+            m_linkInfo = nullptr;
+        }
     }
 }

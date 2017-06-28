@@ -14,3 +14,4 @@ endforeach()
 
 add_subdirectory(Threads)
 add_subdirectory(Collections)
+add_subdirectory(fs)

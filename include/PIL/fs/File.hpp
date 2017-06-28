@@ -27,6 +27,8 @@ namespace Parallax
             std::string                         path() const;
             std::string                         filename() const;
 
+            void                                updateFileInfo();
+
             bool                                exists() const;
             bool                                isFile() const;
             bool                                isDirectory() const;
