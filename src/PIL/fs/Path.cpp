@@ -4,6 +4,7 @@
 #include <Parallax.hpp>
 
 #include <algorithm>
+#include <iostream>
 #include <sstream>
 
 namespace Parallax::fs
@@ -304,6 +305,10 @@ namespace Parallax::fs
         {
             m_directoryPath = parts.at(0);
             m_fullPath = m_directoryPath;
+        }
+        else if (numParts == 1)
+        {
+            m_fullPath = m_filename;
         }
 
         size_t pos = m_filename.find_first_of('.', 1);

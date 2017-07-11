@@ -35,6 +35,13 @@ namespace Parallax
             Vector(U32 start_size = 32);
             /**
              * \brief
+             *  Constructor
+             *
+             * \param[in]   vec Vector to copy
+             */
+            Vector(const Vector& vec);
+            /**
+             * \brief
              *  Destructor
              */
             ~Vector();

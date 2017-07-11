@@ -11,6 +11,20 @@ Vector<T>::Vector(U32 start_size)
 }
 
 template <typename T>
+Vector<T>::Vector(const Vector& vec)
+    : m_current(vec.m_current)
+    , m_max_size(vec.m_max_size)
+{
+    U32 i;
+
+    m_array = new T[vec.m_max_size];
+    for (i = 0; i < vec.m_current; ++i)
+    {
+        m_array[i] = vec.m_array[i];
+    }
+}
+
+template <typename T>
 Vector<T>::~Vector()
 {
     delete[] m_array;
@@ -89,6 +103,8 @@ U32 Vector<T>::size()
 template <typename T>
 void Vector<T>::resize(U32 new_size)
 {
+    U32 i;
+
     if (new_size < m_max_size)
         throw std::runtime_error("Resize to a smaller size than before");
 
@@ -97,8 +113,12 @@ void Vector<T>::resize(U32 new_size)
 
     T* new_array = new T[new_size];
 
-    std::memcpy(new_array, m_array, m_current);
-    delete m_array;
+    for (i = 0; i < m_current; ++i)
+    {
+        new_array[i] = m_array[i];
+    }
+
+    delete[] m_array;
 
     m_max_size = new_size;
     m_array = new_array;

@@ -92,11 +92,11 @@ namespace Parallax::fs
 
     bool LocalFileHandler::isSymbolicLink()
     {
-        readFileInfo();
+        readLinkInfo();
 
-        if (m_fileInfo)
+        if (m_linkInfo)
         {
-            return S_ISLNK(((struct stat*)m_fileInfo)->st_mode);
+            return S_ISLNK(((struct stat*)m_linkInfo)->st_mode);
         }
 
         return false;
@@ -312,7 +312,7 @@ namespace Parallax::fs
 
     bool LocalFileHandler::remove()
     {
-        if (!isFile())
+        if (!isFile() && !isSymbolicLink())
             return false;
 
         if (::remove(m_path.c_str()) != 0)
@@ -331,6 +331,7 @@ namespace Parallax::fs
 
     std::unique_ptr<std::ostream> LocalFileHandler::createOutputStream(std::ios_base::openmode mode)
     {
+        std::cout << "Path: " << m_path << std::endl;
         return std::unique_ptr<std::ostream>(new std::ofstream(m_path, mode));
     }
 

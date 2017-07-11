@@ -52,16 +52,16 @@ int main(int argc, char* argv[])
 
     pool->start();
     pool->addTask(Threads::Task([](){
-        sleep(2);
+        sleep(1);
     }));
     pool->addTask(Threads::Task([](){
-        sleep(2);
+        sleep(1);
     }));
     pool->addTask(Threads::Task([](){
-        sleep(2);
+        sleep(1);
     }));
     pool->addTask(Threads::Task([](){
-        sleep(2);
+        sleep(1);
     }));
     pool->stop();
     pool->start();
@@ -93,10 +93,10 @@ int main(int argc, char* argv[])
 
     pool->start();
     pool->addTask([](){
-        sleep(2);
+        sleep(1);
     });
     pool->addTask([](){
-        sleep(2);
+        sleep(1);
     });
 
     pool->stop();
