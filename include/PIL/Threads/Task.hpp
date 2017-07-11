@@ -42,6 +42,12 @@ namespace Parallax
              * \param[in]   task    The task to copy
              */
             Task(const Task& task);
+            /**
+             * \brief   Move-Constructor
+             *
+             * \param[in]   other   The task to move
+             */
+            Task(Task&& other);
 
             /**
              * \brief   Destructor
@@ -57,6 +63,15 @@ namespace Parallax
              * \return  The modified task
              */
             Task& operator=(const Task& other);
+            /**
+             * \brief
+             *  Move the function from an existing one
+             *
+             * \param[in]   other   Task to move
+             *
+             * \return The moved task
+             */
+            Task& operator=(Task&& other);
             /**
              * \brief
              *  Assign a function to this task
