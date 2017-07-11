@@ -6,6 +6,7 @@ include_directories(".")
 add_library(tests SHARED tests.cpp)
 
 add_subdirectory(PIL)
+add_subdirectory(Core)
 
 add_executable(parallax_test test_Parallax.cpp)
 target_link_libraries(parallax_test tests ParallaxEngine)

@@ -1,3 +1,6 @@
+# Atom editor
+.clang_complete
+
 # Compiled Object files
 *.slo
 *.lo

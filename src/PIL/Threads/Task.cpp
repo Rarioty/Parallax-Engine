@@ -1,9 +1,11 @@
 #include <PIL/Threads/Task.hpp>
 
+#include <iostream>
+
 namespace Parallax::Threads
 {
     Task::Task()
-        : m_function(nullptr)
+        : m_function([](){})
         , m_stopFunction(nullptr)
         , m_pauseFunction(nullptr)
         , m_unpauseFunction(nullptr)
@@ -21,6 +23,20 @@ namespace Parallax::Threads
         , m_callbacks(task.m_callbacks)
     {}
 
+    Task::Task(Task&& other)
+    {
+        this->m_function = other.m_function;
+        this->m_stopFunction = other.m_stopFunction;
+        this->m_pauseFunction = other.m_pauseFunction;
+        this->m_unpauseFunction = other.m_unpauseFunction;
+        this->m_callbacks = std::move(other.m_callbacks);
+
+        other.m_function = nullptr;
+        other.m_stopFunction = nullptr;
+        other.m_pauseFunction = nullptr;
+        other.m_unpauseFunction = nullptr;
+    }
+
     Task& Task::operator=(const Task& other)
     {
         this->m_function = other.m_function;
@@ -28,6 +44,25 @@ namespace Parallax::Threads
         this->m_pauseFunction = other.m_pauseFunction;
         this->m_unpauseFunction = other.m_unpauseFunction;
         this->m_callbacks = other.m_callbacks;
+
+        return *this;
+    }
+
+    Task& Task::operator=(Task&& other)
+    {
+        if (this == &other)
+            return *this;
+
+        this->m_function = other.m_function;
+        this->m_stopFunction = other.m_stopFunction;
+        this->m_pauseFunction = other.m_pauseFunction;
+        this->m_unpauseFunction = other.m_unpauseFunction;
+        this->m_callbacks = std::move(other.m_callbacks);
+
+        other.m_function = nullptr;
+        other.m_stopFunction = nullptr;
+        other.m_pauseFunction = nullptr;
+        other.m_unpauseFunction = nullptr;
 
         return *this;
     }

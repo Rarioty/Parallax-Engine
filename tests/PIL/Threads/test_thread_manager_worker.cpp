@@ -16,15 +16,16 @@ int main(int argc, char* argv[])
     pool.start();
 
     pool.addTask([](){
-        sleep(2);
+        sleep(1);
     });
 
     std::shared_ptr<Threads::Worker> worker = manager->getWorker();
 
     worker->setTask([](){
-        sleep(2);
+        sleep(1);
     });
-    worker->setTask(Threads::Task());
+    Threads::Task task;
+    worker->setTask(task);
 
     worker->isIdle();
     worker->isReserved();
@@ -39,14 +40,13 @@ int main(int argc, char* argv[])
         w->start(Threads::Task([](){
             sleep(1);
         }));
-    } catch (std::runtime_error e)
-    {
+    } catch (std::runtime_error e) {
         std::cout << "Error catched !" << std::endl;
     }
 
     delete w;
 
-    w = new Threads::Worker;
+    w = new Threads::Worker();
 
     Threads::Task t;
 
