@@ -1,14 +1,13 @@
-#include <PIL/fs/fs.hpp>
+#include <Parallax/fs/fs.hpp>
 
+#include <Parallax/fs/URL.hpp>
+#include <Parallax/Parallax.hpp>
 
 #ifdef PARALLAX_BUILD_SYSTEM_WIN32
-    #include <PIL/fs/Windows/LocalFileSystem.hpp>
+    #include <Parallax/fs/Windows/LocalFileSystem.hpp>
 #else
-    #include <PIL/fs/POSIX/LocalFileSystem.hpp>
+    #include <Parallax/fs/POSIX/LocalFileSystem.hpp>
 #endif
-
-#include <PIL/fs/URL.hpp>
-#include <Parallax.hpp>
 
 #include <memory>
 

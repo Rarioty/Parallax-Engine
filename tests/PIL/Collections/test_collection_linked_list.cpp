@@ -1,6 +1,6 @@
 #include <tests.hpp>
 
-#include <PIL/Collections/LinkedList.hpp>
+#include <Parallax/Collections/LinkedList.hpp>
 #include <iostream>
 #include <time.h>
 

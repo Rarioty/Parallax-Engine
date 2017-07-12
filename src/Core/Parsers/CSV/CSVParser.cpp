@@ -1,4 +1,4 @@
-#include <Core/Parsers/CSV/CSVParser.hpp>
+#include <Parallax/Parsers/CSV/CSVParser.hpp>
 
 #include <fstream>
 #include <sstream>
@@ -7,8 +7,8 @@
 namespace Parallax::Core::Parser
 {
     CSVParser::CSVParser(const std::string& filename, char sep)
-        : m_sep(sep)
-        , m_filename(filename)
+        : m_filename(filename)
+        , m_sep(sep)
     {
         std::string line;
 

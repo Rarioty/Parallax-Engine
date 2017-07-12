@@ -1,8 +1,8 @@
 #ifndef LOCAL_FILE_HANDLER_HPP
 #define LOCAL_FILE_HANDLER_HPP
 
-#include <PIL/fs/POSIX/LocalFileSystem.hpp>
-#include <PIL/fs/FileHandler.hpp>
+#include <Parallax/fs/POSIX/LocalFileSystem.hpp>
+#include <Parallax/fs/FileHandler.hpp>
 
 namespace Parallax
 {

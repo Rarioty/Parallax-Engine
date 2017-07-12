@@ -1,7 +1,7 @@
 #ifndef LINKED_LIST_HPP
 #define LINKED_LIST_HPP
 
-#include <PIL/Types.hpp>
+#include <Parallax/Types.hpp>
 #include <functional>
 #include <iostream>
 #include <cstdlib>

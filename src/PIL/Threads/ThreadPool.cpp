@@ -1,4 +1,4 @@
-#include <PIL/Threads/ThreadPool.hpp>
+#include <Parallax/Threads/ThreadPool.hpp>
 
 #include <algorithm>
 

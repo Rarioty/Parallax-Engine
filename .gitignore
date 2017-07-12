@@ -43,7 +43,7 @@ doc/*
 lcov
 
 # Ignore generated files !
-include/Parallax.hpp
+include/Parallax/Parallax.hpp
 
 # Keep doxyfile
 !doc/doxyfile.in

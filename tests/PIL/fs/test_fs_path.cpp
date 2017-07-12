@@ -1,4 +1,4 @@
-#include <PIL/fs/Path.hpp>
+#include <Parallax/fs/Path.hpp>
 
 #include <tests.hpp>
 #include <iostream>

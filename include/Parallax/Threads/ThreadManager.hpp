@@ -1,8 +1,8 @@
 #ifndef THREADMANAGER_HPP
 #define THREADMANAGER_HPP
 
-#include <PIL/Threads/Worker.hpp>
-#include <PIL/Types.hpp>
+#include <Parallax/Threads/Worker.hpp>
+#include <Parallax/Types.hpp>
 
 #include <atomic>
 #include <thread>

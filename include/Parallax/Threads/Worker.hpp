@@ -1,7 +1,7 @@
 #ifndef WORKER_HPP
 #define WORKER_HPP
 
-#include <PIL/Threads/Task.hpp>
+#include <Parallax/Threads/Task.hpp>
 
 namespace Parallax
 {
