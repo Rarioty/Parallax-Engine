@@ -1,7 +1,7 @@
-#include <PIL/fs/File.hpp>
+#include <Parallax/fs/File.hpp>
 
-#include <PIL/fs/FileHandler.hpp>
-#include <PIL/fs/Path.hpp>
+#include <Parallax/fs/FileHandler.hpp>
+#include <Parallax/fs/Path.hpp>
 
 #include <array>
 

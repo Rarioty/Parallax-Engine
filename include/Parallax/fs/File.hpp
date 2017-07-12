@@ -1,8 +1,8 @@
 #ifndef FILE_HPP
 #define FILE_HPP
 
-#include <PIL/Collections/Vector.hpp>
-#include <PIL/Types.hpp>
+#include <Parallax/Collections/Vector.hpp>
+#include <Parallax/Types.hpp>
 
 #include <iostream>
 #include <sstream>

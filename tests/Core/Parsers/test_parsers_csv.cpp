@@ -1,7 +1,7 @@
-#include <Core/Parsers/CSV/CSVParser.hpp>
+#include <Parallax/Parsers/CSV/CSVParser.hpp>
 
-#include <PIL/fs/File.hpp>
-#include <PIL/fs/fs.hpp>
+#include <Parallax/fs/File.hpp>
+#include <Parallax/fs/fs.hpp>
 #include <tests.hpp>
 
 using namespace Parallax;

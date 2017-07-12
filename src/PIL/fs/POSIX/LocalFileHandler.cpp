@@ -1,6 +1,6 @@
-#include <PIL/fs/POSIX/LocalFileHandler.hpp>
+#include <Parallax/fs/POSIX/LocalFileHandler.hpp>
 
-#include <PIL/fs/Path.hpp>
+#include <Parallax/fs/Path.hpp>
 
 #include <sys/stat.h>
 #include <dirent.h>

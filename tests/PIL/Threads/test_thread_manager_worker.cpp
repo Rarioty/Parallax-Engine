@@ -1,6 +1,6 @@
-#include <PIL/Threads/ThreadManager.hpp>
-#include <PIL/Threads/ThreadPool.hpp>
-#include <PIL/Threads/Worker.hpp>
+#include <Parallax/Threads/ThreadManager.hpp>
+#include <Parallax/Threads/ThreadPool.hpp>
+#include <Parallax/Threads/Worker.hpp>
 
 #include <tests.hpp>
 #include <unistd.h>

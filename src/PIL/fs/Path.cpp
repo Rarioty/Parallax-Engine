@@ -1,7 +1,7 @@
-#include <PIL/fs/Path.hpp>
+#include <Parallax/fs/Path.hpp>
 
-#include <PIL/Collections/Vector.hpp>
-#include <Parallax.hpp>
+#include <Parallax/Collections/Vector.hpp>
+#include <Parallax/Parallax.hpp>
 
 #include <algorithm>
 #include <iostream>

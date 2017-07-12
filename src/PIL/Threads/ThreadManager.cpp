@@ -1,4 +1,4 @@
-#include <PIL/Threads/ThreadManager.hpp>
+#include <Parallax/Threads/ThreadManager.hpp>
 
 namespace Parallax::Threads
 {

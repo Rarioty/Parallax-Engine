@@ -1,4 +1,4 @@
-#include <PIL/Types.hpp>
+#include <Parallax/Types.hpp>
 #include <tests.hpp>
 
 #include <iostream>

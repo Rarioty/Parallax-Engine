@@ -1,8 +1,8 @@
 #ifndef THREAD_POOL_HPP
 #define THREAD_POOL_HPP
 
-#include <PIL/Threads/ThreadManager.hpp>
-#include <PIL/Types.hpp>
+#include <Parallax/Threads/ThreadManager.hpp>
+#include <Parallax/Types.hpp>
 
 #include <future>
 #include <queue>

@@ -1,7 +1,7 @@
 #ifndef STACK_HPP
 #define STACK_HPP
 
-#include <PIL/Types.hpp>
+#include <Parallax/Types.hpp>
 #include <functional>
 #include <cstring>
 

@@ -1,7 +1,7 @@
 #ifndef FS_HPP
 #define FS_HPP
 
-#include <PIL/fs/File.hpp>
+#include <Parallax/fs/File.hpp>
 
 namespace Parallax
 {

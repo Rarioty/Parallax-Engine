@@ -1,7 +1,7 @@
 #ifndef URL_HPP
 #define URL_HPP
 
-#include <PIL/Types.hpp>
+#include <Parallax/Types.hpp>
 
 #include <string>
 

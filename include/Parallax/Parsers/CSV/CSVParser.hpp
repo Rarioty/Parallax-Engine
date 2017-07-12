@@ -1,8 +1,8 @@
 #ifndef CSVPARSER_HPP
 #define CSVPARSER_HPP
 
-#include <Core/Parsers/CSV/CSVRow.hpp>
-#include <PIL/Collections/Vector.hpp>
+#include <Parallax/Parsers/CSV/CSVRow.hpp>
+#include <Parallax/Collections/Vector.hpp>
 
 namespace Parallax
 {

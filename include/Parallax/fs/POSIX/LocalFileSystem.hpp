@@ -1,8 +1,8 @@
 #ifndef LOCAL_FILE_SYSTEM_HPP
 #define LOCAL_FILE_SYSTEM_HPP
 
-#include <PIL/fs/AbstractFileSystem.hpp>
-#include <PIL/fs/File.hpp>
+#include <Parallax/fs/AbstractFileSystem.hpp>
+#include <Parallax/fs/File.hpp>
 
 #include <memory>
 

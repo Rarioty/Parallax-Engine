@@ -1,7 +1,7 @@
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
 
-#include <PIL/Types.hpp>
+#include <Parallax/Types.hpp>
 #include <functional>
 #include <cstring>
 

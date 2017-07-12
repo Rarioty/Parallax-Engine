@@ -1,4 +1,4 @@
-#include <PIL/Threads/Worker.hpp>
+#include <Parallax/Threads/Worker.hpp>
 
 #include <iostream>
 

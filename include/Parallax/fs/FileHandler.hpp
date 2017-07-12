@@ -1,7 +1,7 @@
 #ifndef FILE_HANDLER_HPP
 #define FILE_HANDLER_HPP
 
-#include <PIL/fs/AbstractFileSystem.hpp>
+#include <Parallax/fs/AbstractFileSystem.hpp>
 
 namespace Parallax
 {

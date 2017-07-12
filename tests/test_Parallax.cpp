@@ -1,4 +1,4 @@
-#include <Parallax.hpp>
+#include <Parallax/Parallax.hpp>
 
 #include <iostream>
 

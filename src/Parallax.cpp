@@ -1,4 +1,4 @@
-#include <Parallax.hpp>
+#include <Parallax/Parallax.hpp>
 
 std::string getParallaxVersion()
 {
