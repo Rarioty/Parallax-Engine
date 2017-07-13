@@ -34,9 +34,9 @@ namespace Parallax::fs
         return std::unique_ptr<FileHandler>(new LocalFileHandler(m_fs, m_path));
     }
 
-    AbstractFileSystem* LocalFileHandler::fs() const
+    IFileSystem* LocalFileHandler::fs() const
     {
-        return static_cast<AbstractFileSystem*>(m_fs.get());
+        return static_cast<IFileSystem*>(m_fs.get());
     }
 
     void LocalFileHandler::updateFileInfo()

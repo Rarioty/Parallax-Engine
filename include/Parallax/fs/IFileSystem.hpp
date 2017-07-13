@@ -17,19 +17,14 @@ namespace Parallax
          *
          * \ingroup PIL
          */
-        class AbstractFileSystem
+        class IFileSystem
         {
         public:
             /**
              * \brief
-             *  Constructor
-             */
-            AbstractFileSystem(){}
-            /**
-             * \brief
              *  Destructor
              */
-            ~AbstractFileSystem(){}
+            virtual ~IFileSystem() = 0;
 
             /**
              * \brief

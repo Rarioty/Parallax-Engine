@@ -1,7 +1,7 @@
 #ifndef FILE_HANDLER_HPP
 #define FILE_HANDLER_HPP
 
-#include <Parallax/fs/AbstractFileSystem.hpp>
+#include <Parallax/fs/IFileSystem.hpp>
 
 namespace Parallax
 {
@@ -45,7 +45,7 @@ namespace Parallax
              *
              * \return  Associated file system
              */
-            virtual AbstractFileSystem*                 fs() const = 0;
+            virtual IFileSystem*                        fs() const = 0;
             /**
              * \brief
              *  Update file infos

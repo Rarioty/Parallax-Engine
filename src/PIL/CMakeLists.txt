@@ -10,6 +10,7 @@ set (PIL_SRCS
     fs/URL.cpp
     fs/File.cpp
     fs/Path.cpp
+    fs/IFileSystem.cpp
 
     fs/POSIX/LocalFileSystem.cpp
     fs/POSIX/LocalFileHandler.cpp

@@ -4,43 +4,45 @@
 namespace Parallax
 {
     /**
-     * \namespace   Parallax::Core
-     * \ingroup     Core
+     * \class   Module
+     * \brief   Module class for subsystem start and stop
      */
-    namespace Core
+    class Module
     {
-        /**
-         * \class   Module
-         * \brief   Module class for subsystem start and stop
-         *
-         * \ingroup Core
-         */
-        class Module
+    public:
+        enum State
         {
-        public:
-            /**
-             * \brief
-             *  Constructor
-             */
-            Module(){}
-            /**
-             * \brief
-             *  Destructor
-             */
-            ~Module(){}
-
-            /**
-             * \brief
-             *  Initialize the subsystem
-             */
-            virtual void Init() = 0;
-            /**
-             * \brief
-             *  Stop the subsystem
-             */
-            virtual void Shutdown() = 0;
+            INITIALIZING,
+            INITIALIZED,
+            SHUTDOWN
         };
-    }
+        
+    public:
+        /**
+         * \brief
+         *  Constructor
+         */
+        Module(){}
+        /**
+         * \brief
+         *  Destructor
+         */
+        ~Module(){}
+
+        /**
+         * \brief
+         *  Initialize the subsystem
+         */
+        virtual bool Init() = 0;
+        /**
+         * \brief
+         *  Stop the subsystem
+         */
+        virtual void Shutdown() = 0;
+
+    protected:
+        State   m_state;    /*!<    Current state of module     */
+    };
 }
 
 #endif
