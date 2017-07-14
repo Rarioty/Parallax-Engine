@@ -1,5 +1,5 @@
-#ifndef THREADMANAGER_HPP
-#define THREADMANAGER_HPP
+#ifndef PARALLAX_THREADMANAGER_HPP_GUARD
+#define PARALLAX_THREADMANAGER_HPP_GUARD
 
 #include <Parallax/Threads/Worker.hpp>
 #include <Parallax/Types.hpp>

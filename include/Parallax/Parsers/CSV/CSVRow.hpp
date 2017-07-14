@@ -1,5 +1,5 @@
-#ifndef CSVROW_HPP
-#define CSVROW_HPP
+#ifndef PARALLAX_CSVROW_HPP_GUARD
+#define PARALLAX_CSVROW_HPP_GUARD
 
 #include <Parallax/Collections/Vector.hpp>
 #include <Parallax/Types.hpp>

@@ -1,5 +1,5 @@
-#ifndef LOCAL_FILE_HANDLER_HPP
-#define LOCAL_FILE_HANDLER_HPP
+#ifndef PARALLAX_LOCAL_FILE_HANDLER_HPP_GUARD
+#define PARALLAX_LOCAL_FILE_HANDLER_HPP_GUARD
 
 #include <Parallax/fs/POSIX/LocalFileSystem.hpp>
 #include <Parallax/fs/FileHandler.hpp>

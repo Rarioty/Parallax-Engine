@@ -1,5 +1,5 @@
-#ifndef RENDERER_GL_HPP
-#define RENDERER_GL_HPP
+#ifndef PARALLAX_RENDERER_GL_HPP_GUARD
+#define PARALLAX_RENDERER_GL_HPP_GUARD
 
 #include <Parallax/Renderers/IRenderer.hpp>
 #include <Parallax/Renderers/Config.hpp>

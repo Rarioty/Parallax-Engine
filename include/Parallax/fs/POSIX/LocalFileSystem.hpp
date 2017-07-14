@@ -1,5 +1,5 @@
-#ifndef LOCAL_FILE_SYSTEM_HPP
-#define LOCAL_FILE_SYSTEM_HPP
+#ifndef PARALLAX_LOCAL_FILE_SYSTEM_HPP_GUARD
+#define PARALLAX_LOCAL_FILE_SYSTEM_HPP_GUARD
 
 #include <Parallax/fs/IFileSystem.hpp>
 #include <Parallax/fs/File.hpp>

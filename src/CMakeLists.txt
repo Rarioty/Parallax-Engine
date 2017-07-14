@@ -2,7 +2,13 @@
 add_subdirectory(PIL)
 add_subdirectory(Core)
 
-add_library(ParallaxEngine SHARED Parallax.cpp)
+set (ROOT_SRCS
+    Parallax.cpp
+    Debug.cpp
+    Strings.cpp
+)
+
+add_library(ParallaxEngine SHARED ${ROOT_SRCS})
 target_link_libraries(ParallaxEngine PIL)
 target_link_libraries(ParallaxEngine Core)
 target_link_libraries(ParallaxEngine ${OPENGL_LIBRARIES})

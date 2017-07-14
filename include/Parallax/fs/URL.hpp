@@ -1,5 +1,5 @@
-#ifndef URL_HPP
-#define URL_HPP
+#ifndef PARALLAX_URL_HPP_GUARD
+#define PARALLAX_URL_HPP_GUARD
 
 #include <Parallax/Types.hpp>
 

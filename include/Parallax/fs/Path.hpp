@@ -1,5 +1,5 @@
-#ifndef PATH_HPP
-#define PATH_HPP
+#ifndef PARALLAX_PATH_HPP_GUARD
+#define PARALLAX_PATH_HPP_GUARD
 
 #include <string>
 

@@ -1,5 +1,5 @@
-#ifndef STACK_HPP
-#define STACK_HPP
+#ifndef PARALLAX_STACK_HPP_GUARD
+#define PARALLAX_STACK_HPP_GUARD
 
 #include <Parallax/Types.hpp>
 #include <functional>

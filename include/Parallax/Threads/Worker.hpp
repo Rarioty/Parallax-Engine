@@ -1,5 +1,5 @@
-#ifndef WORKER_HPP
-#define WORKER_HPP
+#ifndef PARALLAX_WORKER_HPP_GUARD
+#define PARALLAX_WORKER_HPP_GUARD
 
 #include <Parallax/Threads/Task.hpp>
 

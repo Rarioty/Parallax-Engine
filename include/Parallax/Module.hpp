@@ -1,5 +1,5 @@
-#ifndef MODULE_HPP
-#define MODULE_HPP
+#ifndef PARALLAX_MODULE_HPP_GUARD
+#define PARALLAX_MODULE_HPP_GUARD
 
 namespace Parallax
 {
@@ -16,7 +16,7 @@ namespace Parallax
             INITIALIZED,
             SHUTDOWN
         };
-        
+
     public:
         /**
          * \brief

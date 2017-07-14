@@ -1,0 +1,6 @@
+#ifndef PARALLAX_MACROS_HPP_GUARD
+#define PARALLAX_MACROS_HPP_GUARD
+
+#define STRINGIZE(_X)   #_X
+
+#endif

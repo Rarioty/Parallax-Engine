@@ -1,5 +1,5 @@
-#ifndef TASK_HPP
-#define TASK_HPP
+#ifndef PARALLAX_TASK_HPP_GUARD
+#define PARALLAX_TASK_HPP_GUARD
 
 #include <functional>
 #include <future>

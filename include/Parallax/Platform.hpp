@@ -1,5 +1,5 @@
-#ifndef PLATFORM_HPP
-#define PLATFORM_HPP
+#ifndef PARALLAX_PLATFORM_HPP_GUARD
+#define PARALLAX_PLATFORM_HPP_GUARD
 
 /**
  * Include limits.h to include features.h when it exists and
@@ -227,15 +227,25 @@
     #error  "An error occured"
 #endif
 
-struct PlatformData
+namespace Parallax
 {
-    void*   ndt;
-    void*   nwh;
-    void*   context;
-    void*   backBuffer;
-    void*   backBufferDS;
-};
+    struct PlatformData
+    {
+        void*   ndt;
+        void*   nwh;
+        void*   context;
+        void*   backBuffer;
+        void*   backBufferDS;
+    };
 
-static PlatformData     g_platformData;
+    static PlatformData     g_platformData
+    {
+        .ndt            = nullptr,
+        .nwh            = nullptr,
+        .context        = nullptr,
+        .backBuffer     = nullptr,
+        .backBufferDS   = nullptr
+    };
+}
 
 #endif

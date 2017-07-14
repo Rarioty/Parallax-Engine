@@ -1,5 +1,5 @@
-#ifndef TYPES_HPP
-#define TYPES_HPP
+#ifndef PARALLAX_TYPES_HPP_GUARD
+#define PARALLAX_TYPES_HPP_GUARD
 
 #include <cstdint>
 

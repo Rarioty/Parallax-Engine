@@ -1,5 +1,5 @@
-#ifndef FILE_SYSTEM_HPP
-#define FILE_SYSTEM_HPP
+#ifndef PARALLAX_FILE_SYSTEM_HPP_GUARD
+#define PARALLAX_FILE_SYSTEM_HPP_GUARD
 
 #include <Parallax/fs/File.hpp>
 

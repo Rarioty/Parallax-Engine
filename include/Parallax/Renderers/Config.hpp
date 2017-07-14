@@ -1,5 +1,5 @@
-#ifndef RENDERER_CONFIG_HPP
-#define RENDERER_CONFIG_HPP
+#ifndef PARALLAX_RENDERER_CONFIG_HPP_GUARD
+#define PARALLAX_RENDERER_CONFIG_HPP_GUARD
 
 #include <Parallax/Platform.hpp>
 

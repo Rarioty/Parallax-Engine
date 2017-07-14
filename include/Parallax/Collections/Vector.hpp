@@ -1,5 +1,5 @@
-#ifndef VECTOR_HPP
-#define VECTOR_HPP
+#ifndef PARALLAX_VECTOR_HPP_GUARD
+#define PARALLAX_VECTOR_HPP_GUARD
 
 #include <Parallax/Types.hpp>
 #include <functional>

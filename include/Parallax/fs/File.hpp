@@ -1,5 +1,5 @@
-#ifndef FILE_HPP
-#define FILE_HPP
+#ifndef PARALLAX_FILE_HPP_GUARD
+#define PARALLAX_FILE_HPP_GUARD
 
 #include <Parallax/Collections/Vector.hpp>
 #include <Parallax/Types.hpp>

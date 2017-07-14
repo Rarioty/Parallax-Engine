@@ -1,5 +1,5 @@
-#ifndef THREAD_POOL_HPP
-#define THREAD_POOL_HPP
+#ifndef PARALLAX_THREAD_POOL_HPP_GUARD
+#define PARALLAX_THREAD_POOL_HPP_GUARD
 
 #include <Parallax/Threads/ThreadManager.hpp>
 #include <Parallax/Types.hpp>

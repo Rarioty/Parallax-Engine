@@ -1,5 +1,5 @@
-#ifndef RENDERER_VULKAN_HPP
-#define RENDERER_VULKAN_HPP
+#ifndef PARALLAX_RENDERER_VULKAN_HPP_GUARD
+#define PARALLAX_RENDERER_VULKAN_HPP_GUARD
 
 #include <Parallax/Renderers/IRenderer.hpp>
 #include <Parallax/Renderers/Config.hpp>

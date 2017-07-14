@@ -1,5 +1,5 @@
-#ifndef LINKED_LIST_HPP
-#define LINKED_LIST_HPP
+#ifndef PARALLAX_LINKED_LIST_HPP_GUARD
+#define PARALLAX_LINKED_LIST_HPP_GUARD
 
 #include <Parallax/Types.hpp>
 #include <functional>

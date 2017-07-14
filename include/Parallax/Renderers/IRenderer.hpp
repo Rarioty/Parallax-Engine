@@ -1,5 +1,5 @@
-#ifndef IRENDERER_HPP
-#define IRENDERER_HPP
+#ifndef PARALLAX_IRENDERER_HPP_GUARD
+#define PARALLAX_IRENDERER_HPP_GUARD
 
 namespace Parallax
 {

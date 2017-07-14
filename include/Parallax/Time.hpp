@@ -1,5 +1,5 @@
-#ifndef TIME_HPP
-#define TIME_HPP
+#ifndef PARALLAX_TIME_HPP_GUARD
+#define PARALLAX_TIME_HPP_GUARD
 
 #include <boost/timer/timer.hpp>
 

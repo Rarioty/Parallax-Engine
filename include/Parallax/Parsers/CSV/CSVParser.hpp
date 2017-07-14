@@ -1,5 +1,5 @@
-#ifndef CSVPARSER_HPP
-#define CSVPARSER_HPP
+#ifndef PARALLAX_CSVPARSER_HPP_GUARD
+#define PARALLAX_CSVPARSER_HPP_GUARD
 
 #include <Parallax/Parsers/CSV/CSVRow.hpp>
 #include <Parallax/Collections/Vector.hpp>
