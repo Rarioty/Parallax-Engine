@@ -2,6 +2,12 @@
 #define PLATFORM_HPP
 
 /**
+ * Include limits.h to include features.h when it exists and
+ * so we have no error when it doesn't
+ */
+#include <limits.h>
+
+/**
  * Architecture
  */
 #define     PARALLAX_ARCH_32BIT     0
@@ -139,6 +145,8 @@
 #elif defined(__apple_build_version__) || defined(__ORBIS__) || defined(__llvm__)
     #undef  PARALLAX_CRT_LIBCXX
     #define PARALLAX_CRT_LIBCXX 1
+#else
+    #error "C Runtime not recognized !"
 #endif
 
 #define PARALLAX_PLATFORM_POSIX (0      \
@@ -218,5 +226,16 @@
 #else
     #error  "An error occured"
 #endif
+
+struct PlatformData
+{
+    void*   ndt;
+    void*   nwh;
+    void*   context;
+    void*   backBuffer;
+    void*   backBufferDS;
+};
+
+static PlatformData     g_platformData;
 
 #endif

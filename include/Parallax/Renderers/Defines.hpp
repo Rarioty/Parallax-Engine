@@ -1,0 +1,6 @@
+#ifndef RENDERER_DEFINES_HPP
+#define RENDERER_DEFINES_HPP
+
+#define PARALLAX_RESET_VSYNC        U32(0x00000080)
+
+#endif

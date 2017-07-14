@@ -1,0 +1,37 @@
+#ifndef GL_CONTEXT_GLX_HPP
+#define GL_CONTEXT_GLX_HPP
+
+#if PARALLAX_USE_GLX
+
+#include <X11/Xlib.h>
+#include <GL/glx.h>
+
+#include <Parallax/Types.hpp>
+
+namespace Parallax
+{
+    namespace Renderer
+    {
+        class GLContext
+        {
+        public:
+            GLContext();
+
+            void    create(U32 width, U32 height);
+            void    destroy();
+            void    resize(U32 width, U32 height, U32 flags);
+
+            U64     getCaps() const;
+
+            bool    isValid() const;
+
+        private:
+            GLXContext      m_context;
+            XVisualInfo*    m_visualInfo;
+        };
+    }
+}
+
+#endif
+
+#endif
