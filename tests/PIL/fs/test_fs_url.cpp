@@ -1,4 +1,4 @@
-#include <Parallax/fs/URL.hpp>
+#include <Parallax/FS/URL.hpp>
 
 #include <tests.hpp>
 #include <iostream>
@@ -7,10 +7,10 @@ using namespace Parallax;
 
 int main(int argc, char* argv[])
 {
-    fs::Url tmp;
-    fs::Url url(tmp);
+    FS::Url tmp;
+    FS::Url url(tmp);
 
-    url = fs::Url("ssh://testuser:testpass@testdomain.com:22/test/full/path?testquery=3&test2=5#testfragment");
+    url = FS::Url("ssh://testuser:testpass@testdomain.com:22/test/full/path?testquery=3&test2=5#testfragment");
 
     std::cout << "URL: " << url.toString() << std::endl;
     std::cout << "Scheme: " << url.scheme() << std::endl;

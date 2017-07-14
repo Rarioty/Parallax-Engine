@@ -6,10 +6,10 @@
 namespace Parallax
 {
     /**
-     * \namespace   Parallax::fs
+     * \namespace   Parallax::FS
      * \ingroup     PIL
      */
-    namespace fs
+    namespace FS
     {
         /**
          * \class   Path

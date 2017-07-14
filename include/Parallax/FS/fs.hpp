@@ -1,15 +1,15 @@
 #ifndef PARALLAX_FS_HPP_GUARD
 #define PARALLAX_FS_HPP_GUARD
 
-#include <Parallax/fs/File.hpp>
+#include <Parallax/FS/File.hpp>
 
 namespace Parallax
 {
     /**
-     * \namespace   Parallax::fs
+     * \namespace   Parallax::FS
      * \ingroup     PIL
      */
-    namespace fs
+    namespace FS
     {
         /**
          * \brief

@@ -1,4 +1,4 @@
-#include <Parallax/fs/Path.hpp>
+#include <Parallax/FS/Path.hpp>
 
 #include <tests.hpp>
 #include <iostream>
@@ -8,10 +8,10 @@ using namespace Parallax;
 
 int main(int argc, char* argv[])
 {
-    fs::Path tmp;
-    fs::Path path(tmp);
+    FS::Path tmp;
+    FS::Path path(tmp);
 
-    path = fs::Path("test.txt") = fs::Path(std::string("folder/"));
+    path = FS::Path("test.txt") = FS::Path(std::string("folder/"));
     path.setPath("C:\\test\\directory\\..\\here\\file.testextension");
 
     std::cout << "Path: " << path.path() << std::endl;
@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
     std::cout << "Resolving ..: " << path.resolve("..").path() << std::endl;
     std::cout << "Resolved: " << path.resolved() << std::endl;
 
-    std::cout << "Resolving empty path: " << fs::Path().resolve("").path() << std::endl;
+    std::cout << "Resolving empty path: " << FS::Path().resolve("").path() << std::endl;
     std::cout << "Resolving with empty path: " << path.resolve("").path() << std::endl;
     std::cout << "Resolving with absolute: " << path.resolve("D:\\test").path() << std::endl;
 

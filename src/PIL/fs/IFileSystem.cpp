@@ -1,6 +1,6 @@
-#include <Parallax/fs/IFileSystem.hpp>
+#include <Parallax/FS/IFileSystem.hpp>
 
-namespace Parallax::fs
+namespace Parallax::FS
 {
     IFileSystem::~IFileSystem()
     {}

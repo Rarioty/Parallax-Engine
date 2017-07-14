@@ -1,8 +1,8 @@
-#include <Parallax/fs/POSIX/LocalFileSystem.hpp>
+#include <Parallax/FS/POSIX/LocalFileSystem.hpp>
 
-#include <Parallax/fs/POSIX/LocalFileHandler.hpp>
+#include <Parallax/FS/POSIX/LocalFileHandler.hpp>
 
-namespace Parallax::fs
+namespace Parallax::FS
 {
     LocalFileSystem::LocalFileSystem()
     {}

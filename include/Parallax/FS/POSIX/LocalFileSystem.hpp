@@ -1,14 +1,14 @@
 #ifndef PARALLAX_LOCAL_FILE_SYSTEM_HPP_GUARD
 #define PARALLAX_LOCAL_FILE_SYSTEM_HPP_GUARD
 
-#include <Parallax/fs/IFileSystem.hpp>
-#include <Parallax/fs/File.hpp>
+#include <Parallax/FS/IFileSystem.hpp>
+#include <Parallax/FS/File.hpp>
 
 #include <memory>
 
 namespace Parallax
 {
-    namespace fs
+    namespace FS
     {
         class LocalFileSystem : public IFileSystem, public std::enable_shared_from_this<LocalFileSystem>
         {

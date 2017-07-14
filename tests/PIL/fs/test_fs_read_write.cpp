@@ -1,4 +1,4 @@
-#include <Parallax/fs/fs.hpp>
+#include <Parallax/FS/fs.hpp>
 
 #include <tests.hpp>
 #include <iostream>
@@ -8,7 +8,7 @@ using namespace Parallax;
 
 int main(int argc, char* argv[])
 {
-    fs::File f = fs::open("test");
+    FS::File f = FS::open("test");
     std::string test;
 
     if (f.exists())

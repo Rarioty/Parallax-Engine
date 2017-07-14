@@ -1,7 +1,7 @@
 #include <Parallax/Parsers/CSV/CSVParser.hpp>
 
-#include <Parallax/fs/File.hpp>
-#include <Parallax/fs/fs.hpp>
+#include <Parallax/FS/File.hpp>
+#include <Parallax/FS/fs.hpp>
 #include <tests.hpp>
 
 using namespace Parallax;
@@ -9,7 +9,7 @@ using namespace Parallax;
 int main(int argc, char* argv[])
 {
     int ret;
-    fs::File f = fs::open("test.csv");
+    FS::File f = FS::open("test.csv");
     (*f.createOutputStream()) << "x,y\n1,2\n3,4\n5,6";
 
     Core::Parser::CSVParser parser("test.csv", ',');

@@ -1,15 +1,15 @@
 #ifndef PARALLAX_FILE_HANDLER_HPP_GUARD
 #define PARALLAX_FILE_HANDLER_HPP_GUARD
 
-#include <Parallax/fs/IFileSystem.hpp>
+#include <Parallax/FS/IFileSystem.hpp>
 
 namespace Parallax
 {
     /**
-     * \namespace   Parallax::fs
+     * \namespace   Parallax::FS
      * \ingroup     PIL
      */
-    namespace fs
+    namespace FS
     {
         /**
          * \class   FileHandler
