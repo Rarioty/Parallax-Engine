@@ -6,15 +6,19 @@
 /**
  * Version of the project
  */
-#define PARALLAX_VERSION_MAJOR		"@ParallaxEngine_VERSION_MAJOR@"        /*!<    Major version of Parallax Engine    */
-#define PARALLAX_VERSION_MINOR		"@ParallaxEngine_VERSION_MINOR@"        /*!<    Minor version of Parallax Engine    */
-#define PARALLAX_MAKE_DATE          "@ParallaxEngine_MAKE_DATE@"            /*!<    Build date of Parallax Engine       */
-#define PARALLAX_MAKE_HOUR          "@ParallaxEngine_MAKE_HOUR@"            /*!<    Build hour of Parallax Engine       */
+#define PARALLAX_API_VERSION        "@ParallaxEngine_API_VERSION@"          /*!<    API version (aka: number, example: 12000)   */
+#define PARALLAX_VERSION_MAJOR		@ParallaxEngine_VERSION_MAJOR@          /*!<    Major version of Parallax Engine            */
+#define PARALLAX_VERSION_MINOR		@ParallaxEngine_VERSION_MINOR@          /*!<    Minor version of Parallax Engine            */
+#define PARALLAX_VERSION_PATCH      @ParallaxEngine_VERSION_PATCH@          /*!<    Patch version of Parallax Engine            */
+#define PARALLAX_VERSION            PARALLAX_VERSION_MAJOR * 10000 + \
+    PARALLAX_VERSION_MINOR * 100 + PARALLAX_VERSION_PATCH                   /*!<    Version of Parallax Engine                  */
+#define PARALLAX_MAKE_DATE          "@ParallaxEngine_MAKE_DATE@"            /*!<    Build date of Parallax Engine               */
+#define PARALLAX_MAKE_HOUR          "@ParallaxEngine_MAKE_HOUR@"            /*!<    Build hour of Parallax Engine               */
 
 /**
  * Build type
  */
-#define PARALLAX_BUILD_TYPE         "@CMAKE_BUILD_TYPE@"                    /*!<    Build type of Parallax Engine       */
+#define PARALLAX_BUILD_TYPE         "@CMAKE_BUILD_TYPE@"                    /*!<    Build type of Parallax Engine           */
 
 /**
  * Function to identify version

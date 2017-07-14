@@ -14,6 +14,10 @@ set (PIL_SRCS
 
     fs/POSIX/LocalFileSystem.cpp
     fs/POSIX/LocalFileHandler.cpp
+
+    Renderers/RendererGL.cpp
+    Renderers/RendererVulkan.cpp
+    Renderers/GLContexts/glx.cpp
 )
 
 add_library (PIL SHARED ${PIL_SRCS})

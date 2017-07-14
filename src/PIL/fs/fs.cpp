@@ -1,9 +1,9 @@
 #include <Parallax/fs/fs.hpp>
 
 #include <Parallax/fs/URL.hpp>
-#include <Parallax/Parallax.hpp>
+#include <Parallax/Platform.hpp>
 
-#ifdef PARALLAX_BUILD_SYSTEM_WIN32
+#if PARALLAX_PLATFORM_WINDOWS
     #include <Parallax/fs/Windows/LocalFileSystem.hpp>
 #else
     #include <Parallax/fs/POSIX/LocalFileSystem.hpp>

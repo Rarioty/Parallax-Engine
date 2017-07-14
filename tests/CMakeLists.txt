@@ -1,5 +1,4 @@
 # Add all projects tests
-include_directories(${ParallaxEngine_HEADER_DIR})
 include_directories(".")
 
 # Generate libtest
