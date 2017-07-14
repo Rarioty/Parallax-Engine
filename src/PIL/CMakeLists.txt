@@ -6,14 +6,14 @@ set (PIL_SRCS
     Threads/ThreadManager.cpp
     Threads/ThreadPool.cpp
 
-    fs/fs.cpp
-    fs/URL.cpp
-    fs/File.cpp
-    fs/Path.cpp
-    fs/IFileSystem.cpp
+    FS/fs.cpp
+    FS/URL.cpp
+    FS/File.cpp
+    FS/Path.cpp
+    FS/IFileSystem.cpp
 
-    fs/POSIX/LocalFileSystem.cpp
-    fs/POSIX/LocalFileHandler.cpp
+    FS/POSIX/LocalFileSystem.cpp
+    FS/POSIX/LocalFileHandler.cpp
 
     Renderers/RendererGL.cpp
     Renderers/RendererVulkan.cpp
