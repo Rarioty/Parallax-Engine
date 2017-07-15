@@ -1,6 +1,9 @@
 # PIL project
 
 set (PIL_SRCS
+	Debug.cpp
+	Strings.cpp
+
     Threads/Task.cpp
     Threads/Worker.cpp
     Threads/ThreadManager.cpp
@@ -18,8 +21,9 @@ set (PIL_SRCS
     Renderers/RendererGL.cpp
     Renderers/RendererVulkan.cpp
     Renderers/GLContexts/glx.cpp
+    Renderers/GLContexts/wgl.cpp
 )
 
-add_library (PIL SHARED ${PIL_SRCS})
-target_link_libraries(PIL ${OPENSSL_LIBRARIES})
+add_library (PIL STATIC ${PIL_SRCS} ${PARALLAX_HEADERS})
+target_link_libraries(PIL ${OPENSSL_LIBRARIES} ${OPENSSL_SSL_LIBRARY} ${OPENSSL_CRYPTO_LIBRARY} ${Vulkan_LIBRARIES} ${OPENGL_LIBRARIES})
 add_coverage (PIL)

@@ -1,5 +1,9 @@
 #include <Parallax/FS/POSIX/LocalFileSystem.hpp>
 
+#include <Parallax/Platform.hpp>
+
+#if PARALLAX_PLATFORM_POSIX
+
 #include <Parallax/FS/POSIX/LocalFileHandler.hpp>
 
 namespace Parallax::FS
@@ -19,3 +23,5 @@ namespace Parallax::FS
         );
     }
 }
+
+#endif

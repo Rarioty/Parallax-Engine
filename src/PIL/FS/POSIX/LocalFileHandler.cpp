@@ -1,6 +1,9 @@
 #include <Parallax/FS/POSIX/LocalFileHandler.hpp>
 
+#include <Parallax/Platform.hpp>
 #include <Parallax/FS/Path.hpp>
+
+#if PARALLAX_PLATFORM_POSIX
 
 #include <sys/stat.h>
 #include <dirent.h>
@@ -363,3 +366,5 @@ namespace Parallax::FS
         }
     }
 }
+
+#endif

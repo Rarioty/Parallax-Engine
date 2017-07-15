@@ -5,11 +5,13 @@
 #include <Parallax/Strings.hpp>
 #include <Parallax/Macros.hpp>
 #include <inttypes.h>
-#include <alloca.h>
 #include <cstdlib>
+#include <stdio.h>
 
 #if PARALLAX_PLATFORM_WINDOWS || PARALLAX_PLATFORM_WINRT || PARALLAX_PLATFORM_XBOXONE
     extern "C" __declspec(dllimport) void __stdcall OutputDebugStringA(const char* str);
+	#include <intrin.h>
+	#define alloca _alloca
 #elif PARALLAX_PLATFORM_OSX
     #if defined(__OBJC__)
         #import <Foundation/NSObjCRuntime.h>
@@ -17,8 +19,10 @@
         #include <CoreFoundation/CFString.h>
         extern "C" void NSLog(CFStringRef _format, ...);
     #endif
+	#include <alloca.h>
 #else
     #include <cstdio>
+	#include <alloca.h>
 #endif
 
 namespace Parallax
@@ -71,7 +75,7 @@ namespace Parallax
     void DebugBreak()
     {
         #if PARALLAX_COMPILER_MSVC
-            __debugBreak();
+			__debugbreak();
         #elif PARALLAX_CPU_X86 && (PARALLAX_COMPILER_CLANG || PARALLAX_COMPILER_GCC)
             __builtin_trap();
         #else

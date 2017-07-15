@@ -2,6 +2,7 @@
 #define PARALLAX_TYPES_HPP_GUARD
 
 #include <cstdint>
+#include <cstddef>
 
 namespace Parallax
 {
