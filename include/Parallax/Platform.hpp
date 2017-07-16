@@ -238,14 +238,9 @@ namespace Parallax
         void*   backBufferDS;
     };
 
-	static PlatformData     g_platformData
-	{
-		nullptr,
-		nullptr,
-		nullptr,
-		nullptr,
-		nullptr
-	};
+	void setPlatformData(const PlatformData& data);
+
+	extern PlatformData	g_platformData;
 }
 
 #endif

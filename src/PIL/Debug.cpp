@@ -112,6 +112,8 @@ namespace Parallax
         }
         message[len] = '\0';
 
+		fprintf(stderr, message);
+
         DebugOutput(message);
     }
 

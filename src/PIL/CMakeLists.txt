@@ -3,6 +3,7 @@
 set (PIL_SRCS
 	Debug.cpp
 	Strings.cpp
+	Platform.cpp
 
     Threads/Task.cpp
     Threads/Worker.cpp
@@ -22,6 +23,9 @@ set (PIL_SRCS
     Renderers/RendererVulkan.cpp
     Renderers/GLContexts/glx.cpp
     Renderers/GLContexts/wgl.cpp
+
+	Window/Windows.cpp
+	Window/X11.cpp
 )
 
 add_library (PIL STATIC ${PIL_SRCS} ${PARALLAX_HEADERS})

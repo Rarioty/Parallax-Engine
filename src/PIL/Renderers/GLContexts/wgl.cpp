@@ -4,6 +4,7 @@
 #if PARALLAX_PLATFORM_WINDOWS && PARALLAX_CONFIG_RENDERER_OPENGL
 
 #include <Parallax/Debug.hpp>
+#include <iostream>
 
 namespace Parallax::Renderer
 {

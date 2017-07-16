@@ -12,6 +12,8 @@ set (PARALLAX_HEADERS
 	${PARALLAX_HEADERS_ROOT}/Time.hpp
 	${PARALLAX_HEADERS_ROOT}/Types.hpp
 
+	${PARALLAX_HEADERS_ROOT}/Window.hpp
+
 	${PARALLAX_HEADERS_ROOT}/Collections/LinkedList.hpp
 	${PARALLAX_HEADERS_ROOT}/Collections/LinkedList.inc
 	${PARALLAX_HEADERS_ROOT}/Collections/Stack.hpp

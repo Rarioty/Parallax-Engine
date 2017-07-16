@@ -6,7 +6,7 @@ set (ROOT_SRCS
     Parallax.cpp
 )
 
-add_library(ParallaxEngine SHARED ${ROOT_SRCS})
+add_library(ParallaxEngine STATIC ${ROOT_SRCS})
 target_link_libraries(ParallaxEngine PIL)
 target_link_libraries(ParallaxEngine Core)
 target_link_libraries(ParallaxEngine ${OPENGL_LIBRARIES})
