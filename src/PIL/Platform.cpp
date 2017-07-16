@@ -1,6 +1,6 @@
-#include <Parallax\Platform.hpp>
+#include <Parallax/Platform.hpp>
 
-#include <string>
+#include <string.h>
 
 namespace Parallax
 {
