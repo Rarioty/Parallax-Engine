@@ -1,12 +1,12 @@
-#include <Parallax/Debug.hpp>
+#include <Parallax/Debug/Debug.hpp>
 
-#include <Parallax/ICallback.hpp>
 #include <Parallax/Platform.hpp>
 #include <Parallax/Strings.hpp>
 #include <Parallax/Macros.hpp>
 #include <inttypes.h>
 #include <cstdlib>
 #include <stdio.h>
+#include <ctime>
 
 #if PARALLAX_PLATFORM_WINDOWS || PARALLAX_PLATFORM_WINRT || PARALLAX_PLATFORM_XBOXONE
     extern "C" __declspec(dllimport) void __stdcall OutputDebugStringA(const char* str);
@@ -25,16 +25,33 @@
 	#include <alloca.h>
 #endif
 
-namespace Parallax
+namespace Parallax::Debug
 {
+	static IDebugger*		s_debugger = nullptr;
+
+	bool Init()
+	{
+		PARALLAX_TRACE("Starting Parallax Engine...");
+
+		return true;
+	}
+
+	void SetNewDebugger(IDebugger* debugger)
+	{
+		if (s_debugger)
+			delete s_debugger;
+
+		s_debugger = debugger;
+	}
+
     void Fatal(const char* format, ...)
     {
         va_list argList;
         va_start(argList, format);
 
-        if (NULL == g_callback)
+        if (nullptr == s_debugger)
         {
-            Parallax::DebugPrintfVargs(format, argList);
+            DebugPrintfVargs(format, argList);
             abort();
         }
         else
@@ -49,7 +66,7 @@ namespace Parallax
             }
             message[len] = '\0';
 
-            g_callback->fatal(message);
+            s_debugger->fatal(message);
         }
 
         va_end(argList);
@@ -60,13 +77,22 @@ namespace Parallax
         va_list argList;
         va_start(argList, format);
 
-        if (NULL == g_callback)
+		char msg[1024] = { 0 };
+		time_t		rawtime;
+		struct tm*	timeinfo;
+
+		time(&rawtime);
+		timeinfo = localtime(&rawtime);
+
+		snprintf(msg, 1024, "[%02d:%02d:%02d] %s", timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec, format);
+
+        if (nullptr == s_debugger)
         {
-            Parallax::DebugPrintfVargs(format, argList);
+            DebugPrintfVargs(msg, argList);
         }
         else
         {
-            g_callback->traceVargs(filepath, line, format, argList);
+            s_debugger->traceVargs(filepath, line, msg, argList);
         }
 
         va_end(argList);
@@ -127,7 +153,7 @@ namespace Parallax
 
 #define DBG_ADDRESS     "%" PRIxPTR
 
-    void DebugPrintfData(const void* data, U32 size, const char* format, ...)
+    void DebugPrintfData(const void* pdata, U32 size, const char* format, ...)
     {
         #define HEX_DUMP_WIDTH          16
         #define HEX_DUMP_SPACE_WIDTH    48
@@ -138,11 +164,11 @@ namespace Parallax
         DebugPrintfVargs(format, argList);
         va_end(argList);
 
-        DebugPrintf("\ndata: " DBG_ADDRESS ", size: %d\n", data, size);
+        DebugPrintf("\ndata: " DBG_ADDRESS ", size: %d\n", pdata, size);
 
-        if (NULL != data)
+        if (NULL != pdata)
         {
-            const U8* data = reinterpret_cast<const U8*>(data);
+            const U8* data = reinterpret_cast<const U8*>(pdata);
             char hex[HEX_DUMP_WIDTH*3+1];
             char ascii[HEX_DUMP_WIDTH+1];
             U32 hexPos = 0;

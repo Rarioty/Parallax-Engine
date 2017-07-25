@@ -2,9 +2,7 @@ set (PARALLAX_HEADERS_ROOT ${ParallaxEngine_HEADER_DIR}/Parallax/)
 
 set (PARALLAX_HEADERS
 	${PARALLAX_HEADERS_ROOT}/Parallax.hpp
-	${PARALLAX_HEADERS_ROOT}/Debug.hpp
 	${PARALLAX_HEADERS_ROOT}/Defines.hpp
-	${PARALLAX_HEADERS_ROOT}/ICallback.hpp
 	${PARALLAX_HEADERS_ROOT}/Macros.hpp
 	${PARALLAX_HEADERS_ROOT}/Module.hpp
 	${PARALLAX_HEADERS_ROOT}/Platform.hpp
@@ -13,6 +11,8 @@ set (PARALLAX_HEADERS
 	${PARALLAX_HEADERS_ROOT}/Types.hpp
 
 	${PARALLAX_HEADERS_ROOT}/Window.hpp
+
+	${PARALLAX_HEADERS_ROOT}/Debug/Debug.hpp
 
 	${PARALLAX_HEADERS_ROOT}/Collections/LinkedList.hpp
 	${PARALLAX_HEADERS_ROOT}/Collections/LinkedList.inc

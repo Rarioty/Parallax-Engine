@@ -1,7 +1,8 @@
 #include <Parallax/Parallax.hpp>
 
+#include <Parallax/Debug/Debug.hpp>
 #include <Parallax/Window.hpp>
-#include <Parallax/Renderers/RendererGL.hpp>
+#include <Parallax/Renderers/RendererVulkan.hpp>
 
 std::string getParallaxVersion()
 {
@@ -10,13 +11,14 @@ std::string getParallaxVersion()
 
 namespace Parallax
 {
-	static Renderer::RendererGL m_renderer;
-
 	bool init(const char* name)
 	{
+		if (!Debug::Init())
+			return false;
+
 		createWindow(name, 1024, 768);
 
-		return m_renderer.init();
+		return true;
 	}
 
 	void launch()

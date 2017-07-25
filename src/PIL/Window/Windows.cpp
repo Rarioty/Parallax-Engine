@@ -3,7 +3,7 @@
 
 #if PARALLAX_PLATFORM_WINDOWS
 
-#include <Parallax/Debug.hpp>
+#include <Parallax/Debug/Debug.hpp>
 #include <Windows.h>
 #include <windowsx.h>
 #include <iostream>
