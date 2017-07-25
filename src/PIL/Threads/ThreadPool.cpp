@@ -1,5 +1,6 @@
 #include <Parallax/Threads/ThreadPool.hpp>
 
+#include <Parallax/Defines.hpp>
 #include <algorithm>
 
 namespace Parallax::Threads

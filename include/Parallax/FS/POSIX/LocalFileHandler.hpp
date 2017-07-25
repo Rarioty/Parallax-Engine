@@ -1,12 +1,12 @@
 #ifndef PARALLAX_LOCAL_FILE_HANDLER_HPP_GUARD
 #define PARALLAX_LOCAL_FILE_HANDLER_HPP_GUARD
 
-#include <Parallax/fs/POSIX/LocalFileSystem.hpp>
-#include <Parallax/fs/FileHandler.hpp>
+#include <Parallax/FS/POSIX/LocalFileSystem.hpp>
+#include <Parallax/FS/FileHandler.hpp>
 
 namespace Parallax
 {
-    namespace fs
+    namespace FS
     {
         class LocalFileHandler : public FileHandler
         {

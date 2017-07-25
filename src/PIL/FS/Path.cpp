@@ -1,4 +1,4 @@
-#include <Parallax/fs/Path.hpp>
+#include <Parallax/FS/Path.hpp>
 
 #include <Parallax/Collections/Vector.hpp>
 #include <Parallax/Parallax.hpp>
@@ -7,7 +7,7 @@
 #include <iostream>
 #include <sstream>
 
-namespace Parallax::fs
+namespace Parallax::FS
 {
     Path::Path()
         : m_path("")

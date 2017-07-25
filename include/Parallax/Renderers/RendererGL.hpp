@@ -3,12 +3,19 @@
 
 #include <Parallax/Renderers/IRenderer.hpp>
 #include <Parallax/Renderers/Config.hpp>
+#include <Parallax/Platform.hpp>
 #include <Parallax/Types.hpp>
 
 #if PARALLAX_CONFIG_RENDERER_OPENGL
 
 #define PARALLAX_USE_WGL    (PARALLAX_CONFIG_RENDERER_OPENGL && PARALLAX_PLATFORM_WINDOWS)
 #define PARALLAX_USE_GLX    (PARALLAX_CONFIG_RENDERER_OPENGL && PARALLAX_PLATFORM_LINUX)
+
+#if PARALLAX_PLATFORM_WINDOWS
+	#include <Windows.h>
+#elif PARALLAX_PLATFORM_LINUX
+	#include <Parallax/Renderers/GLContexts/glx.hpp>
+#endif
 
 #if PARALLAX_CONFIG_RENDERER_OPENGL
     #if PARALLAX_CONFIG_RENDERER_OPENGL >= 31
@@ -41,10 +48,8 @@
     #endif
 #endif
 
-#if PARALLAX_PLATFORM_WINDOWS
-    #include <windows.h>
-#elif PARALLAX_PLATFORM_LINUX
-    #include <Parallax/Renderers/GLContexts/glx.hpp>
+#if PARALLAX_USE_WGL
+	#include <Parallax/Renderers/GLContexts/wgl.hpp>
 #endif
 
 namespace Parallax

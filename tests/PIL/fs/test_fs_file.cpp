@@ -1,4 +1,4 @@
-#include <Parallax/fs/fs.hpp>
+#include <Parallax/FS/fs.hpp>
 
 #include <Parallax/Collections/Vector.hpp>
 
@@ -9,14 +9,14 @@ using namespace Parallax;
 
 int main(int argc, char* argv[])
 {
-    fs::File rootdir;
-    fs::File tmp;
+    FS::File rootdir;
+    FS::File tmp;
 
     // Creating architecture
-    rootdir = fs::File(fs::open("testdir"));
-    fs::File a(rootdir);
+    rootdir = FS::File(FS::open("testdir"));
+    FS::File a(rootdir);
 
-    a = fs::File();
+    a = FS::File();
     register_test(!a.createDirectory(), "Error when creating directory without handler");
     register_test(!a.removeDirectory(), "Error when removing directory without handler");
 
@@ -39,10 +39,10 @@ int main(int argc, char* argv[])
     std::cout << "Parent directory: " << tmp.parentDirectory().path() << std::endl;
 
     // Try copy testfile
-    fs::File copy = fs::open("testdir/testcopy");
-    fs::File move = fs::open("testmove");
-    fs::File link = fs::open("link");
-    fs::File symlink = fs::open("symlink");
+    FS::File copy = FS::open("testdir/testcopy");
+    FS::File move = FS::open("testmove");
+    FS::File link = FS::open("link");
+    FS::File symlink = FS::open("symlink");
     register_test(tmp.createSymbolicLink(symlink), "Successfully created symlink");
     register_test(symlink.isSymbolicLink(), "Correct symlink");
     symlink.remove();
@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
 
     register_test(tmp.readFile() == "testcontent", "Successfully readed file");
 
-    Collections::Vector<std::string> files(fs::open(".").listFiles());
+    Collections::Vector<std::string> files(FS::open(".").listFiles());
 
     // Removing architecture
     tmp.remove();

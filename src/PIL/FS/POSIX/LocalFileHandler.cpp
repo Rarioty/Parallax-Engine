@@ -1,13 +1,16 @@
-#include <Parallax/fs/POSIX/LocalFileHandler.hpp>
+#include <Parallax/FS/POSIX/LocalFileHandler.hpp>
 
-#include <Parallax/fs/Path.hpp>
+#include <Parallax/Platform.hpp>
+#include <Parallax/FS/Path.hpp>
+
+#if PARALLAX_PLATFORM_POSIX
 
 #include <sys/stat.h>
 #include <dirent.h>
 #include <unistd.h>
 #include <fstream>
 
-namespace Parallax::fs
+namespace Parallax::FS
 {
     LocalFileHandler::LocalFileHandler(std::shared_ptr<LocalFileSystem> fs, const std::string& path)
         : m_fs(fs)
@@ -363,3 +366,5 @@ namespace Parallax::fs
         }
     }
 }
+
+#endif

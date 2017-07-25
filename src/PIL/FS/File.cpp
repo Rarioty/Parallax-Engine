@@ -1,7 +1,7 @@
-#include <Parallax/fs/File.hpp>
+#include <Parallax/FS/File.hpp>
 
-#include <Parallax/fs/FileHandler.hpp>
-#include <Parallax/fs/Path.hpp>
+#include <Parallax/FS/FileHandler.hpp>
+#include <Parallax/FS/Path.hpp>
 
 #include <array>
 
@@ -13,7 +13,7 @@
     #include <openssl/sha.h>
 #endif
 
-namespace Parallax::fs
+namespace Parallax::FS
 {
     File::File()
         : m_handler(nullptr)

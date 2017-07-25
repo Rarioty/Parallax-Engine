@@ -1,5 +1,7 @@
 #include <Parallax/Threads/ThreadManager.hpp>
 
+#include <Parallax/Defines.hpp>
+
 namespace Parallax::Threads
 {
     ThreadManager::ThreadManager(U32 nbThread)

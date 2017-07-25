@@ -1,5 +1,6 @@
 #include <Parallax/Threads/Worker.hpp>
 
+#include <Parallax/Defines.hpp>
 #include <iostream>
 
 namespace Parallax::Threads

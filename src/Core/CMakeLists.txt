@@ -5,5 +5,5 @@ set (Core_SRCS
     Parsers/CSV/CSVParser.cpp
 )
 
-add_library (Core SHARED ${Core_SRCS})
+add_library (Core STATIC ${Core_SRCS})
 add_coverage (Core)

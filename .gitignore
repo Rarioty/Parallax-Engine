@@ -41,6 +41,7 @@ build
 scripts
 doc/*
 lcov
+x64
 
 # Ignore generated files !
 include/Parallax/Parallax.hpp

@@ -1,8 +1,8 @@
-#include <Parallax/fs/URL.hpp>
+#include <Parallax/FS/URL.hpp>
 
 #include <iostream>
 
-namespace Parallax::fs
+namespace Parallax::FS
 {
     Url::Url()
         : m_url("")

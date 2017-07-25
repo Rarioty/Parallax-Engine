@@ -30,4 +30,11 @@ std::string getParallaxVersion();
  * \defgroup    Core    Core systems of the engine
  */
 
+namespace Parallax
+{
+	bool init(const char* name);
+	void launch();
+	void shutdown();
+}
+
 #endif
