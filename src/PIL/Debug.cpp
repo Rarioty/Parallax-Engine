@@ -138,8 +138,6 @@ namespace Parallax::Debug
         }
         message[len] = '\0';
 
-		fprintf(stderr, message);
-
         DebugOutput(message);
     }
 

@@ -52,7 +52,7 @@ namespace Parallax
 #define PARALLAX_FATAL(condition, format, ...)					\
         if (!IGNORE_C4127(condition))							\
 		{														\
-            Parallax::Debug::Fatal(format, ##__VA_ARGS__);		\
+            Parallax::Debug::Fatal(format "\n", ##__VA_ARGS__);		\
 		}
 
 #endif

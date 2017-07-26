@@ -121,6 +121,12 @@ namespace Parallax
 				m_running = false;
 			}
 			break;
+		case KeyPress:
+			if (event.xkey.keycode == 0x09)
+			{
+				m_running = false;
+			}
+			break;
 		}
 	}
 
