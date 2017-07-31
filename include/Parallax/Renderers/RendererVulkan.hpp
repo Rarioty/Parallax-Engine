@@ -2,9 +2,9 @@
 #define PARALLAX_RENDERER_VULKAN_HPP_GUARD
 
 #include <Parallax/Renderers/IRenderer.hpp>
-#include <Parallax/Renderers/Config.hpp>
+#include <Parallax/Platform.hpp>
 
-#if PARALLAX_CONFIG_RENDERER_VULKAN
+#if PARALLAX_GRAPHICS_VULKAN_ALLOWED
 
 #include <vulkan/vulkan.h>
 
@@ -18,7 +18,7 @@ namespace Parallax
             RendererVulkan();
             ~RendererVulkan() override;
 
-            bool            init() override;
+            bool            init(U32 width, U32 height) override;
 
             RendererType    getRendererType() const override;
             const char*     getRendererName() const override;

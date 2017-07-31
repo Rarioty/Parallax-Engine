@@ -19,6 +19,7 @@ set (PIL_SRCS
     FS/POSIX/LocalFileSystem.cpp
     FS/POSIX/LocalFileHandler.cpp
 
+	Renderers/IRenderer.cpp
     Renderers/RendererGL.cpp
     Renderers/RendererVulkan.cpp
     Renderers/GLContexts/glx.cpp
@@ -26,6 +27,8 @@ set (PIL_SRCS
 
 	Window/Windows.cpp
 	Window/X11.cpp
+
+	Physics/Physics.cpp
 )
 
 add_library (PIL STATIC ${PIL_SRCS} ${PARALLAX_HEADERS})

@@ -9,10 +9,13 @@ set (PARALLAX_HEADERS
 	${PARALLAX_HEADERS_ROOT}/Strings.hpp
 	${PARALLAX_HEADERS_ROOT}/Time.hpp
 	${PARALLAX_HEADERS_ROOT}/Types.hpp
+	${PARALLAX_HEADERS_ROOT}/Settings.hpp
 
 	${PARALLAX_HEADERS_ROOT}/Window.hpp
 
 	${PARALLAX_HEADERS_ROOT}/Debug/Debug.hpp
+
+	${PARALLAX_HEADERS_ROOT}/Physics/Physics.hpp
 
 	${PARALLAX_HEADERS_ROOT}/Collections/LinkedList.hpp
 	${PARALLAX_HEADERS_ROOT}/Collections/LinkedList.inc
@@ -35,7 +38,8 @@ set (PARALLAX_HEADERS
 	${PARALLAX_HEADERS_ROOT}/Parsers/CSV/CSVRow.hpp
 	${PARALLAX_HEADERS_ROOT}/Parsers/CSV/CSVRow.inc
 
-	${PARALLAX_HEADERS_ROOT}/Renderers/Config.hpp
+	${PARALLAX_HEADERS_ROOT}/Parsers/PSF/PSFParser.hpp
+
 	${PARALLAX_HEADERS_ROOT}/Renderers/Defines.hpp
 	${PARALLAX_HEADERS_ROOT}/Renderers/IRenderer.hpp
 	${PARALLAX_HEADERS_ROOT}/Renderers/RendererGL.hpp
