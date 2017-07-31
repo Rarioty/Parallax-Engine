@@ -1,5 +1,5 @@
 #ifndef PARALLAX_DEFINES_HPP_GUARD
-#define PARALLAX_DEFINED_HPP_GUARD
+#define PARALLAX_DEFINES_HPP_GUARD
 
 #include <Parallax/Platform.hpp>
 

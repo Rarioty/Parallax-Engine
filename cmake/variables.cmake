@@ -16,3 +16,9 @@ set (ParallaxEngine_DOC_DIR			${ParallaxEngine_ROOT_DIR}/doc)
 set (ParallaxEngine_LIB_DIR			${ParallaxEngine_ROOT_DIR}/lib)
 set (ParallaxEngine_EXT_DIR			${ParallaxEngine_ROOT_DIR}/externals)
 set (ParallaxEngine_3RD_PARTY       ${ParallaxEngine_ROOT_DIR}/3rdparty)
+
+set (PARALLAX_GRAPHICS_VULKAN_ALLOWED   ${GRAPHICS_ALLOW_VULKAN})
+set (PARALLAX_GRAPHICS_OPENGL_ALLOWED   ${GRAPHICS_ALLOW_OPENGL})
+
+set (PARALLAX_PHYSICS_PHYSX_ALLOWED     ${PHYSICS_ALLOW_PHYSX})
+set (PARALLAX_PHYSICS_BULLET_ALLOWED    ${PHYSICS_ALLOW_BULLET})

@@ -1,8 +1,8 @@
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required (VERSION 3.2)
 project (ParallaxEngine)
 
-include (cmake/find_packages.cmake)
 include (cmake/options.cmake)
+include (cmake/find_packages.cmake)
 include (cmake/variables.cmake)
 include (cmake/include_externals.cmake)
 include (cmake/configure.cmake)

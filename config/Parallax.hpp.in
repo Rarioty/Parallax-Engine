@@ -21,6 +21,15 @@
 #define PARALLAX_BUILD_TYPE         "@CMAKE_BUILD_TYPE@"                    /*!<    Build type of Parallax Engine           */
 
 /**
+ * Libraries used
+ */
+#cmakedefine PARALLAX_GRAPHICS_OPENGL_ALLOWED
+#cmakedefine PARALLAX_GRAPHICS_VULKAN_ALLOWED
+
+#cmakedefine PARALLAX_PHYSICS_PHYSX_ALLOWED
+#cmakedefine PARALLAX_PHYSICS_BULLET_ALLOWED
+
+/**
  * Function to identify version
  */
 std::string getParallaxVersion();

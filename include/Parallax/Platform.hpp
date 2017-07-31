@@ -5,6 +5,7 @@
  * Include limits.h to include features.h when it exists and
  * so we have no error when it doesn't
  */
+#include <Parallax/Parallax.hpp>
 #include <limits.h>
 
 /**
@@ -48,6 +49,15 @@
 #define     PARALLAX_PLATFORM_WINDOWS   0
 #define     PARALLAX_PLATFORM_WINRT     0
 #define     PARALLAX_PLATFORM_XBOXONE   0
+
+/**
+ * Libraries
+ */
+#define PARALLAX_GRAPHICS_VULKAN_NAME   "Vulkan"
+#define PARALLAX_GRAPHICS_OPENGL_NAME   "OpenGL"
+
+#define PARALLAX_PHYSICS_PHYSX_NAME     "PhysX"
+#define PARALLAX_PHYSICS_BULLET_NAME    "Bullet"
 
 /**
  * https://sourceforge.net/p/predef/wiki/Compilers/

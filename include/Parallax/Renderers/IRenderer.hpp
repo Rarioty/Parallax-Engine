@@ -7,8 +7,12 @@ namespace Parallax
     {
         enum RendererType
         {
+#if defined(PARALLAX_GRAPHICS_OPENGL_ALLOWED)
             OpenGL,
+#endif
+#if defined(PARALLAX_GRAPHICS_VULKAN_ALLOWED)
             Vulkan,
+#endif
 
             COUNT
         };

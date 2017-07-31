@@ -2,9 +2,9 @@
 #define PARALLAX_RENDERER_VULKAN_HPP_GUARD
 
 #include <Parallax/Renderers/IRenderer.hpp>
-#include <Parallax/Renderers/Config.hpp>
+#include <Parallax/Platform.hpp>
 
-#if PARALLAX_CONFIG_RENDERER_VULKAN
+#if PARALLAX_GRAPHICS_VULKAN_ALLOWED
 
 #include <vulkan/vulkan.h>
 
