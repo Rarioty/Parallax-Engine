@@ -3,6 +3,7 @@
 #if PARALLAX_CONFIG_RENDERER_OPENGL
 
 #include <Parallax/Renderers/Config.hpp>
+#include <Parallax/Debug/Debug.hpp>
 #include <iostream>
 
 namespace Parallax::Renderer
@@ -37,10 +38,10 @@ namespace Parallax::Renderer
         m_version       = getGLString(GL_VERSION);
         m_glslVersion   = getGLString(GL_SHADING_LANGUAGE_VERSION);
 
-        std::cout << "      Vendor: " << m_vendor << std::endl;
-        std::cout << "    Renderer: " << m_renderer << std::endl;
-        std::cout << "     Version: " << m_version << std::endl;
-        std::cout << "GLSL version: " << m_glslVersion << std::endl;
+        PARALLAX_TRACE("      Vendor: %s", m_vendor);
+        PARALLAX_TRACE("    Renderer: %s", m_renderer);
+        PARALLAX_TRACE("     Version: %s", m_version);
+        PARALLAX_TRACE("GLSL version: %s", m_glslVersion);
 
         return true;
     }
