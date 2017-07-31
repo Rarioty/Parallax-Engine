@@ -1,8 +1,7 @@
 #include <Parallax/Renderers/RendererGL.hpp>
 
-#if PARALLAX_CONFIG_RENDERER_OPENGL
+#if PARALLAX_GRAPHICS_OPENGL_ALLOWED
 
-#include <Parallax/Renderers/Config.hpp>
 #include <Parallax/Debug/Debug.hpp>
 #include <iostream>
 
@@ -29,9 +28,9 @@ namespace Parallax::Renderer
 
     }
 
-    bool RendererGL::init()
+    bool RendererGL::init(U32 width, U32 height)
     {
-        setRenderContextSize(PARALLAX_DEFAULT_WIDTH, PARALLAX_DEFAULT_HEIGHT);
+        setRenderContextSize(width, height);
 
         m_vendor        = getGLString(GL_VENDOR);
         m_renderer      = getGLString(GL_RENDERER);
@@ -48,16 +47,12 @@ namespace Parallax::Renderer
 
     RendererType RendererGL::getRendererType() const
     {
-        #if PARALLAX_CONFIG_RENDERER_OPENGL
-            return RendererType::OpenGL;
-        #else
-            return RendererType::COUNT;
-        #endif
+        return RendererType::OpenGL;
     }
 
     const char* RendererGL::getRendererName() const
     {
-        return PARALLAX_RENDERER_OPENGL_NAME;
+        return PARALLAX_GRAPHICS_OPENGL_NAME;
     }
 
     bool RendererGL::isDeviceRemoved()

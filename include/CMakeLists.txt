@@ -40,7 +40,6 @@ set (PARALLAX_HEADERS
 
 	${PARALLAX_HEADERS_ROOT}/Parsers/PSF/PSFParser.hpp
 
-	${PARALLAX_HEADERS_ROOT}/Renderers/Config.hpp
 	${PARALLAX_HEADERS_ROOT}/Renderers/Defines.hpp
 	${PARALLAX_HEADERS_ROOT}/Renderers/IRenderer.hpp
 	${PARALLAX_HEADERS_ROOT}/Renderers/RendererGL.hpp

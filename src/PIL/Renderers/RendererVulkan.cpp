@@ -1,6 +1,6 @@
 #include <Parallax/Renderers/RendererVulkan.hpp>
 
-#if PARALLAX_CONFIG_RENDERER_VULKAN
+#if PARALLAX_GRAPHICS_VULKAN_ALLOWED
 
 #include <Parallax/Types.hpp>
 #include <Parallax/Parallax.hpp>
@@ -50,7 +50,7 @@ namespace Parallax::Renderer
     RendererVulkan::~RendererVulkan()
     {}
 
-    bool RendererVulkan::init()
+    bool RendererVulkan::init(U32 width, U32 height)
     {
         VkResult result;
 
@@ -124,16 +124,12 @@ namespace Parallax::Renderer
 
     RendererType RendererVulkan::getRendererType() const
     {
-        #if PARALLAX_CONFIG_RENDERER_VULKAN
-            return RendererType::Vulkan;
-        #else
-            return RendererType::COUNT;
-        #endif
+        return RendererType::Vulkan;
     }
 
     const char* RendererVulkan::getRendererName() const
     {
-        return PARALLAX_RENDERER_VULKAN_NAME;
+        return PARALLAX_GRAPHICS_VULKAN_NAME;
     }
 
     bool RendererVulkan::isDeviceRemoved()

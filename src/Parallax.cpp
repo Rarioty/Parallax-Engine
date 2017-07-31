@@ -52,22 +52,13 @@ namespace Parallax
 
         // Create window
         result = createWindow(name, width, height, flags);
-
         PARALLAX_FATAL(true == result, "Cannot create window !");
 
         // Create renderer
-        result = false;
-        if (renderer == "vulkan")
-        {
-            s_renderer = new Renderer::RendererVulkan();
-            result = s_renderer->init();
-        }
-        else if (renderer == "opengl")
-        {
-            s_renderer = new Renderer::RendererGL();
-            result = s_renderer->init();
-        }
+        s_renderer = Renderer::GetRenderer(renderer);
+        PARALLAX_FATAL(nullptr != s_renderer, "Renderer is NULL !");
 
+        result = s_renderer->init(width, height);
         PARALLAX_FATAL(true == result, "No renderer could have been initialized !");
 
 		return result;

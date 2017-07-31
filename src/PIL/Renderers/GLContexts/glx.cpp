@@ -1,7 +1,7 @@
 #include <Parallax/Renderers/RendererGL.hpp>
 #include <Parallax/Platform.hpp>
 
-#if PARALLAX_PLATFORM_LINUX && PARALLAX_CONFIG_RENDERER_OPENGL
+#if PARALLAX_PLATFORM_LINUX && PARALLAX_GRAPHICS_OPENGL_ALLOWED
 
 #include <Parallax/Renderers/Defines.hpp>
 #include <Parallax/Debug/Debug.hpp>

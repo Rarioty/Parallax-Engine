@@ -5,7 +5,7 @@
 #include <Parallax/Platform.hpp>
 #include <Parallax/Types.hpp>
 
-#if PARALLAX_CONFIG_RENDERER_OPENGL
+#if PARALLAX_GRAPHICS_OPENGL_ALLOWED
 
 #define PARALLAX_USE_WGL    (PARALLAX_GRAPHICS_OPENGL_ALLOWED && PARALLAX_PLATFORM_WINDOWS)
 #define PARALLAX_USE_GLX    (PARALLAX_GRAPHICS_OPENGL_ALLOWED && PARALLAX_PLATFORM_LINUX)
@@ -54,7 +54,7 @@ namespace Parallax
             RendererGL();
             ~RendererGL() override;
 
-            bool            init() override;
+            bool            init(U32 width, U32 height) override;
 
             RendererType    getRendererType() const override;
             const char*     getRendererName() const override;

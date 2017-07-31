@@ -18,7 +18,7 @@ namespace Parallax
             RendererVulkan();
             ~RendererVulkan() override;
 
-            bool            init() override;
+            bool            init(U32 width, U32 height) override;
 
             RendererType    getRendererType() const override;
             const char*     getRendererName() const override;

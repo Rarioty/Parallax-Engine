@@ -1,7 +1,7 @@
 #include <Parallax/Renderers/RendererGL.hpp>
 #include <Parallax/Platform.hpp>
 
-#if PARALLAX_PLATFORM_WINDOWS && PARALLAX_CONFIG_RENDERER_OPENGL
+#if PARALLAX_PLATFORM_WINDOWS && PARALLAX_GRAPHICS_OPENGL_ALLOWED
 
 #include <Parallax/Debug.hpp>
 #include <iostream>
@@ -87,7 +87,7 @@ namespace Parallax::Renderer
 
 			HGLRC context = createContext(hdc);
 
-			
+
 		}
 	}
 
@@ -107,7 +107,7 @@ namespace Parallax::Renderer
 
 	void GLContext::resize(U32 width, U32 height, U32 flags)
 	{
-		
+
 	}
 
 	bool GLContext::isValid() const

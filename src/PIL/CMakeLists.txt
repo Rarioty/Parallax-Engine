@@ -19,6 +19,7 @@ set (PIL_SRCS
     FS/POSIX/LocalFileSystem.cpp
     FS/POSIX/LocalFileHandler.cpp
 
+	Renderers/IRenderer.cpp
     Renderers/RendererGL.cpp
     Renderers/RendererVulkan.cpp
     Renderers/GLContexts/glx.cpp
