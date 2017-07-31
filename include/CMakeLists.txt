@@ -16,6 +16,7 @@ set (PARALLAX_HEADERS
 	${PARALLAX_HEADERS_ROOT}/Debug/Debug.hpp
 
 	${PARALLAX_HEADERS_ROOT}/Physics/Physics.hpp
+	${PARALLAX_HEADERS_ROOT}/Physics/PhysicsBullet.hpp
 
 	${PARALLAX_HEADERS_ROOT}/Collections/LinkedList.hpp
 	${PARALLAX_HEADERS_ROOT}/Collections/LinkedList.inc

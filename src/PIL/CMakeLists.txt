@@ -29,6 +29,7 @@ set (PIL_SRCS
 	Window/X11.cpp
 
 	Physics/Physics.cpp
+	Physics/PhysicsBullet.cpp
 )
 
 add_library (PIL STATIC ${PIL_SRCS} ${PARALLAX_HEADERS})
