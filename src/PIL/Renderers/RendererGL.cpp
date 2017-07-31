@@ -1,12 +1,21 @@
 #include <Parallax/Renderers/RendererGL.hpp>
 
+#include <Parallax/Platform.hpp>
+
 #if PARALLAX_GRAPHICS_OPENGL_ALLOWED
 
 #include <Parallax/Debug/Debug.hpp>
 #include <iostream>
 
-namespace Parallax::Renderer
+namespace Parallax::Renderer::GL
 {
+    static const char* s_vendor;
+    static const char* s_renderer;
+    static const char* s_version;
+    static const char* s_glslVersion;
+
+    static GLContext   s_glctx;
+
     static const char* getGLString(GLenum _name)
     {
         const char* str = (const char*)glGetString(_name);
@@ -19,60 +28,56 @@ namespace Parallax::Renderer
         return "<unknown>";
     }
 
-    RendererGL::RendererGL()
+    static void setRenderContextSize(U32 width, U32 height, U32 flags = 0)
     {
+        if (width != 0 && height != 0)
+        {
+            if (!s_glctx.isValid())
+            {
+                s_glctx.create(width, height);
+            }
+            else
+            {
+                s_glctx.resize(width, height, flags);
+            }
+        }
     }
 
-    RendererGL::~RendererGL()
-    {
-
-    }
-
-    bool RendererGL::init(U32 width, U32 height)
+    bool Init(U32 width, U32 height)
     {
         setRenderContextSize(width, height);
 
-        m_vendor        = getGLString(GL_VENDOR);
-        m_renderer      = getGLString(GL_RENDERER);
-        m_version       = getGLString(GL_VERSION);
-        m_glslVersion   = getGLString(GL_SHADING_LANGUAGE_VERSION);
+        s_vendor        = getGLString(GL_VENDOR);
+        s_renderer      = getGLString(GL_RENDERER);
+        s_version       = getGLString(GL_VERSION);
+        s_glslVersion   = getGLString(GL_SHADING_LANGUAGE_VERSION);
 
-        PARALLAX_TRACE("      Vendor: %s", m_vendor);
-        PARALLAX_TRACE("    Renderer: %s", m_renderer);
-        PARALLAX_TRACE("     Version: %s", m_version);
-        PARALLAX_TRACE("GLSL version: %s", m_glslVersion);
+        PARALLAX_TRACE("      Vendor: %s", s_vendor);
+        PARALLAX_TRACE("    Renderer: %s", s_renderer);
+        PARALLAX_TRACE("     Version: %s", s_version);
+        PARALLAX_TRACE("GLSL version: %s", s_glslVersion);
 
         return true;
     }
 
-    RendererType RendererGL::getRendererType() const
+	void Shutdown()
+	{
+
+	}
+
+    RendererType GetRendererType()
     {
         return RendererType::OpenGL;
     }
 
-    const char* RendererGL::getRendererName() const
+    const char* GetRendererName()
     {
         return PARALLAX_GRAPHICS_OPENGL_NAME;
     }
 
-    bool RendererGL::isDeviceRemoved()
+    bool IsDeviceRemoved()
     {
         return false;
-    }
-
-    void RendererGL::setRenderContextSize(U32 width, U32 height, U32 flags)
-    {
-        if (width != 0 && height != 0)
-        {
-            if (!m_glctx.isValid())
-            {
-                m_glctx.create(width, height);
-            }
-            else
-            {
-                m_glctx.resize(width, height, flags);
-            }
-        }
     }
 }
 

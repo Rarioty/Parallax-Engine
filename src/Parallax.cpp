@@ -17,7 +17,6 @@ std::string getParallaxVersion()
 
 namespace Parallax
 {
-    static Renderer::IRenderer*     s_renderer = nullptr;
     static Threads::ThreadManager*  s_threadManager = nullptr;
     static Threads::ThreadPool*     s_threadPool = nullptr;
 
@@ -55,10 +54,7 @@ namespace Parallax
         PARALLAX_FATAL(true == result, "Cannot create window !");
 
         // Create renderer
-        s_renderer = Renderer::GetRenderer(renderer);
-        PARALLAX_FATAL(nullptr != s_renderer, "Renderer is NULL !");
-
-        result = s_renderer->init(width, height);
+        result = Renderer::Init(renderer, width, height);
         PARALLAX_FATAL(true == result, "No renderer could have been initialized !");
 
 		return result;
@@ -74,7 +70,7 @@ namespace Parallax
 
 	void shutdown()
 	{
-        delete s_renderer;
+        Renderer::Shutdown();
 		destroyWindow();
 
         delete s_threadPool;

@@ -2,13 +2,20 @@
 
 #if PARALLAX_GRAPHICS_VULKAN_ALLOWED
 
-#include <Parallax/Types.hpp>
 #include <Parallax/Parallax.hpp>
+#include <Parallax/Types.hpp>
 
+#include <vulkan/vulkan.h>
 #include <iostream>
 
-namespace Parallax::Renderer
+namespace Parallax::Renderer::Vulkan
 {
+    static VkInstance                       s_instance;
+    static VkPhysicalDevice                 s_physicalDevice;
+
+    static VkPhysicalDeviceProperties       s_deviceProperties;
+    static VkPhysicalDeviceMemoryProperties s_memoryProperties;
+
     static const char* getName(VkResult _result)
     {
         switch (_result)
@@ -44,13 +51,7 @@ namespace Parallax::Renderer
 		return "<VkResult?>";
     }
 
-    RendererVulkan::RendererVulkan()
-    {}
-
-    RendererVulkan::~RendererVulkan()
-    {}
-
-    bool RendererVulkan::init(U32 width, U32 height)
+    bool Init()
     {
         VkResult result;
 
@@ -74,7 +75,7 @@ namespace Parallax::Renderer
             ici.enabledExtensionCount = 0;
             ici.ppEnabledExtensionNames = NULL;
 
-            result = vkCreateInstance(&ici, NULL, &m_instance);
+            result = vkCreateInstance(&ici, NULL, &s_instance);
         }
 
         if (VK_SUCCESS != result)
@@ -84,7 +85,7 @@ namespace Parallax::Renderer
         }
 
         U32 numPhysicalDevices;
-        result = vkEnumeratePhysicalDevices(m_instance, &numPhysicalDevices, NULL);
+        result = vkEnumeratePhysicalDevices(s_instance, &numPhysicalDevices, NULL);
 
         if (VK_SUCCESS != result)
         {
@@ -96,7 +97,7 @@ namespace Parallax::Renderer
 
         VkPhysicalDevice physicalDevices[4];
         numPhysicalDevices = numPhysicalDevices < 4 ? numPhysicalDevices : 4;
-        result = vkEnumeratePhysicalDevices(m_instance, &numPhysicalDevices, physicalDevices);
+        result = vkEnumeratePhysicalDevices(s_instance, &numPhysicalDevices, physicalDevices);
 
         if (VK_SUCCESS != result)
         {
@@ -104,7 +105,7 @@ namespace Parallax::Renderer
             return false;
         }
 
-        m_physicalDevice = VK_NULL_HANDLE;
+        s_physicalDevice = VK_NULL_HANDLE;
 
         for (U32 i = 0; i < numPhysicalDevices; ++i)
         {
@@ -122,17 +123,22 @@ namespace Parallax::Renderer
         return true;
     }
 
-    RendererType RendererVulkan::getRendererType() const
+    void Shutdown()
+    {
+
+    }
+
+    RendererType GetRendererType() const
     {
         return RendererType::Vulkan;
     }
 
-    const char* RendererVulkan::getRendererName() const
+    const char* GetRendererName() const
     {
         return PARALLAX_GRAPHICS_VULKAN_NAME;
     }
 
-    bool RendererVulkan::isDeviceRemoved()
+    bool IsDeviceRemoved()
     {
         return false;
     }
