@@ -49,10 +49,6 @@ set (PARALLAX_HEADERS
 	${PARALLAX_HEADERS_ROOT}/Renderers/GLContexts/glx.hpp
 	${PARALLAX_HEADERS_ROOT}/Renderers/GLContexts/wgl.hpp
 
-	${PARALLAX_HEADERS_ROOT}/Threads/Task.hpp
-	${PARALLAX_HEADERS_ROOT}/Threads/Task.inc
+	${PARALLAX_HEADERS_ROOT}/Threads/ITask.hpp
 	${PARALLAX_HEADERS_ROOT}/Threads/ThreadManager.hpp
-	${PARALLAX_HEADERS_ROOT}/Threads/ThreadPool.hpp
-	${PARALLAX_HEADERS_ROOT}/Threads/ThreadPool.inc
-	${PARALLAX_HEADERS_ROOT}/Threads/Worker.hpp
 PARENT_SCOPE)

@@ -2,7 +2,6 @@
 
 #include <Parallax/Threads/ThreadManager.hpp>
 #include <Parallax/Renderers/Renderer.hpp>
-#include <Parallax/Threads/ThreadPool.hpp>
 #include <Parallax/Renderers/Defines.hpp>
 #include <Parallax/Physics/Physics.hpp>
 #include <Parallax/Debug/Debug.hpp>
@@ -17,9 +16,6 @@ std::string getParallaxVersion()
 
 namespace Parallax
 {
-    static Threads::ThreadManager*  s_threadManager = nullptr;
-    static Threads::ThreadPool*     s_threadPool = nullptr;
-
 	bool init(const char* name)
 	{
         U32 width, height, flags, version;
@@ -32,16 +28,12 @@ namespace Parallax
 
         Settings::loadSettings();
 
-        s_threadManager = new Threads::ThreadManager();
-        s_threadPool = new Threads::ThreadPool(4, *s_threadManager);
-        s_threadPool->start();
-
-        version = Settings::getAsCritical<U32>("version");
-        width = Settings::getAsCritical<U32>("Graphics:width");
-        height = Settings::getAsCritical<U32>("Graphics:height");
-        fullscreen = Settings::getAsCritical<bool>("Graphics:fullscreen");
-        renderer = Settings::getAsCritical<std::string>("Graphics:renderer");
-        physicsEngine = Settings::getAsCritical<std::string>("Physics:engine");
+        version         = Settings::getAsCritical<U32>("version");
+        width           = Settings::getAsCritical<U32>("Graphics:width");
+        height          = Settings::getAsCritical<U32>("Graphics:height");
+        fullscreen      = Settings::getAsCritical<bool>("Graphics:fullscreen");
+        renderer        = Settings::getAsCritical<std::string>("Graphics:renderer");
+        physicsEngine   = Settings::getAsCritical<std::string>("Physics:engine");
 
         PARALLAX_TRACE("Version of settings file: %d", version);
         PARALLAX_TRACE("Creating window with resolution %dx%d%s", width, height, (fullscreen ? " with fullscreen" : ""));
@@ -56,6 +48,9 @@ namespace Parallax
         PARALLAX_FATAL(true == result, "Cannot create window !");
 
         // Initialize subsystems
+        result = Threads::Manager::Init();
+        PARALLAX_FATAL(true == result, "Threads manager could not have been initialized !");
+
         result = Renderer::Init(renderer, width, height);
         PARALLAX_FATAL(true == result, "Renderer could not have been initialized !");
 
@@ -75,10 +70,10 @@ namespace Parallax
 
 	void shutdown()
 	{
+        Physics::Shutdown();
         Renderer::Shutdown();
+        Threads::Manager::Shutdown();
+        
 		destroyWindow();
-
-        delete s_threadPool;
-        delete s_threadManager;
 	}
 }

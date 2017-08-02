@@ -5,10 +5,9 @@ set (PIL_SRCS
 	Strings.cpp
 	Platform.cpp
 
-    Threads/Task.cpp
-    Threads/Worker.cpp
+    Threads/ITask.cpp
+	Threads/Pipe.cpp
     Threads/ThreadManager.cpp
-    Threads/ThreadPool.cpp
 
     FS/fs.cpp
     FS/URL.cpp
