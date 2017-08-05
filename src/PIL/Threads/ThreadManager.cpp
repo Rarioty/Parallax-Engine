@@ -10,15 +10,6 @@
 
 namespace Parallax::Threads::Manager
 {
-    typedef std::function<void ( uint32_t threadnum_ )> ProfilerCallbackFunc;
-	struct ProfilerCallbacks
-	{
-		ProfilerCallbackFunc threadStart;
-		ProfilerCallbackFunc threadStop;
-		ProfilerCallbackFunc waitStart;
-		ProfilerCallbackFunc waitStop;
-	};
-
     struct ThreadArgs
 	{
 		uint32_t		threadNum;
@@ -39,7 +30,6 @@ namespace Parallax::Threads::Manager
 	static std::mutex              s_NewTaskEventMutex;
 	static U32                     s_NumInitialPartitions(0);
 	static bool                    s_bHaveThreads(false);
-	static ProfilerCallbacks       s_ProfilerCallbacks;
 
 // thread_local not well supported yet by C++11 compilers.
 #ifdef _MSC_VER

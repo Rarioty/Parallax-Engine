@@ -1,26 +1,52 @@
 #include <Parallax/Threads/ThreadManager.hpp>
-#include <Parallax/Threads/ThreadPool.hpp>
+
+#include <Parallax/Threads/ITask.hpp>
 
 #include <tests.hpp>
+#include <iostream>
 
 using namespace Parallax;
 
+#define VECTOR_LEN  32
+
+int vector[VECTOR_LEN];
+int result[VECTOR_LEN];
+
 int main(int argc, char* argv[])
 {
-    Threads::ThreadManager manager(1);
-    Threads::ThreadPool pool(2, manager);
+    U32 i;
 
-    pool.start();
+    Threads::Manager::Init();
 
-    auto future = pool.addTask([](int number) { return number * 2; }, 21);
+    std::cout << Threads::Manager::GetNumTaskThreads() << " threads were created !" << std::endl;
 
-    int result = future.get();
+    for (i = 0; i < VECTOR_LEN; ++i)
+    {
+        int tmp = rand() % 1000;
+        vector[i] = tmp;
+        result[i] = tmp * 2;
+    }
 
-    std::cout << "Result: " << result << std::endl;
+    Threads::TaskFunction mulFunc = [](Threads::TaskPartition range, U32 threadNum){
+        U32 i;
+        for (i = range.start; i < range.end; ++i)
+        {
+            vector[i] *= 2;
+        }
+    };
+    Threads::Task task(VECTOR_LEN, mulFunc);
 
-    register_test(result == 42, "Function well executed !");
+    Threads::Manager::AddTaskToPipe(&task);
+    Threads::Manager::WaitForTask(&task);
 
-    pool.stop();
+    // Verify result
+    for (i = 0; i < VECTOR_LEN; ++i)
+    {
+        std::cerr << "vector[" << i << "] = " << vector[i] << " ==? " << result[i] << std::endl;
+        register_test(vector[i] == result[i], "The two values are the same");
+    }
+
+    Threads::Manager::WaitForAllAndShutdown();
 
     return end_test();
 }

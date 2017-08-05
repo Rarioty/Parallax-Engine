@@ -73,7 +73,7 @@ namespace Parallax::Renderer
 
     const char* GetRendererName()
     {
-        PARALLAX_FATAL("" == s_renderer, "Renderer not initialized !");
+        PARALLAX_FATAL("" != s_renderer, "Renderer not initialized !");
 
 #if PARALLAX_GRAPHICS_OPENGL_ALLOWED
         if (s_renderer == "opengl")
@@ -93,7 +93,7 @@ namespace Parallax::Renderer
 
     RendererType GetRendererType()
     {
-        PARALLAX_FATAL("" == s_renderer, "Renderer not initialized !");
+        PARALLAX_FATAL("" != s_renderer, "Renderer not initialized !");
 
 #if PARALLAX_GRAPHICS_OPENGL_ALLOWED
         if (s_renderer == "opengl")
@@ -109,5 +109,25 @@ namespace Parallax::Renderer
 #endif
 
         return RendererType::COUNT;
+    }
+
+    bool IsDeviceRemoved()
+    {
+        PARALLAX_FATAL("" != s_renderer, "Renderer not initialized !");
+
+#if PARALLAX_GRAPHICS_OPENGL_ALLOWED
+        if (s_renderer == "opengl")
+        {
+            return GL::IsDeviceRemoved();
+        }
+#endif
+#if PARALLAX_GRAPHICS_VULKAN_ALLOWED
+        if (s_renderer == "vulkan")
+        {
+            return Vulkan::IsDeviceRemoved();
+        }
+#endif
+
+        return false;
     }
 }

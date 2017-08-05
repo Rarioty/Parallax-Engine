@@ -33,6 +33,7 @@ namespace Parallax::Renderer
 
         if (NULL == g_platformData.context)
         {
+            PARALLAX_FATAL(NULL != g_platformData.ndt, "No window has been created !");
             XLockDisplay((::Display*)g_platformData.ndt);
 
             int major, minor;

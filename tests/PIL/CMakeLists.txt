@@ -2,6 +2,7 @@
 
 set (cpptests
     sized_types
+    debug
 )
 
 foreach (cpptest ${cpptests})
@@ -13,5 +14,6 @@ foreach (cpptest ${cpptests})
 endforeach()
 
 add_subdirectory(Threads)
+add_subdirectory(Renderers)
 add_subdirectory(Collections)
 add_subdirectory(fs)
