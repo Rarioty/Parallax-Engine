@@ -2,9 +2,12 @@
 
 set (Core_SRCS
     Settings.cpp
+    ID.cpp
 
-    Parsers/CSV/CSVRow.cpp
+    Maths/Hash.cpp
+
     Parsers/CSV/CSVParser.cpp
+    Parsers/CSV/CSVRow.cpp
 
     Parsers/PSF/PSFParser.cpp
 )
