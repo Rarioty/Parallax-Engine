@@ -1,11 +1,9 @@
 #ifndef PARALLAX_RENDERER_GL_HPP_GUARD
 #define PARALLAX_RENDERER_GL_HPP_GUARD
 
-#include <Parallax/Renderers/IRenderer.hpp>
+#include <Parallax/Renderers/Renderer.hpp>
 #include <Parallax/Platform.hpp>
 #include <Parallax/Types.hpp>
-
-#if PARALLAX_GRAPHICS_OPENGL_ALLOWED
 
 #define PARALLAX_USE_WGL    (PARALLAX_GRAPHICS_OPENGL_ALLOWED && PARALLAX_PLATFORM_WINDOWS)
 #define PARALLAX_USE_GLX    (PARALLAX_GRAPHICS_OPENGL_ALLOWED && PARALLAX_PLATFORM_LINUX)
@@ -48,33 +46,16 @@ namespace Parallax
 {
     namespace Renderer
     {
-        class RendererGL : public IRenderer
-        {
-        public:
-            RendererGL();
-            ~RendererGL() override;
+		namespace GL
+		{
+			bool Init(U32 width, U32 height);
+			void Shutdown();
 
-            bool            init(U32 width, U32 height) override;
-
-            RendererType    getRendererType() const override;
-            const char*     getRendererName() const override;
-
-            bool            isDeviceRemoved() override;
-
-        private:
-            void            setRenderContextSize(U32 width, U32 height, U32 flags = 0);
-
-        private:
-            const char* m_vendor;
-            const char* m_renderer;
-            const char* m_version;
-            const char* m_glslVersion;
-
-            GLContext   m_glctx;
-        };
+	        const char* 	GetRendererName();
+	        RendererType 	GetRendererType();
+	        bool            IsDeviceRemoved();
+		}
     }
 }
-
-#endif
 
 #endif

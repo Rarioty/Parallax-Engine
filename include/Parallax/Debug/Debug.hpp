@@ -46,7 +46,7 @@ namespace Parallax
         if (!IGNORE_C4127(condition))                       \
         {                                                   \
             PARALLAX_TRACE("CHECK " format, ##__VA_ARGS__); \
-            Parallax::Fatal(format, ##__VA_ARGS__);         \
+            Parallax::Debug::Fatal(format, ##__VA_ARGS__);  \
         }
 
 #define PARALLAX_FATAL(condition, format, ...)					\

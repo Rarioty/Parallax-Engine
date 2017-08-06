@@ -1,7 +1,7 @@
 # Versions of the project
 set (ParallaxEngine_API_VERSION     100)
-set (ParallaxEngine_VERSION_MAJOR 	1)
-set (ParallaxEngine_VERSION_MINOR 	0)
+set (ParallaxEngine_VERSION_MAJOR 	0)
+set (ParallaxEngine_VERSION_MINOR 	1)
 set (ParallaxEngine_VERSION_PATCH   0)
 string (TIMESTAMP ParallaxEngine_MAKE_DATE "%m%d%y")
 string (TIMESTAMP ParallaxEngine_MAKE_HOUR "%H%M%S")

@@ -5,10 +5,9 @@ set (PIL_SRCS
 	Strings.cpp
 	Platform.cpp
 
-    Threads/Task.cpp
-    Threads/Worker.cpp
+    Threads/ITask.cpp
+	Threads/Pipe.cpp
     Threads/ThreadManager.cpp
-    Threads/ThreadPool.cpp
 
     FS/fs.cpp
     FS/URL.cpp
@@ -19,7 +18,7 @@ set (PIL_SRCS
     FS/POSIX/LocalFileSystem.cpp
     FS/POSIX/LocalFileHandler.cpp
 
-	Renderers/IRenderer.cpp
+	Renderers/Renderer.cpp
     Renderers/RendererGL.cpp
     Renderers/RendererVulkan.cpp
     Renderers/GLContexts/glx.cpp
@@ -29,6 +28,7 @@ set (PIL_SRCS
 	Window/X11.cpp
 
 	Physics/Physics.cpp
+	Physics/PhysicsBullet.cpp
 )
 
 add_library (PIL STATIC ${PIL_SRCS} ${PARALLAX_HEADERS})

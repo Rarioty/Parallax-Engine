@@ -121,7 +121,7 @@ namespace Parallax::Debug
                 NSLog(__CFStringMakeConstantString("%s"), message);
             #endif
         #else
-            fputs(message, stdout);
+            fputs(message, stderr);
             fflush(stdout);
         #endif
     }
