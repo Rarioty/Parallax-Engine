@@ -7,7 +7,7 @@
 
 using namespace Parallax;
 
-#define VECTOR_LEN  32
+#define VECTOR_LEN  72
 
 int vector[VECTOR_LEN];
 int result[VECTOR_LEN];

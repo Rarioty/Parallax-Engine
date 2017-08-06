@@ -2,6 +2,7 @@
 
 #include <Parallax/Threads/Pipe.hpp>
 #include <Parallax/Debug/Debug.hpp>
+#include <Parallax/Platform.hpp>
 #include <Parallax/Defines.hpp>
 
 #include <condition_variable>
@@ -32,22 +33,22 @@ namespace Parallax::Threads::Manager
 	static bool                    s_bHaveThreads(false);
 
 // thread_local not well supported yet by C++11 compilers.
-#ifdef _MSC_VER
-    #if _MSC_VER <= 1800
+#if PARALLAX_COMPILER_MSVC
+    #if PARALLAX_COMPILER_MSVC <= 1800
         #define thread_local __declspec(thread)
     #endif
-#elif __APPLE__
+#elif PARALLAX_PLATFORM_OSX
         // Apple thread_local currently not implemented despite it being in Clang.
         #define thread_local __thread
 #endif
 
-    static thread_local uint32_t   gtl_threadNum = 0;
+    static thread_local U32     gtl_threadNum = 0;
 
     inline void Pause()
     {
-        #if defined _WIN32 && defined _M_X86
+        #if PARALLAX_PLATFORM_WINDOWS && defined PARALLAX_CPU_X86
     		_mm_pause();
-    	#elif defined __i386__
+    	#elif PARALLAX_CPU_X86
     		asm("pause");
     	#else
     	#endif
