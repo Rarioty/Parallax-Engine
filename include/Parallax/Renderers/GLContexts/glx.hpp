@@ -4,6 +4,7 @@
 #if PARALLAX_USE_GLX
 
 #include <X11/Xlib.h>
+#include <GL/glew.h>
 #include <GL/glx.h>
 
 #include <Parallax/Types.hpp>
@@ -20,6 +21,8 @@ namespace Parallax
             void    create(U32 width, U32 height);
             void    destroy();
             void    resize(U32 width, U32 height, U32 flags);
+
+            void    swapBuffers() const;
 
             U64     getCaps() const;
 

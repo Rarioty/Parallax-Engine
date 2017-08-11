@@ -6,6 +6,11 @@ set (Core_SRCS
 
     Maths/Hash.cpp
 
+    Video/Demultiplexer.cpp
+    Video/Video.cpp
+
+    Video/Decoders/VideoDecoder.cpp
+
     Parsers/CSV/CSVParser.cpp
     Parsers/CSV/CSVRow.cpp
 
@@ -13,4 +18,5 @@ set (Core_SRCS
 )
 
 add_library (Core STATIC ${Core_SRCS})
+target_link_libraries(Core ${FFMPEG_LIBRARIES})
 add_coverage (Core)

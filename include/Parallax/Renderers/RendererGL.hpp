@@ -16,6 +16,7 @@
 
 #if PARALLAX_GRAPHICS_OPENGL_ALLOWED
     #if PARALLAX_PLATFORM_LINUX
+		#include <GL/glew.h>
         #define GL_PROTOTYPES
         #define GL_GLEXT_LEGACY
         #include <GL/gl.h>
@@ -32,10 +33,9 @@
         #undef GL_VERSION_1_5
         #undef GL_VERSION_2_0
     #else
+		#include <GL/glew.h>
         #include <GL/gl.h>
     #endif
-
-    #include <gl/glext.h>
 #endif
 
 #if PARALLAX_USE_WGL
@@ -48,12 +48,15 @@ namespace Parallax
     {
 		namespace GL
 		{
-			bool Init(U32 width, U32 height);
-			void Shutdown();
+			bool 			Init(U32 width, U32 height);
+			void 			Shutdown();
 
 	        const char* 	GetRendererName();
 	        RendererType 	GetRendererType();
 	        bool            IsDeviceRemoved();
+
+			void 			WindowResized(U32 width, U32 height);
+			void 			SwapBuffers();
 		}
     }
 }

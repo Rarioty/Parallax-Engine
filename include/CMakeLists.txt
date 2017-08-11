@@ -21,6 +21,11 @@ set (PARALLAX_HEADERS
 
 	${PARALLAX_HEADERS_ROOT}/Maths/Hash.hpp
 
+	${PARALLAX_HEADERS_ROOT}/Video/Video.hpp
+	${PARALLAX_HEADERS_ROOT}/Video/Demultiplexer.hpp
+
+	${PARALLAX_HEADERS_ROOT}/Video/Decoders/VideoDecoder.hpp
+
 	${PARALLAX_HEADERS_ROOT}/Collections/LinkedList.hpp
 	${PARALLAX_HEADERS_ROOT}/Collections/LinkedList.inc
 	${PARALLAX_HEADERS_ROOT}/Collections/Vector.hpp
