@@ -57,6 +57,13 @@ set (PARALLAX_HEADERS
 	${PARALLAX_HEADERS_ROOT}/Renderers/GLContexts/glx.hpp
 	${PARALLAX_HEADERS_ROOT}/Renderers/GLContexts/wgl.hpp
 
+	${PARALLAX_HEADERS_ROOT}/Renderers/Objects/Buffer.hpp
+	${PARALLAX_HEADERS_ROOT}/Renderers/Objects/Program.hpp
+	${PARALLAX_HEADERS_ROOT}/Renderers/Objects/VertexArray.hpp
+
+	${PARALLAX_HEADERS_ROOT}/Renderers/Objects/GL/GLVertexArray.hpp
+	${PARALLAX_HEADERS_ROOT}/Renderers/Objects/GL/GLBuffer.hpp
+
 	${PARALLAX_HEADERS_ROOT}/Threads/ITask.hpp
 	${PARALLAX_HEADERS_ROOT}/Threads/ThreadManager.hpp
 PARENT_SCOPE)

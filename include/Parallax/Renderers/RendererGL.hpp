@@ -57,6 +57,9 @@ namespace Parallax
 
 			void 			WindowResized(U32 width, U32 height);
 			void 			SwapBuffers();
+
+			size_t  		GetGLTypeSize(GLenum type);
+			const char* 	GetGLShaderTypename(GLenum type);
 		}
     }
 }

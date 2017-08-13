@@ -10,6 +10,7 @@
 
 #include <Parallax/Debug/Debug.hpp>
 #include <iostream>
+#include <map>
 
 namespace Parallax::Renderer::GL
 {
@@ -19,6 +20,23 @@ namespace Parallax::Renderer::GL
     static const char* s_glslVersion;
 
     static GLContext   s_glctx;
+
+    static const std::map<GLenum,int> glTypeSizeLookup = {
+		{GL_BYTE, sizeof(GLbyte)},
+		{GL_UNSIGNED_BYTE, sizeof(GLubyte)},
+		{GL_SHORT, sizeof(GLshort)},
+		{GL_UNSIGNED_SHORT, sizeof(GLushort)},
+		{GL_INT, sizeof(GLint)},
+		{GL_UNSIGNED_INT, sizeof(GLuint)},
+		{GL_HALF_FLOAT, sizeof(GLhalf)},
+		{GL_FLOAT, sizeof(GLfloat)},
+		{GL_DOUBLE, sizeof(GLdouble)}};
+
+    static const std::map<GLenum,const char*> glShaderTypenameLookup = {
+		{GL_VERTEX_SHADER, "Vertex"},
+		{GL_GEOMETRY_SHADER, "Geometry"},
+		{GL_FRAGMENT_SHADER, "Fragment"}
+	};
 
     static const char* getGLString(GLenum _name)
     {
@@ -102,6 +120,16 @@ namespace Parallax::Renderer::GL
     {
         if (s_glctx.isValid())
             s_glctx.swapBuffers();
+    }
+
+    size_t GetGLTypeSize(GLenum type)
+    {
+        return glTypeSizeLookup.at(type);
+    }
+
+    const char* GetGLShaderTypename(GLenum type)
+    {
+        return glShaderTypenameLookup.at(type);
     }
 }
 
