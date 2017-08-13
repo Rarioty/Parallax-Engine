@@ -17,6 +17,7 @@ namespace Parallax
             GLuint  m_uid;
 
             GLVertexArray();
+            ~GLVertexArray();
 
             void create();
             void destroy();

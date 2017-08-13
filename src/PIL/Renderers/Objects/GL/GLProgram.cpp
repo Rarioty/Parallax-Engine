@@ -12,6 +12,9 @@ namespace Parallax::Renderer
         m_complete  = GL_FALSE;
     }
 
+    GLProgram::~GLProgram()
+    {}
+
     void GLProgram::create()
     {
         m_uid = glCreateProgram();
@@ -135,22 +138,22 @@ namespace Parallax::Renderer
         glUniform1fv(loc.glLoc, count, val);
     }
 
-    void setUniform(ProgramLocationID loc, glm::vec2 val)
+    void GLProgram::setUniform(ProgramLocationID loc, glm::vec2 val)
     {
         glUniform2fv(loc.glLoc, 1, &val.x);
     }
 
-    void setUniform(ProgramLocationID loc, glm::vec3 val)
+    void GLProgram::setUniform(ProgramLocationID loc, glm::vec3 val)
     {
         glUniform3fv(loc.glLoc, 1, &val.x);
     }
 
-    void setUniform(ProgramLocationID loc, glm::vec4 val)
+    void GLProgram::setUniform(ProgramLocationID loc, glm::vec4 val)
     {
         glUniform4fv(loc.glLoc, 1, &val.x);
     }
 
-    void setUniform(ProgramLocationID loc, glm::mat4 val)
+    void GLProgram::setUniform(ProgramLocationID loc, glm::mat4 val)
     {
         glUniformMatrix4fv(loc.glLoc, 1, GL_FALSE, &val[0][0]);
     }

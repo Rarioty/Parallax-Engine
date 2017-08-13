@@ -55,21 +55,21 @@ namespace Parallax
             TextureFormat   m_format;
             TextureSize     m_width, m_height;
 
-            Texture();
-            virtual void create(TextureTarget target, TextureFormat format) = 0;
-            virtual void destroy() = 0;
-            virtual void upload(TextureSize width, TextureSize height,
+            virtual         ~Texture(){};
+            virtual void    create(TextureTarget target, TextureFormat format) = 0;
+            virtual void    destroy() = 0;
+            virtual void    upload(TextureSize width, TextureSize height,
                 TextureFormat uploadFormat, void* pixels, I32 mipMapLevel = 0) = 0;
-            virtual void generateMipMaps() = 0;
-            virtual void configure(TextureParameters params) = 0;
+            virtual void    generateMipMaps() = 0;
+            virtual void    configure(TextureParameters params) = 0;
 
             virtual explicit operator bool() = 0;
 
-            virtual void bind() = 0;
-            virtual void unbind() = 0;
+            virtual void    bind() = 0;
+            virtual void    unbind() = 0;
 
-            static void unbind(TextureTarget target);
-            static void setActiveUnit(I32 unit);
+            static void     unbind(TextureTarget target);
+            static void     setActiveUnit(I32 unit);
         };
 
         Texture*    CreateTexture();

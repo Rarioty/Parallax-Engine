@@ -11,6 +11,9 @@ namespace Parallax::Renderer
         m_uid = 0;
     }
 
+    GLBuffer::~GLBuffer()
+    {}
+
     void GLBuffer::create(BufferTarget target, BufferUsage usage)
     {
         m_target = target;

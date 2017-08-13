@@ -12,6 +12,9 @@ namespace Parallax::Renderer
         m_height.glSize = 0;
     }
 
+    GLTexture::~GLTexture()
+    {}
+
     void GLTexture::create(TextureTarget target, TextureFormat format)
     {
         glGenTextures(1, &m_uid);

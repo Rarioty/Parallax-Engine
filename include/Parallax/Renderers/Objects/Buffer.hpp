@@ -69,6 +69,7 @@ namespace Parallax
             BufferUsage     m_usage;
             BufferSize      m_size;
 
+            virtual         ~Buffer(){};
             virtual void    create(BufferTarget target, BufferUsage usage) = 0;
             virtual void    destroy() = 0;
             virtual void    bind() = 0;

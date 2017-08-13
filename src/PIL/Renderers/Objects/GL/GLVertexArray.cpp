@@ -9,6 +9,9 @@ namespace Parallax::Renderer
         m_uid = 0;
     }
 
+    GLVertexArray::~GLVertexArray()
+    {}
+
     void GLVertexArray::create()
     {
         glGenVertexArrays(1, &m_uid);

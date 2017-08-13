@@ -16,6 +16,7 @@ namespace Parallax
             GLuint  m_uid;
 
             GLBuffer();
+            ~GLBuffer();
             void    create(BufferTarget target, BufferUsage usage);
             void    destroy();
             void    bind();

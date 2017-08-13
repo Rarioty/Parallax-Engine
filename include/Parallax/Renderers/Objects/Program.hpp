@@ -47,7 +47,7 @@ namespace Parallax
             LocationMap                                                                 m_attributesLocations;
             std::map<ProgramShaderType, std::string, ProgramShaderSourcesComparator>    m_shaderSources;
 
-            Program();
+            virtual                     ~Program(){};
             virtual void                addSource(ProgramShaderType type, const std::string& src) = 0;
 
             virtual void                create() = 0;

@@ -4,12 +4,25 @@
 #include <Parallax/Video/Demultiplexer.hpp>
 #include <Parallax/Debug/Debug.hpp>
 
+/*
+ * Rendering objects
+ */
+ #include <Parallax/Renderers/Objects/VertexArray.hpp>
+ #include <Parallax/Renderers/Objects/Program.hpp>
+#include <Parallax/Renderers/Objects/Texture.hpp>
+#include <Parallax/Renderers/Objects/Buffer.hpp>
+
 #include <boost/timer.hpp>
 
 namespace Parallax::Video
 {
-    static bool             s_playing;
-    static boost::timer*    s_timer;
+    static bool                     s_playing;
+    static boost::timer*            s_timer;
+    static Renderer::Texture*       s_texture;
+    static Renderer::VertexArray*   s_vao;
+    static Renderer::Buffer*        s_pixelBuffer;
+    static Renderer::Buffer*        s_quad;
+    static Renderer::Program*       s_program;
 
     bool Init()
     {
@@ -18,11 +31,28 @@ namespace Parallax::Video
         s_playing = false;
         s_timer = nullptr;
 
+        s_texture = Renderer::CreateTexture();
+        s_vao = Renderer::CreateVertexArray();
+        s_pixelBuffer = Renderer::CreateBuffer();
+        s_quad = Renderer::CreateBuffer();
+        s_program = Renderer::CreateProgram();
+
         return true;
     }
 
     void Shutdown()
     {
+        if (s_texture)
+            delete s_texture;
+        if (s_vao)
+            delete s_vao;
+        if (s_pixelBuffer)
+            delete s_pixelBuffer;
+        if (s_quad)
+            delete s_quad;
+        if (s_program)
+            delete s_program;
+
         Decoder::Video::Shutdown();
         Video::Demultiplexer::Close();
     }

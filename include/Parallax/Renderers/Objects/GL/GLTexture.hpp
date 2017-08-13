@@ -14,6 +14,7 @@ namespace Parallax
             GLuint  m_uid;
 
             GLTexture();
+            ~GLTexture();
             void create(TextureTarget target, TextureFormat format);
             void destroy();
             void upload(TextureSize width, TextureSize height,

@@ -15,6 +15,7 @@ namespace Parallax
             GLint   m_complete;
 
             GLProgram();
+            ~GLProgram();
             void                addSource(ProgramShaderType type, const std::string& src);
 
             void                create();
