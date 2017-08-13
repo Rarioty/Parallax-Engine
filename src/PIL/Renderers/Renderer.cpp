@@ -130,4 +130,40 @@ namespace Parallax::Renderer
 
         return false;
     }
+
+    void WindowResized(U32 width, U32 height)
+    {
+        PARALLAX_FATAL("" != s_renderer, "Renderer not initialized !");
+
+#if PARALLAX_GRAPHICS_OPENGL_ALLOWED
+        if (s_renderer == "opengl")
+        {
+            return GL::WindowResized(width, height);
+        }
+#endif
+#if PARALLAX_GRAPHICS_VULKAN_ALLOWED
+        if (s_renderer == "vulkan")
+        {
+            return Vulkan::WindowResized(width, height);
+        }
+#endif
+    }
+
+    void SwapBuffers()
+    {
+        PARALLAX_FATAL("" != s_renderer, "Renderer not initialized !");
+
+#if PARALLAX_GRAPHICS_OPENGL_ALLOWED
+        if (s_renderer == "opengl")
+        {
+            return GL::SwapBuffers();
+        }
+#endif
+#if PARALLAX_GRAPHICS_VULKAN_ALLOWED
+        if (s_renderer == "vulkan")
+        {
+            return Vulkan::SwapBuffers();
+        }
+#endif
+    }
 }

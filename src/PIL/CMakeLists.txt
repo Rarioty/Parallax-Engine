@@ -24,6 +24,16 @@ set (PIL_SRCS
     Renderers/GLContexts/glx.cpp
     Renderers/GLContexts/wgl.cpp
 
+	Renderers/Objects/VertexArray.cpp
+	Renderers/Objects/Program.cpp
+	Renderers/Objects/Texture.cpp
+	Renderers/Objects/Buffer.cpp
+
+	Renderers/Objects/GL/GLVertexArray.cpp
+	Renderers/Objects/GL/GLProgram.cpp
+	Renderers/Objects/GL/GLTexture.cpp
+	Renderers/Objects/GL/GLBuffer.cpp
+
 	Window/Windows.cpp
 	Window/X11.cpp
 
@@ -32,5 +42,9 @@ set (PIL_SRCS
 )
 
 add_library (PIL STATIC ${PIL_SRCS} ${PARALLAX_HEADERS})
-target_link_libraries(PIL ${OPENSSL_LIBRARIES} ${OPENSSL_SSL_LIBRARY} ${OPENSSL_CRYPTO_LIBRARY} ${Vulkan_LIBRARIES} ${OPENGL_LIBRARIES})
+target_link_libraries(PIL
+	${OPENSSL_LIBRARIES} ${OPENSSL_SSL_LIBRARY} ${OPENSSL_CRYPTO_LIBRARY}
+	${Vulkan_LIBRARIES}
+	${GLEW_LIBRARY_RELEASE}
+	${OPENGL_LIBRARIES})
 add_coverage (PIL)

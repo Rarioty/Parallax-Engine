@@ -5,6 +5,11 @@
 #include <Parallax/Types.hpp>
 #include <string>
 
+extern "C"{
+#include <libavformat/avformat.h>
+#include <libavcodec/avcodec.h>
+}
+
 namespace Parallax
 {
     namespace Renderer
@@ -21,12 +26,15 @@ namespace Parallax
             COUNT
         };
 
-        bool Init(std::string renderer_name, U32 width, U32 height);
-        void Shutdown();
+        bool            Init(std::string renderer_name, U32 width, U32 height);
+        void            Shutdown();
 
         const char*     GetRendererName();
         RendererType    GetRendererType();
         bool            IsDeviceRemoved();
+
+        void            WindowResized(U32 width, U32 height);
+        void            SwapBuffers();
     }
 }
 

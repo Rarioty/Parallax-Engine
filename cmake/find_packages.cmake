@@ -7,6 +7,8 @@ find_package(Doxygen)
 find_package(codecov)
 find_package(OpenSSL REQUIRED)
 find_package(Threads REQUIRED)
+find_package(FFmpeg REQUIRED)
+find_package(GLEW REQUIRED)
 
 if (GRAPHICS_ALLOW_OPENGL)
     find_package(OpenGL REQUIRED)
@@ -29,3 +31,4 @@ if (PHYSICS_ALLOW_BULLET)
 endif(PHYSICS_ALLOW_BULLET)
 
 include_directories(${OPENSSL_INCLUDE_DIR})
+include_directories(${FFMPEG_INCLUDE_DIR})

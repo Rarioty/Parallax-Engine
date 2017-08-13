@@ -176,6 +176,11 @@ namespace Parallax::Renderer
         m_visualInfo = NULL;
     }
 
+    void GLContext::swapBuffers() const
+    {
+		glXSwapBuffers( (::Display*)g_platformData.ndt, (::Window)g_platformData.nwh);
+    }
+
     U64 GLContext::getCaps() const
     {
         return 0;

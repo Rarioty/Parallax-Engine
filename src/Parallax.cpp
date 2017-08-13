@@ -2,9 +2,11 @@
 
 #include <Parallax/Threads/ThreadManager.hpp>
 #include <Parallax/Renderers/Renderer.hpp>
+#include <Parallax/Renderers/RendererGL.hpp>
 #include <Parallax/Renderers/Defines.hpp>
 #include <Parallax/Physics/Physics.hpp>
 #include <Parallax/Debug/Debug.hpp>
+#include <Parallax/Video/Video.hpp>
 #include <Parallax/Settings.hpp>
 #include <Parallax/Window.hpp>
 #include <Parallax/Types.hpp>
@@ -57,23 +59,33 @@ namespace Parallax
         result = Physics::Init(physicsEngine);
         PARALLAX_FATAL(true == result, "Physics engine could not have been initialized !");
 
+        result = Video::Init();
+        PARALLAX_FATAL(true == result, "Video engine could not have been initialized !");
+
+        PARALLAX_TRACE("Parallax Engine initialized !");
+
 		return result;
 	}
 
 	void launch()
 	{
-		while (isRunning())
+        Video::PlayVideo("test.video");
+        while (isRunning())
 		{
 			processEvents();
+
+            Video::Draw();
+            Renderer::SwapBuffers();
 		}
 	}
 
 	void shutdown()
 	{
+        Video::Shutdown();
         Physics::Shutdown();
         Renderer::Shutdown();
         Threads::Manager::Shutdown();
-        
+
 		destroyWindow();
 	}
 }

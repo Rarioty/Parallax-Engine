@@ -3,6 +3,9 @@
 
 #if PARALLAX_PLATFORM_LINUX
 
+#include <Parallax/Renderers/RendererGL.hpp>
+#include <Parallax/Video/Video.hpp>
+#include <Parallax/Debug/Debug.hpp>
 #include <Parallax/Types.hpp>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -54,7 +57,7 @@ namespace Parallax
 		m_window = XCreateWindow(m_display
 			, m_root
 			, 0, 0
-			, 1, 1, 0
+			, width, height, 0
 			, m_depth
 			, InputOutput
 			, m_visual
@@ -111,22 +114,28 @@ namespace Parallax
 	void processEvents()
 	{
 		XEvent event;
-		XNextEvent(m_display, &event);
 
-		switch(event.type)
+		while (XCheckWindowEvent(m_display, m_window, m_windowAttrs.event_mask, &event))
 		{
-		case ClientMessage:
-			if ((Atom)event.xclient.data.l[0] == m_wmDeleteWindow)
+			switch(event.type)
 			{
-				m_running = false;
+			case ClientMessage:
+				if ((Atom)event.xclient.data.l[0] == m_wmDeleteWindow)
+				{
+					m_running = false;
+				}
+				break;
+			case ConfigureNotify:
+				Renderer::WindowResized(event.xconfigure.width, event.xconfigure.height);
+				Video::WindowResized(event.xconfigure.width, event.xconfigure.height);
+				break;
+			case KeyPress:
+				if (event.xkey.keycode == 0x09)
+				{
+					m_running = false;
+				}
+				break;
 			}
-			break;
-		case KeyPress:
-			if (event.xkey.keycode == 0x09)
-			{
-				m_running = false;
-			}
-			break;
 		}
 	}
 
