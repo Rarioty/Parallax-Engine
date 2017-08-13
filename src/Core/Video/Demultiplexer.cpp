@@ -29,7 +29,7 @@ namespace Parallax::Video
         av_init_packet(&tmp);
         av_packet_ref(&tmp, &packet);
 
-        m_packets.push_back(tmp);
+        m_packets.push_back(std::move(tmp));
     }
 
     bool PacketQueue::pop(AVPacket* packet)
@@ -170,6 +170,7 @@ namespace Parallax::Video
 
         void Demultiplex(I32 streamIndex)
         {
+            char errorLog[512];
             I32 result;
 
             PARALLAX_WARN(streamIndex >= 0 && streamIndex < s_formatContext->nb_streams, "Index is outside stream indexes range !");
@@ -183,7 +184,15 @@ namespace Parallax::Video
                 while (true)
                 {
                     result = av_read_frame(s_formatContext, &packet);
-                    PARALLAX_WARN(result >= 0, "Can't read frame ! error: %d", result);
+
+                    if (result == AVERROR_EOF)
+                    {
+                        PARALLAX_TRACE("End of file");
+                        return;
+                    }
+
+                    av_strerror(result, errorLog, 512);
+                    PARALLAX_WARN(result >= 0, "Can't read frame ! error: %d (%s)", result, errorLog);
                     if (result < 0)
                         return;
 

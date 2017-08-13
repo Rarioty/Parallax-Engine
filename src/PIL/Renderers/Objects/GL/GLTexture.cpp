@@ -32,7 +32,7 @@ namespace Parallax::Renderer
     {
         m_width = width;
         m_height = height;
-        glTexImage2D(m_target.glTarget, mipMapLevel, m_format.glFormat, m_width.glSize, m_height.glSize,
+        glTexImage2D(m_target.glTarget, mipMapLevel, m_format.glFormat, width.glSize, height.glSize,
             0, uploadFormat.glFormat, GL_UNSIGNED_BYTE, (const GLubyte*)pixels);
     }
 

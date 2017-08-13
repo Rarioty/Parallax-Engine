@@ -57,6 +57,8 @@ namespace Parallax::Video::Decoder::Video
 
     bool Init()
     {
+		I32 result;
+
         PARALLAX_WARN(Demultiplexer::IsOpened(), "Demultiplexer is not open yet !");
         if (!Demultiplexer::IsOpened())
             return false;
@@ -66,6 +68,8 @@ namespace Parallax::Video::Decoder::Video
         if (stream < 0)
             return false;
 
+		PARALLAX_TRACE("Video stream is %d", stream);
+
         s_packetQueue = Demultiplexer::GetPacketQueue(stream);
         s_streamIndex = stream;
         s_stream = Demultiplexer::GetStream(stream);
@@ -73,6 +77,10 @@ namespace Parallax::Video::Decoder::Video
 
 		AVCodec* codec = avcodec_find_decoder(s_parameters->codec_id);
 		s_context = avcodec_alloc_context3(codec);
+		result = avcodec_open2(s_context, codec, NULL);
+
+		PARALLAX_WARN(result >= 0, "Can't open codec ! error: %d", result);
+
 		avcodec_parameters_to_context(s_context, s_parameters);
 
         s_frame = av_frame_alloc();
@@ -181,7 +189,9 @@ namespace Parallax::Video::Decoder::Video
 			ret = avcodec_send_packet(s_context, packet);
 
 			if (ret < 0)
+			{
 				return ret == AVERROR_EOF ? 0 : ret;
+			}
 		}
 
 		ret = avcodec_receive_frame(s_context, s_frame);
@@ -196,6 +206,7 @@ namespace Parallax::Video::Decoder::Video
 	Frame::Ptr NextFrame()
 	{
 		AVPacket packet;
+		av_init_packet(&packet);
 
 		while (true)
 		{
@@ -214,11 +225,13 @@ namespace Parallax::Video::Decoder::Video
 				continue;
 			}
 
+			char errorMessage[512];
 			I32 complete = 0;
 			I32 error = 0;
 
 			error = decode(&complete, &packet);
-			PARALLAX_WARN(error >= 0, "Error while decoding packet ! error: %d", error);
+			av_strerror(error, errorMessage, 512);
+			PARALLAX_WARN(error >= 0, "Error while decoding packet ! error: %d (%s)", error, errorMessage);
 
 			av_packet_unref(&packet);
 

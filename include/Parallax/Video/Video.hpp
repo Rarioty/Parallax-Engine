@@ -12,6 +12,7 @@ namespace Parallax
         void Shutdown();
 
         void PlayVideo(const char* filename);
+        void WindowResized(U32 width, U32 height);
         void Draw();
     }
 }

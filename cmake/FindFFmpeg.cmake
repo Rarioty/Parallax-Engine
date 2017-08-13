@@ -129,7 +129,7 @@ IF   (FFMPEG_LIBAVFORMAT_FOUND AND
 
 ELSE ()
 
-   MESSAGE(STATUS "Could not find FFMPEG")
+   MESSAGE("Could not find FFMPEG")
 
 ENDIF()
 
